@@ -17,7 +17,7 @@
     "redux": "^3.6.0"
   },
   "scripts": {
-    "build-css": "node-sass-chokidar src/styles -o src/styles",
+    "build-css": "node-sass-chokidar src/Main/Style -o src/Main/Style",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",

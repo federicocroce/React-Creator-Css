@@ -5,7 +5,7 @@ import { NavLink, Route, Switch } from 'react-router-dom';
 import { connect } from "react-redux";
 
 // import Single from './Single';
-import { viewPost } from '../../actions/actionsCreator';
+import { viewPost } from '../../Actions/actionsCreator';
 
 const Post = (props) => {
 

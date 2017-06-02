@@ -1,0 +1,10 @@
+body {
+    background-color: lightgrey;
+    h1 {
+        color: white;
+        &.title {
+            color: blue;
+        }
+    }
+    p.p{text-decoration: underline;}
+}
