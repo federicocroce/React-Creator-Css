@@ -24,9 +24,11 @@ class Home extends React.Component {
         <h1>
           <Link to="/">Venta/Alquier Inmuebles</Link>
         </h1>
-        <NavigationBar linksRoutes={linksRoutes} />
-        {/*<RaisedButton label="Default" />*/}
-        <postsGrid/>
+        <div className="nav-bar-container">
+          <NavigationBar linksRoutes={linksRoutes} />
+          {/*<RaisedButton label="Default" />*/}
+        </div>
+        <postsGrid />
       </div>
     );
   }

@@ -1,8 +1,2 @@
-body {
-  background-color: lightgrey; }
-  body h1 {
-    color: white; }
-    body h1.title {
-      color: blue; }
-  body p.p {
-    text-decoration: underline; }
+a {
+  display: inline-block; }

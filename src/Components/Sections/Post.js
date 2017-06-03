@@ -13,7 +13,7 @@ const Post = (props) => {
   // console.error("Photo");
   console.error(props.object.display_src);
   return (
-    <NavLink className="main-obj" to={'/view'} onClick={() => props.viewPost(props.object)}>
+    <NavLink to={'/view'} onClick={() => props.viewPost(props.object)}>
       <img src={props.object.display_src} alt="Smiley face" height="100" width="100"/>
       {/*<Link to={`/view/${props.object}`}>*/}
 
