@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Index from './Components/Sections/Index';
 
-require('./Main/Style/app.css');
+import './Styles/Main/index.css';
 
 ReactDOM.render(
   <Index />,

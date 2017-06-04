@@ -3,23 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^15.5.4"    
+    "react": "^15.5.4"
   },
   "devDependencies": {
-    
+    "create-react-app-sass": "^1.1.0",
+    "node-sass": "^4.5.3",
     "node-sass-chokidar": "0.0.2",
+    "nodemon": "^1.11.0",
     "npm-run-all": "^4.0.2",
+    "react-dom": "^15.5.4",
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
-    "react-dom": "^15.5.4",
     "react-router-dom": "^4.1.1",
     "react-router-redux": "^5.0.0-alpha.6",
     "react-scripts": "0.9.5",
     "redux": "^3.6.0"
   },
   "scripts": {
-    "build-css": "node-sass-chokidar --include-path .src/Main/Style -o --include-path .src/Main/Style",
-    "watch-css": "npm run build-css && node-sass-chokidar --include-path .src/Main/Style -o --include-path .src/Main/Style --watch --recursive",
+    "build-css": "node-sass --include-path src src/Styles/Main/index.scss src/Styles/Main/index.css",
+    "watch-css": "nodemon -e scss -x npm-run-all build-css",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && react-scripts build",
