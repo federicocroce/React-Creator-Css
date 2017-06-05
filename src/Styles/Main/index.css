@@ -49,4 +49,12 @@
       min-width: 100%;
       width: 100%; }
   .posts-container .active-post {
-    background: red; }
+    width: 100%;
+    margin: 0 auto;
+    height: 100%;
+    padding: 20px; }
+    .posts-container .active-post .post-image img {
+      vertical-align: top;
+      max-width: 50%;
+      min-width: 300px;
+      width: 50%; }

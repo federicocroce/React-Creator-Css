@@ -8,23 +8,25 @@ import classnames from 'classnames';
 
 const Post = (props) => {
 
-  // const postClass = 'active-post';
-  var postClass = true;
+  var postClass = '';
+  var showPost = true;
 
-  // postClass = !$.isEmptyObject(props.currentPost) && props.currentPost.id == props.object.id ? 'active-post' : null;
+  // showPost = !$.isEmptyObject(props.currentPost) && props.currentPost.id == props.object.id ? 'active-post' : null;
 
   if (!$.isEmptyObject(props.currentPost)) {
     if (props.currentPost.id == props.object.id) {
-      postClass = true;
+      showPost = true;
+      postClass = 'active-post';
+
     }
     else {
-      postClass = false;
+      showPost = false;
     }
   }
 
   return (
     // 
-    postClass ?
+    showPost ?
       <div onClick={() => props.viewPost(props.object)} className={postClass}>
         {/*<NavLink to={'/view'} >*/}
         <div className="post-image">
