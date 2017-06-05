@@ -1,48 +1,96 @@
 import React from 'react';
-import { Route, NavLink, Switch, IndexRoute } from 'react-router-dom';
+import { Route, NavLink, Switch } from 'react-router-dom';
+import { store } from '../Config/Store';
+import { connect } from "react-redux";
+
+import {
+    push,
+    replace,
+    go,
+    goBack,
+    goForward,
+} from 'react-router-redux';
 // import AppBar from 'material-ui/AppBar';
 
 // import PhotoGrid from './PhotoGrid'
 
 
-class NavigationBar extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
 
-    generateLinks = (linksRoutes) => {
+const NavigationBar = (props) => {
+
+    const linksRoutes = props.linksRoutes;
+
+    const data = props.data;
+
+    const generateLinks = (linksRoutes) => {
         return linksRoutes.map((route, index) => (
-            <NavLink key={index} to={linksRoutes[index].path} ><h1> {linksRoutes[index].name}</h1></NavLink>
+            linksRoutes[index].show != false ? <li onClick={() => setPath(linksRoutes[index].path, props)} key={index}><NavLink to={linksRoutes[index].path} > {linksRoutes[index].name}</NavLink></li> : null
         ))
     };
 
-    generateRutes = (linksRoutes, data) => {
+    const generateRutes = (linksRoutes, data) => {
         return linksRoutes.map((route, index) => {
-            return <Route exact={linksRoutes[index].exact} path={linksRoutes[index].path} key={index} component={linksRoutes[index].component} title="Fedeeee" data={data}></Route>
+            return <Route exact={linksRoutes[index].exact} path={linksRoutes[index].path} key={index} component={linksRoutes[index].component} data={data}></Route>
         })
     };
 
-
-    render() {
-
-        const linksRoutes = this.props.linksRoutes;
-
-        const data = this.props.data;
-
-        // console.error(data);
-
-        return (
-            <div>
-                {/*<AppBar>*/}
-                    {this.generateLinks(linksRoutes)}
-                {/*</AppBar>*/}
-                {this.generateRutes(linksRoutes, data)}
-
-
-            </div>
-        );
+    const setPath = (path, props) => {
+        props.posts.posts.currentPost = {};
+        store.dispatch(push(path));
     }
+
+    return (
+        <div>
+            <ul>{generateLinks(linksRoutes)}</ul>
+            {generateRutes(linksRoutes, data)}
+        </div>
+    );
+
 }
 
-export default NavigationBar;
+
+
+
+
+
+
+// render() {
+
+
+
+
+// }
+// }
+
+
+// export default NavigationBar;
+
+
+const mapStateToProps = (state) => {
+    return {
+        posts: state
+    };
+}
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     filterPosts(currentPost, action) {
+//       console.error(action);
+//       dispatch(filterPosts(currentPost, action));
+//     }
+//   };
+// }
+
+/*
+* Dispatch de las acciones
+*/
+
+/*
+* Acá se conecta el componente con redux
+*/
+// const { connect } = ReactRedux;
+export default connect(
+    mapStateToProps,
+    null
+)(NavigationBar);

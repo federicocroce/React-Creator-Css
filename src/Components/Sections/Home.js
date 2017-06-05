@@ -1,14 +1,10 @@
 import React from 'react';
-import { Route, Router, Link, Switch, IndexRoute } from 'react-router-dom';
-
-// import App from './components/App';
+import { Link } from 'react-router-dom';
 
 import { mainLinksRoutes as linksRoutes } from '../Config/AppRoutes.js'
 import NavigationBar from '../Utilities/NavigationBar';
-// import RaisedButton from 'material-ui/RaisedButton';
-import postsGrid from './PostsGrid';
 
-// import Owner from './Owner';
+import postsGrid from './PostsGrid';
 
 class Home extends React.Component {
 
@@ -22,7 +18,7 @@ class Home extends React.Component {
     return (
       <div>
         <h1>
-          <Link to="/">Venta/Alquier Inmuebles</Link>
+          <Link className='title-home' to="/">Venta/Alquier Inmuebles</Link>
         </h1>
         <div className="nav-bar-container">
           <NavigationBar linksRoutes={linksRoutes} />

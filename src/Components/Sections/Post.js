@@ -1,67 +1,62 @@
 import React from 'react';
-
-import { NavLink, Route, Switch } from 'react-router-dom';
-
+import { NavLink } from 'react-router-dom';
 import { connect } from "react-redux";
-
-// import Single from './Single';
 import { viewPost } from '../../Actions/actionsCreator';
+import $ from 'jquery'
+
+import classnames from 'classnames';
 
 const Post = (props) => {
 
-  // console.log(props);
-  // console.error("Photo");
-  console.error(props.object.display_src);
+  // const postClass = 'active-post';
+  var postClass = true;
+
+  // postClass = !$.isEmptyObject(props.currentPost) && props.currentPost.id == props.object.id ? 'active-post' : null;
+
+  if (!$.isEmptyObject(props.currentPost)) {
+    if (props.currentPost.id == props.object.id) {
+      postClass = true;
+    }
+    else {
+      postClass = false;
+    }
+  }
+
   return (
-    <NavLink to={'/view'} onClick={() => props.viewPost(props.object)}>
-      <img src={props.object.display_src} alt="Smiley face" height="100" width="100"/>
-      {/*<Link to={`/view/${props.object}`}>*/}
+    // 
+    postClass ?
+      <div onClick={() => props.viewPost(props.object)} className={postClass}>
+        {/*<NavLink to={'/view'} >*/}
+        <div className="post-image">
+          <img src={props.object.display_src} />
+        </div>
 
-      {/*<NavLink to={'/view'} onClick={() => props.viewPost(props.object)}>*/}
-        <p>{props.object.likes}</p>        
-      {/*</NavLink>*/}
-      <p>{props.object.type}</p>
-      {/*<Switch>*/}
-      {/*<Route path="/view" component={Single} ></Route>*/}
-      {/*</Switch>*/}
+        <p>{props.object.likes}</p>
+        <p>{props.object.type}</p>
 
-
-      {/*<button onClick={() => props.viewPost(props.object)}> VIEW</button>*/}
-
-    </NavLink>
+        {/*</NavLink>*/}
+      </div>
+      : null
   );
 
 }
 
-/*
-* Si se especifica, el componente a suscribirse a las actualizaciones del store de Redux.
-*/
 const mapStateToProps = (state) => {
-  // console.log("state");
-  // console.log(state);
   return {
-    currentPost: state.posts.currentPost
+    currentPost: state.posts.currentPost,
+    activePost: ''
   };
 }
 
 
 const mapDispatchToProps = dispatch => {
   return {
-    viewPost(currentPost) {
-       dispatch(viewPost(currentPost));
+    viewPost(currentPost, activePost) {
+      dispatch(viewPost(currentPost));
     }
   };
 }
 
-
-/*
-* Dispatch de las acciones
-*/
-
-/*
-* Acá se conecta el componente con redux
-*/
-// const { connect } = ReactRedux;
 export default connect(
   mapStateToProps,
   mapDispatchToProps

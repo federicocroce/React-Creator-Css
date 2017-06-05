@@ -1,19 +1,69 @@
-// * {
-//     margin: 0;
-//     padding: 0;
-//     box-sizing: border-box;
-// }
-
-// body {}
-
-a {
-    display: inline-block;
-    color: yellow;
-    background: blue;
+@import 'base';
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: $secondary-color-dark;
+    text-decoration: none;
 }
 
-// .nav-bar-container {
-//     background: red;
-//     width: 100%;
-//     height: 10%;
-// }
+////// HOME
+.title-home {
+    padding: 10px;
+    background: $primary-color-dark;
+    width: 100%;
+    display: block;
+    color: $primary-color-text;
+    text-align: center;
+}
+
+//////NAV BAR
+.nav-bar-container {
+    >div>ul {
+        background: $primary-color-light;
+        width: 100%;
+        text-align: center;
+        display: table;
+        li {
+            display: table-cell;
+            padding: 20px;
+            border-bottom: 2px transparent solid;
+            a {
+                color: $primary-color-text;
+                display: block;
+                text-align: center;
+                
+            }
+            &:hover {
+                    border-bottom: 2px $secondary-color solid;
+                    cursor: pointer;
+                    background: $primary-color-text;
+                    a{color: $primary-color-light;}
+                }
+        }
+    }
+}
+
+//////POST
+.posts-container {
+    text-align: center;
+    >div {
+        display: inline-block;
+        width: 40%;
+        min-width: 400px;
+        margin: 20px;
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+        border-radius: 2px;
+        z-index: 1;
+        .post-image img {
+            vertical-align: top;
+            max-width: 100%;
+            min-width: 100%;
+            width: 100%;
+        }
+    }
+
+    .active-post{
+        background: red;
+    }
+}

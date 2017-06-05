@@ -6,7 +6,7 @@ const postsResponse = [
         "title": "Av Belgrano 1759 1C",
         "likes": 40,
         "id": 1,
-        "display_src": "http://static.betazeta.com/www.fayerwayer.com/up/2013/09/google-plano-960x623.jpg",
+        "display_src": "http://www.construyehogar.com/wp-content/uploads/2015/07/Dise%C3%B1o-de-sala-de-departamento-peque%C3%B1o-002.jpg",
         "detail": [
             {
                 "key": "Comentario",
@@ -29,7 +29,7 @@ const postsResponse = [
         "caption": "Fede 2",
         "likes": 40,
         "id": 2,
-        "display_src": "http://static.betazeta.com/www.fayerwayer.com/up/2013/09/google-plano-960x623.jpg"
+        "display_src": "http://www.construyehogar.com/wp-content/uploads/2015/07/Dise%C3%B1o-de-sala-de-departamento-peque%C3%B1o-002.jpg"
 
     },
     {
@@ -37,8 +37,8 @@ const postsResponse = [
         "type": "rent",
         "caption": "Fede 1",
         "likes": 40,
-        "id": 1,
-        "display_src": "http://static.betazeta.com/www.fayerwayer.com/up/2013/09/google-plano-960x623.jpg"
+        "id": 3,
+        "display_src": "http://www.construyehogar.com/wp-content/uploads/2015/07/Dise%C3%B1o-de-sala-de-departamento-peque%C3%B1o-002.jpg"
 
     },
     {
@@ -46,8 +46,8 @@ const postsResponse = [
         "type": "rent",
         "caption": "Fede 2",
         "likes": 40,
-        "id": 2,
-        "display_src": "http://static.betazeta.com/www.fayerwayer.com/up/2013/09/google-plano-960x623.jpg"
+        "id": 4,
+        "display_src": "http://www.construyehogar.com/wp-content/uploads/2015/07/Dise%C3%B1o-de-sala-de-departamento-peque%C3%B1o-002.jpg"
 
     }
 ];
