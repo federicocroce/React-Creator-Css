@@ -32,14 +32,15 @@
                 color: $primary-color-text;
                 display: block;
                 text-align: center;
-                
             }
             &:hover {
-                    border-bottom: 2px $secondary-color solid;
-                    cursor: pointer;
-                    background: $primary-color-text;
-                    a{color: $primary-color-light;}
+                border-bottom: 2px $secondary-color solid;
+                cursor: pointer;
+                background: $primary-color-text;
+                a {
+                    color: $primary-color-light;
                 }
+            }
         }
     }
 }
@@ -55,24 +56,52 @@
         box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
         border-radius: 2px;
         z-index: 1;
-        .post-image img {
-            vertical-align: top;
-            max-width: 100%;
-            min-width: 100%;
-            width: 100%;
+        .post-content {
+            &:hover {
+                cursor: pointer;
+            }
+            .post-image img {
+                vertical-align: top;
+                max-width: 100%;
+                min-width: 100%;
+                width: 100%;
+                // transition: all 1s ease;
+            }
         }
+        // transition: all 1s ease 1s;
+        // animation: myfirst 5s linear 2s infinite alternate;
     }
-
-    .active-post{
+    .active-post {
+        transform:scale3d(1.1,1.1,1.1);
         width: 100%;
         margin: 0 auto;
-        height: 100%;
+        height: 1000px;
         padding: 20px;
-        .post-image img {
+       .post-content .post-image img {
             vertical-align: top;
-            max-width: 50%;
-            min-width: 300px;
-            width: 50%;
+            max-width: 30%;
+            min-width: 15%;
+            width: 30%;
+            // animation: view-post-img-animation 1s linear 1s;
+            
         }
+        // animation: view-post-animation 1s linear;
     }
 }
+
+
+// @keyframes view-post-animation {
+//     0%   {width: 40%;}
+//     // 25%  {background-color:yellow; left:200px; top:0px;}
+//     // 50%  {width:100%;}
+//     // 75%  {background-color:green; left:0px; top:200px;}
+//     100% {width:100%;}
+// }
+
+// @keyframes view-post-img-animation {
+//     0%   {width: 50%;}
+//     // 25%  {background-color:yellow; left:200px; top:0px;}
+//     // 50%  {width:100%;}
+//     // 75%  {background-color:green; left:0px; top:200px;}
+//     100% {width:20%; min-width:20%; max-width: 20%;}
+// }

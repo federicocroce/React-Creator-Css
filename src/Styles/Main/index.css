@@ -43,18 +43,21 @@
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
     border-radius: 2px;
     z-index: 1; }
-    .posts-container > div .post-image img {
+    .posts-container > div .post-content:hover {
+      cursor: pointer; }
+    .posts-container > div .post-content .post-image img {
       vertical-align: top;
       max-width: 100%;
       min-width: 100%;
       width: 100%; }
   .posts-container .active-post {
+    transform: scale3d(1.1, 1.1, 1.1);
     width: 100%;
     margin: 0 auto;
-    height: 100%;
+    height: 1000px;
     padding: 20px; }
-    .posts-container .active-post .post-image img {
+    .posts-container .active-post .post-content .post-image img {
       vertical-align: top;
-      max-width: 50%;
-      min-width: 300px;
-      width: 50%; }
+      max-width: 30%;
+      min-width: 15%;
+      width: 30%; }

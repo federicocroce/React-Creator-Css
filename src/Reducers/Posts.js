@@ -9,13 +9,20 @@ const postsData = {
 
 
 const posts = (state = postsData, action) => {
-    // console.error(action);
+    // console.error("ENTRA");
     switch (action.type) {
         case 'VIEW_POST':
-
+            // console.error("ENTRA VIEW");
             return {
                 ...state,
                 currentPost: action.currentPost
+            };
+            break;
+        case 'CLEAR_POST':
+            // console.error("ENTRA CLEAR");
+            return {
+                ...state,
+                currentPost: ""
             };
             break;
         default:

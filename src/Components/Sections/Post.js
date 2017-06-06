@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from "react-redux";
 import { viewPost } from '../../Actions/actionsCreator';
+import PostDetails from './PostDetails';
 import $ from 'jquery'
 
 import classnames from 'classnames';
@@ -10,12 +11,14 @@ const Post = (props) => {
 
   var postClass = '';
   var showPost = true;
+  var showPostDetails = false;
 
   // showPost = !$.isEmptyObject(props.currentPost) && props.currentPost.id == props.object.id ? 'active-post' : null;
 
   if (!$.isEmptyObject(props.currentPost)) {
     if (props.currentPost.id == props.object.id) {
       showPost = true;
+      showPostDetails = true;
       postClass = 'active-post';
 
     }
@@ -27,16 +30,19 @@ const Post = (props) => {
   return (
     // 
     showPost ?
-      <div onClick={() => props.viewPost(props.object)} className={postClass}>
-        {/*<NavLink to={'/view'} >*/}
-        <div className="post-image">
-          <img src={props.object.display_src} />
+      <div  className={postClass}> 
+        <div className="post-content" onClick={() => props.viewPost(props.object)}>
+          {/*<NavLink to={'/view'}>*/}
+          <div className="post-image">
+            <img src={props.object.display_src} />
+          </div>
+
+          <p>{props.object.likes}</p>
+          <p>{props.object.type}</p>
+
+
         </div>
-
-        <p>{props.object.likes}</p>
-        <p>{props.object.type}</p>
-
-        {/*</NavLink>*/}
+       {showPostDetails ? <PostDetails postDetails={props.object} /> : null}
       </div>
       : null
   );
