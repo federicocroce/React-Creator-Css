@@ -1,11 +1,15 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import { connect } from "react-redux";
 import { clearPost } from '../../Actions/actionsCreator';
-import { PostDetail } from './PostDetail';
-import $ from 'jquery';
+// import { PostDetail } from './PostDetail';
+import $ from 'jquery-lite';
 
-import { store } from '../Config/Store.js'
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
+import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
+
+import { store } from '../Config/Store.js';
 
 import {
   push,
@@ -27,10 +31,50 @@ const PostDetails = (props) => {
     props.clearPost();
   }
 
+  const styles = {
+    block: {
+      maxWidth: 0,
+    },
+    radioButton: {
+      marginBottom: 15,
+      marginTop: 15,
+    },
+  };
+
+
   return (
     <div>
-      ALGOO
-      <button onClick={() => back(props)}>Back</button>
+
+
+      <RadioButtonGroup className="horizontal-radio-button" name="shipSpeed" defaultSelected="not_light">
+        <RadioButton
+          value="alquiler"
+          label="Alquiler"
+          style={styles.radioButton}
+        />
+
+        <RadioButton
+          value="temporario"
+          label="Alquiler Temporario"
+          style={styles.radioButton}
+        />
+
+        <RadioButton
+          value="venta"
+          label="Venta"
+          style={styles.radioButton}
+        />
+      </RadioButtonGroup>
+
+
+      <TextField hintText="Hint Text" floatingLabelText="Floating Label Text" />
+
+      <TextField hintText="Hint Text" floatingLabelText="Floating Label Text" />
+
+      <TextField hintText="Hint Text" floatingLabelText="Floating Label Text" />
+
+      <RaisedButton className="primary-button" label="Volver" primary={true} onClick={() => back(props)} />
+
     </div>
 
   );

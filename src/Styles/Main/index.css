@@ -51,7 +51,6 @@
       min-width: 100%;
       width: 100%; }
   .posts-container .active-post {
-    transform: scale3d(1.1, 1.1, 1.1);
     width: 100%;
     margin: 0 auto;
     height: 1000px;
@@ -61,3 +60,15 @@
       max-width: 30%;
       min-width: 15%;
       width: 30%; }
+
+.primary-button button {
+  background: #01579b !important; }
+
+.horizontal-radio-button {
+  width: 100%;
+  display: table; }
+  .horizontal-radio-button > div {
+    width: auto !important;
+    display: table-cell !important; }
+  .horizontal-radio-button input, .horizontal-radio-button label {
+    width: auto !important; }

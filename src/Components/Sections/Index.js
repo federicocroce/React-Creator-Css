@@ -6,17 +6,21 @@ import { Route } from 'react-router-dom';
 
 import { store, history } from '../Config/Store.js'
 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 import Home from './Home';
 
 const Index = () => {
 
   return (
     <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <div>
-          <Route path="/" component={Home}></Route>
-        </div>
-      </ConnectedRouter>
+      <MuiThemeProvider>
+        <ConnectedRouter history={history}>
+          <div>
+            <Route path="/" component={Home}></Route>
+          </div>
+        </ConnectedRouter>
+      </MuiThemeProvider>
     </Provider>
   )
 }

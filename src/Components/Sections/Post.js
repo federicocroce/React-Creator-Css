@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from "react-redux";
 import { viewPost } from '../../Actions/actionsCreator';
 import PostDetails from './PostDetails';
-import $ from 'jquery'
+import $ from 'jquery-lite'
 
 import classnames from 'classnames';
 
