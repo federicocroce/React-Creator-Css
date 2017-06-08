@@ -31,22 +31,23 @@ const PostDetails = (props) => {
     props.clearPost();
   }
 
-  const styles = {
-    block: {
-      maxWidth: 0,
-    },
-    radioButton: {
-      marginBottom: 15,
-      marginTop: 15,
-    },
-  };
+const styles = {
+  block: {
+    maxWidth: 250,
+  },
+  radioButton: {
+    marginBottom: 16,
+  },
+};
+
 
 
   return (
     <div>
 
 
-      <RadioButtonGroup className="horizontal-radio-button" name="shipSpeed" defaultSelected="not_light">
+      <RadioButtonGroup className="radio-button horizontal-radio-button" name="shipSpeed" defaultSelected="not_light">
+      {/*<RadioButtonGroup style={styles.RadioButtonGroup} name="shipSpeed" defaultSelected="not_light">*/}
         <RadioButton
           value="alquiler"
           label="Alquiler"

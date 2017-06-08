@@ -94,16 +94,27 @@
     }
 }
 
-.horizontal-radio-button{
-    // text-align: left;
+.radio-button {
     width: 100%;
-    display: table;
-    > div{
+    text-align: start !important;
+    >div {
         width: auto !important;
-        display: table-cell !important;
     }
-
-    input, label{width: auto !important;}
+    label {
+        width: auto !important;
+        color: $secondary-color !important;
+    }
+    svg:nth-child(1) {
+        fill: $secondary-color !important;
+    }
+    svg:nth-child(2) {
+        fill: $primary-color !important;
+    }
+    &.horizontal-radio-button {
+        display: flex;
+        text-align: start !important;
+        flex-direction: row;
+    }
 }
 
 // @keyframes view-post-animation {

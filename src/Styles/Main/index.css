@@ -64,11 +64,19 @@
 .primary-button button {
   background: #01579b !important; }
 
-.horizontal-radio-button {
+.radio-button {
   width: 100%;
-  display: table; }
-  .horizontal-radio-button > div {
-    width: auto !important;
-    display: table-cell !important; }
-  .horizontal-radio-button input, .horizontal-radio-button label {
+  text-align: start !important; }
+  .radio-button > div {
     width: auto !important; }
+  .radio-button label {
+    width: auto !important;
+    color: #263238 !important; }
+  .radio-button svg:nth-child(1) {
+    fill: #263238 !important; }
+  .radio-button svg:nth-child(2) {
+    fill: #01579b !important; }
+  .radio-button.horizontal-radio-button {
+    display: flex;
+    text-align: start !important;
+    flex-direction: row; }
