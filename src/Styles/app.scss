@@ -95,10 +95,12 @@
 }
 
 .radio-button {
-    width: 100%;
+    width: 70%;
+    margin: 0 auto;
     text-align: start !important;
     >div {
         width: auto !important;
+        margin: auto;
     }
     label {
         width: auto !important;
@@ -114,6 +116,23 @@
         display: flex;
         text-align: start !important;
         flex-direction: row;
+    }
+}
+
+.input-text {
+    color: $secondary-color !important;
+    label:active {
+        color: $secondary-color !important;
+    }
+    input {
+        color: #01579b !important;
+    }
+    hr:nth-child(2) {
+        border-top: none #01579b !important;
+        border-left: none #01579b !important;
+        border-right: none #01579b !important;
+        border-bottom: 2px solid #01579b !important;
+        
     }
 }
 

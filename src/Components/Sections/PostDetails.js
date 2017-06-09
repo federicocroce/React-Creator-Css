@@ -68,7 +68,7 @@ const styles = {
       </RadioButtonGroup>
 
 
-      <TextField hintText="Hint Text" floatingLabelText="Floating Label Text" />
+      <TextField className="input-text" hintText="Hint Text" floatingLabelText="Floating Label Text" />
 
       <TextField hintText="Hint Text" floatingLabelText="Floating Label Text" />
 
