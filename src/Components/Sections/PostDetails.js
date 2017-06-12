@@ -2,12 +2,18 @@ import React from 'react';
 // import { NavLink } from 'react-router-dom';
 import { connect } from "react-redux";
 import { clearPost } from '../../Actions/actionsCreator';
+import Ripple from '../Utilities/Ripple'
+import SearchBoxExample from '../Utilities/Map'
 // import { PostDetail } from './PostDetail';
 import $ from 'jquery-lite';
+
 
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
+
+
+import ReactTestUtils from 'react-dom/test-utils';
 
 import { store } from '../Config/Store.js';
 
@@ -31,14 +37,34 @@ const PostDetails = (props) => {
     props.clearPost();
   }
 
-const styles = {
-  block: {
-    maxWidth: 250,
-  },
-  radioButton: {
-    marginBottom: 16,
-  },
-};
+
+
+
+  const ripple = e => {
+
+    const posX = e.offsetX,
+      posY = e.offsetY;
+
+
+    // effect.style.top = (e.pageY - offset.top) + "px";
+    // effect.style.left = (e.pageX - offset.left) + "px";
+
+    console.log(e.target);
+
+    // e.
+  }
+
+
+
+
+  const styles = {
+    block: {
+      maxWidth: 250,
+    },
+    radioButton: {
+      marginBottom: 16,
+    },
+  };
 
 
 
@@ -47,7 +73,7 @@ const styles = {
 
 
       <RadioButtonGroup className="radio-button horizontal-radio-button" name="shipSpeed" defaultSelected="not_light">
-      {/*<RadioButtonGroup style={styles.RadioButtonGroup} name="shipSpeed" defaultSelected="not_light">*/}
+        {/*<RadioButtonGroup style={styles.RadioButtonGroup} name="shipSpeed" defaultSelected="not_light">*/}
         <RadioButton
           value="alquiler"
           label="Alquiler"
@@ -67,6 +93,12 @@ const styles = {
         />
       </RadioButtonGroup>
 
+      <div className="input-text-container">
+        <input onClick={(e) => ripple(e)} className="inputMaterial" type="text" required />
+        <label>texto</label>
+        <Ripple />
+        <hr />
+      </div>
 
       <TextField className="input-text" hintText="Hint Text" floatingLabelText="Floating Label Text" />
 
@@ -76,7 +108,10 @@ const styles = {
 
       <RaisedButton className="primary-button" label="Volver" primary={true} onClick={() => back(props)} />
 
+        <SearchBoxExample />
+
     </div>
+
 
   );
 }
