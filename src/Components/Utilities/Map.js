@@ -128,10 +128,10 @@ export default class SearchBoxExample extends Component {
                 <h1> MAPA </h1>
                 <SearchBoxExampleGoogleMap
                     containerElement={
-                        <div style={{ height: `100%` }} />
+                        <div style={{ height: `500px` }} />
                     }
                     mapElement={
-                        <div style={{ height: `100%` }} />
+                        <div style={{ height: `500px` }} />
                     }
                     center={this.state.center}
                     onMapMounted={this.handleMapMounted}
@@ -145,6 +145,11 @@ export default class SearchBoxExample extends Component {
         );
     }
 }
+
+
+
+
+
 
 
 

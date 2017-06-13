@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { clearPost } from '../../Actions/actionsCreator';
 import Ripple from '../Utilities/Ripple'
 import SearchBoxExample from '../Utilities/Map'
+import GMaps from '../Utilities/GMaps'
 // import { PostDetail } from './PostDetail';
 import $ from 'jquery-lite';
 
@@ -108,7 +109,8 @@ const PostDetails = (props) => {
 
       <RaisedButton className="primary-button" label="Volver" primary={true} onClick={() => back(props)} />
 
-        <SearchBoxExample />
+        {/*<SearchBoxExample />*/}
+        <GMaps />
 
     </div>
 
