@@ -7,7 +7,7 @@ import {
 
 import $ from 'jquery-lite';
 
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 
 
 // This example adds a search box to a map, using the Google Place Autocomplete
@@ -19,16 +19,18 @@ import { connect } from "react-redux";
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
 function initAutocomplete() {
-    var map = new google.maps.Map($("#map"), {
+    // var map = new google.maps.Map($("#map"), {
+    var map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: -33.8688, lng: 151.2195 },
         zoom: 13,
         mapTypeId: 'roadmap'
     });
 
     // Create the search box and link it to the UI element.
-    var input = $("#pac-input");
+    // var input = $("#pac-input");
+    var input = document.getElementById('pac-input');
     var searchBox = new google.maps.places.SearchBox(input);
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
     // Bias the SearchBox results towards current map's viewport.
     map.addListener('bounds_changed', function () {
@@ -86,31 +88,54 @@ function initAutocomplete() {
 }
 
 
+export default class GMaps extends Component {
 
-const GMaps = (props) => {
+    componentDidMount() {
+        initAutocomplete();
+    }
 
-    props.componentDidMount();
+    render() {
+        return (
+            <div style={{ height: `500px` }}>
+                <h1> MAPA </h1>
 
-    return (
+                <div className="input-text-container">
+                    <input id="pac-input" className="inputMaterial" type="text" required placeholder=" " />
+                    <label>Search Box</label>
+                    <hr />
+                </div>
+                {/*<input id="pac-input" className="controls" type="text" placeholder="Search Box" />*/}
+                <div id="map"></div>
+            </div>
+        );
+    }
+}
+
+
+/*const GMaps = (props) => {
+
+                    props.componentDidMount();
+
+                return (
         <div>
-            <input id="pac-input" type="text" placeholder="Search Box" />
-            <div id="map"></div>
-        </div>
-    );
+                    <input id="pac-input" type="text" placeholder="Search Box" />
+                    <div id="map"></div>
+                </div>
+                );
 
 
-}
+}*/
 
 
 
-const mapDispatchToProps = {
-  componentDidMount: initAutocomplete
-}
+// const mapDispatchToProps = {
+//   componentDidMount: initAutocomplete
+// }
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(GMaps);
+// export default connect(
+//   null,
+//   mapDispatchToProps
+// )(GMaps);
 
 // export default GMaps;
 
