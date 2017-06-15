@@ -23,9 +23,20 @@ const viewPost = (currentPost) =>{
 
 const clearPost = () =>{
     return{
-        type:'CLEAR_POST',
+        type:'CLEAR_POST'
     }
 }
+
+
+const setLocation = (currentLocation) =>{
+    return{
+        type:'SET_LOCATION',
+        currentLocation
+    }
+}
+
+
+///////////////////////////////
 
 const filterPosts = (posts, action) =>{
     // console.error(action);
@@ -61,4 +72,4 @@ export function removeComment(postId, i){
 }
 
 
-export {viewPost, filterPosts, clearPost};
+export {viewPost, filterPosts, clearPost, setLocation};

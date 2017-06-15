@@ -1,17 +1,14 @@
 /* global google */
 
-import {
-    default as React,
-    Component,
-} from "react";
+import React from 'react';
 
-import $ from 'jquery-lite';
+import { setLocation } from '../../Actions/actionsCreator';
 
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 
 var currentPlace = null;
 
-function initAutocomplete() {
+function initAutocomplete(currentPlaceState) {
     // var map = new google.maps.Map($("#map"), {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: -33.8688, lng: 151.2195 },
@@ -73,15 +70,16 @@ function initAutocomplete() {
 
             place.address_components.map((place, index) => {
                 var types = place.types[0];
-                currentPlace.streetNumber = types == "street_number" ? place.long_name : '';
-                currentPlace.route = types == "route" ? place.long_name : '';
-                currentPlace.sublocality = types == "sublocality_level_1" ? place.long_name : '';
-                currentPlace.locality = types == "locality" ? place.short_name : '';
-                currentPlace.province = types == "administrative_area_level_1" ? place.long_name : '';
-                currentPlace.country = types == "country" ? place.long_name : '';
-                currentPlace.postal_code = types == "postal_code" ? place.long_name : '';
+                currentPlace.streetNumber = types == "street_number" ? place.long_name : currentPlace.streetNumber;
+                currentPlace.route = types == "route" ? place.long_name : currentPlace.route;
+                currentPlace.sublocality = types == "sublocality_level_1" ? place.long_name : currentPlace.sublocality;
+                currentPlace.locality = types == "locality" ? place.short_name : currentPlace.locality;
+                currentPlace.province = types == "administrative_area_level_1" ? place.long_name : currentPlace.province;
+                currentPlace.country = types == "country" ? place.long_name : currentPlace.country;
+                currentPlace.postalCode = types == "postal_code" ? place.long_name : currentPlace.postalCode;
             });
 
+            currentPlaceState = currentPlace;
 
             if (place.geometry.viewport) {
                 // Only geocodes have viewport.
@@ -142,17 +140,21 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 
-export default class GMaps extends Component {
+class GMaps extends React.Component {
+
 
     componentDidMount() {
-        initAutocomplete();
+        initAutocomplete(this.props.currentPlace);
 
-        var place = currentPlace.map((object, index) =>
-            <p key={index}> {JSON.stringify(object)} </p>
-        )
+        // var place = currentPlace.map((object, index) =>
+        //     <p key={index}> {JSON.stringify(object)} </p>
+        // )
     }
 
     render() {
+
+        // var a = this.props;
+
         return (
             <div style={{ height: `500px` }}>
                 <h1> MAPA </h1>
@@ -174,31 +176,42 @@ export default class GMaps extends Component {
     }
 }
 
+/*
+const GMaps = (props) => {
 
-/*const GMaps = (props) => {
+    props.componentDidMount();
 
-                    props.componentDidMount();
-
-                return (
+    return (
         <div>
-                    <input id="pac-input" type="text" placeholder="Search Box" />
-                    <div id="map"></div>
-                </div>
-                );
+            <input id="pac-input" type="text" placeholder="Search Box" />
+            <div id="map"></div>
+        </div>
+    );
 
 
 }*/
 
 
 
-// const mapDispatchToProps = {
-//   componentDidMount: initAutocomplete
-// }
+const mapStateToProps = state => {
+  return {
+    currentPlace: state.maps.currentPlace
+  };
+}
 
-// export default connect(
-//   null,
-//   mapDispatchToProps
-// )(GMaps);
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setLocation(currentPost, activePost) {
+      dispatch(setLocation(currentPost));
+    }
+  };
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(GMaps);
 
 // export default GMaps;
 

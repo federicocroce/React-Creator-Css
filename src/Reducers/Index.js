@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { routerReducer } from "react-router-redux";
 
 import { posts } from './Posts';
+import { maps } from './GMaps';
 // import comments from './comments';
 
 
@@ -29,7 +30,7 @@ import { posts } from './Posts';
 const allReducers = {
     // currentPost,
     posts,
-    // comments,
+    maps,
     routing: routerReducer
 }
 
