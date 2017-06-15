@@ -9,14 +9,7 @@ import $ from 'jquery-lite';
 
 // import { connect } from "react-redux";
 
-
-// This example adds a search box to a map, using the Google Place Autocomplete
-// feature. People can enter geographical searches. The search box will return a
-// pick list containing a mix of places and predicted search terms.
-
-// This example requires the Places library. Include the libraries=places
-// parameter when you first load the API. For example:
-// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+var currentPlace = null;
 
 function initAutocomplete() {
     // var map = new google.maps.Map($("#map"), {
@@ -76,6 +69,20 @@ function initAutocomplete() {
                 position: place.geometry.location
             }));
 
+            currentPlace = {};
+
+            place.address_components.map((place, index) => {
+                var types = place.types[0];
+                currentPlace.streetNumber = types == "street_number" ? place.long_name : '';
+                currentPlace.route = types == "route" ? place.long_name : '';
+                currentPlace.sublocality = types == "sublocality_level_1" ? place.long_name : '';
+                currentPlace.locality = types == "locality" ? place.short_name : '';
+                currentPlace.province = types == "administrative_area_level_1" ? place.long_name : '';
+                currentPlace.country = types == "country" ? place.long_name : '';
+                currentPlace.postal_code = types == "postal_code" ? place.long_name : '';
+            });
+
+
             if (place.geometry.viewport) {
                 // Only geocodes have viewport.
                 bounds.union(place.geometry.viewport);
@@ -84,7 +91,54 @@ function initAutocomplete() {
             }
         });
         map.fitBounds(bounds);
+
+
+
     });
+
+    var infoWindow = new google.maps.InfoWindow({ map: map });
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+
+            var icon = {
+                url: pos.icon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(25, 25)
+            };
+
+            infoWindow.setPosition(pos);
+
+            infoWindow.setContent('Location found.');
+
+            markers.push(new google.maps.Marker({
+                map: map,
+                icon: icon,
+                title: pos.name,
+                position: pos
+            }));
+
+            map.setCenter(pos);
+        }, function () {
+            handleLocationError(true, infoWindow, map.getCenter());
+        });
+    } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false, infoWindow, map.getCenter());
+    }
+}
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(browserHasGeolocation ?
+        'Error: The Geolocation service failed.' :
+        'Error: Your browser doesn\'t support geolocation.');
 }
 
 
@@ -92,12 +146,21 @@ export default class GMaps extends Component {
 
     componentDidMount() {
         initAutocomplete();
+
+        var place = currentPlace.map((object, index) =>
+            <p key={index}> {JSON.stringify(object)} </p>
+        )
     }
 
     render() {
         return (
             <div style={{ height: `500px` }}>
                 <h1> MAPA </h1>
+
+                {currentPlace ? currentPlace.map((object, index) =>
+                    <p key={index}> {JSON.stringify(object)} </p>
+                ) : null
+                }
 
                 <div className="input-text-container">
                     <input id="pac-input" className="inputMaterial" type="text" required placeholder=" " />
