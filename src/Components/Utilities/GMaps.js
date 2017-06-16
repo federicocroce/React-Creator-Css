@@ -8,9 +8,9 @@ import { connect } from "react-redux";
 
 var currentPlace = null;
 
-function initAutocomplete(currentPlaceState) {
+function initAutocomplete(currentPlaceState, maps, searchBox) {
     // var map = new google.maps.Map($("#map"), {
-    var map = new google.maps.Map(document.getElementById('map'), {
+    var map = new google.maps.Map(maps, {
         center: { lat: -33.8688, lng: 151.2195 },
         zoom: 13,
         mapTypeId: 'roadmap'
@@ -18,8 +18,8 @@ function initAutocomplete(currentPlaceState) {
 
     // Create the search box and link it to the UI element.
     // var input = $("#pac-input");
-    var input = document.getElementById('pac-input');
-    var searchBox = new google.maps.places.SearchBox(input);
+
+
     // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
     // Bias the SearchBox results towards current map's viewport.
@@ -30,7 +30,8 @@ function initAutocomplete(currentPlaceState) {
     var markers = [];
     // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place.
-    searchBox.addListener('places_changed', function () {
+    function addListener(currentPlaceState) {
+        // searchBox.addListener('places_changed', function (currentPlaceState) {
         var places = searchBox.getPlaces();
 
         if (places.length == 0) {
@@ -90,61 +91,70 @@ function initAutocomplete(currentPlaceState) {
         });
         map.fitBounds(bounds);
 
+    };
+
+};
+
+// var infoWindow = new google.maps.InfoWindow({ map: map });
+// // Try HTML5 geolocation.
+// if (navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition(function (position) {
+//         var pos = {
+//             lat: position.coords.latitude,
+//             lng: position.coords.longitude
+//         };
+
+//         var icon = {
+//             url: pos.icon,
+//             size: new google.maps.Size(71, 71),
+//             origin: new google.maps.Point(0, 0),
+//             anchor: new google.maps.Point(17, 34),
+//             scaledSize: new google.maps.Size(25, 25)
+//         };
+
+//         infoWindow.setPosition(pos);
+
+//         infoWindow.setContent('Location found.');
+
+//         markers.push(new google.maps.Marker({
+//             map: map,
+//             icon: icon,
+//             title: pos.name,
+//             position: pos
+//         }));
+
+//         map.setCenter(pos);
+//     }, function () {
+//         handleLocationError(true, infoWindow, map.getCenter());
+//     });
+// } else {
+//     // Browser doesn't support Geolocation
+//     handleLocationError(false, infoWindow, map.getCenter());
+// }
 
 
-    });
-
-    var infoWindow = new google.maps.InfoWindow({ map: map });
-    // Try HTML5 geolocation.
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
-
-            var icon = {
-                url: pos.icon,
-                size: new google.maps.Size(71, 71),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(17, 34),
-                scaledSize: new google.maps.Size(25, 25)
-            };
-
-            infoWindow.setPosition(pos);
-
-            infoWindow.setContent('Location found.');
-
-            markers.push(new google.maps.Marker({
-                map: map,
-                icon: icon,
-                title: pos.name,
-                position: pos
-            }));
-
-            map.setCenter(pos);
-        }, function () {
-            handleLocationError(true, infoWindow, map.getCenter());
-        });
-    } else {
-        // Browser doesn't support Geolocation
-        handleLocationError(false, infoWindow, map.getCenter());
-    }
-}
-
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(browserHasGeolocation ?
-        'Error: The Geolocation service failed.' :
-        'Error: Your browser doesn\'t support geolocation.');
-}
+// function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+//     infoWindow.setPosition(pos);
+//     infoWindow.setContent(browserHasGeolocation ?
+//         'Error: The Geolocation service failed.' :
+//         'Error: Your browser doesn\'t support geolocation.');
+// }
 
 
 class GMaps extends React.Component {
 
 
     componentDidMount() {
-        initAutocomplete(this.props.currentPlace);
+
+        var currentPlaceState = {};
+
+        var map = document.getElementById('map');
+        var input = document.getElementById('pac-input');
+
+        initAutocomplete(currentPlaceState, map, input);
+        var searchBox = new google.maps.places.SearchBox(input);
+        searchBox.addListener('places_changed', this.addListener);
+        
 
         // var place = currentPlace.map((object, index) =>
         //     <p key={index}> {JSON.stringify(object)} </p>
@@ -194,18 +204,18 @@ const GMaps = (props) => {
 
 
 const mapStateToProps = state => {
-  return {
-    currentPlace: state.maps.currentPlace
-  };
+    return {
+        currentPlace: state.maps.currentPlace
+    };
 }
 
 
 const mapDispatchToProps = dispatch => {
-  return {
-    setLocation(currentPost, activePost) {
-      dispatch(setLocation(currentPost));
-    }
-  };
+    return {
+        setLocation(currentPost, activePost) {
+            dispatch(setLocation(currentPost));
+        }
+    };
 }
 
 export default connect(
