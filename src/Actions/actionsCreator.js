@@ -28,10 +28,10 @@ const clearPost = () =>{
 }
 
 
-const setLocation = (currentLocation) =>{
+const setCurrentPlace = (currentPlace) =>{
     return{
         type:'SET_LOCATION',
-        currentLocation
+        currentPlace
     }
 }
 
@@ -72,4 +72,4 @@ export function removeComment(postId, i){
 }
 
 
-export {viewPost, filterPosts, clearPost, setLocation};
+export {viewPost, filterPosts, clearPost, setCurrentPlace};
