@@ -89,7 +89,8 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   text-align: left;
   display: inline-block;
-  font-size: 1.1em; }
+  font-size: 1.1em;
+  margin-top: 20px; }
   .input-text-container input {
     border: none;
     outline: none; }
@@ -132,6 +133,11 @@
     transform: scale(0);
     pointer-events: none;
     transition: opacity 2s cubic-bezier(0.23, 1, 0.32, 1) 0ms, transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0ms; }
+
+.value-key-location {
+  display: inline-block;
+  text-align: left;
+  float: left; }
 
 .ripple-container {
   /*Con los siguientes valores de position, top, left, width y height aseguramos que el div tome todo el tamaño de su padre*/
@@ -186,7 +192,8 @@
   height: 500px; }
 
 /* Optional: Makes the sample page fill the window. */
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0; }

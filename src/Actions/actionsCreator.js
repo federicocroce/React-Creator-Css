@@ -35,6 +35,13 @@ const setCurrentPlace = (currentPlace) =>{
     }
 }
 
+const initGMaps = (gMapsElements) =>{
+    return{
+        type:'INIT_GMAPS',
+        gMapsElements
+    }
+}
+
 
 ///////////////////////////////
 
@@ -72,4 +79,4 @@ export function removeComment(postId, i){
 }
 
 
-export {viewPost, filterPosts, clearPost, setCurrentPlace};
+export {viewPost, filterPosts, clearPost, setCurrentPlace, initGMaps};

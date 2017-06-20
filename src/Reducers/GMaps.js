@@ -3,6 +3,11 @@
 import { postsResponse } from "../Data/data";
 
 const MapsData = {
+    gMapsElements: {
+        map: {},
+        markers: [],
+        infoWindow: {}
+    },
     currentPlace: {}
 }
 
@@ -10,18 +15,18 @@ const MapsData = {
 const maps = (state = MapsData, action) => {
     // console.error("ENTRA");
     switch (action.type) {
+        case 'INIT_GMAPS':
+            // console.error("ENTRA VIEW");
+            return {
+                ...state,
+                gMapsElements: action.gMapsElements
+            };
+            break;
         case 'SET_LOCATION':
             // console.error("ENTRA VIEW");
             return {
                 ...state,
                 currentPlace: action.currentPlace
-            };
-            break;
-        case 'CLEAR_POST':
-            // console.error("ENTRA CLEAR");
-            return {
-                ...state,
-                currentPost: ""
             };
             break;
         default:
