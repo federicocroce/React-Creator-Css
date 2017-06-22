@@ -5,6 +5,7 @@ import { clearPost } from '../../Actions/actionsCreator';
 import Ripple from '../Utilities/Ripple'
 import SearchBoxExample from '../Utilities/Map'
 import GMaps from '../Utilities/GMaps/GMaps'
+import GMapsSechBoxAnda from '../Utilities/GMaps/GMapsSechBoxAnda'
 // import { PostDetail } from './PostDetail';
 import $ from 'jquery-lite';
 
@@ -110,6 +111,7 @@ const PostDetails = (props) => {
       <RaisedButton className="primary-button" label="Volver" primary={true} onClick={() => back(props)} />
 
         {/*<SearchBoxExample />*/}
+        {/*<GMapsSechBoxAnda/>*/}
         <GMaps/>
 
     </div>

@@ -236,7 +236,7 @@ const addListener = (searchBox, mapElement, markers) => {
 
 
 
-class GMapsSechBox extends React.Component {
+class GMapsSechBoxAnda extends React.Component {
 
 
     componentDidMount() {
@@ -247,15 +247,11 @@ class GMapsSechBox extends React.Component {
 
         var map = initAutocomplete(mapElement);
 
-        // var infoWindow = new google.maps.InfoWindow({ map: map });
+        var infoWindow = new google.maps.InfoWindow({ map: map });
         var searchBox = new google.maps.places.SearchBox(input);
 
         // setCurrentPosition(map, markers, infoWindow);
         searchBox.addListener('places_changed', addListener.bind(null, searchBox, map, markers));
-
-        // var place = currentPlace.map((object, index) =>
-        //     <p key={index}> {JSON.stringify(object)} </p>
-        // )
     }
 
     render() {
@@ -263,7 +259,10 @@ class GMapsSechBox extends React.Component {
         // var a = this.props;
 
         return (
-            <div>
+
+             <div style={{ height: `500px` }}>
+
+                <div>
 
                 <KeyValue dataKeyValue={this.props.gMapsElements.currentPlace} />
 
@@ -275,25 +274,13 @@ class GMapsSechBox extends React.Component {
                     </div>
                 </div>
             </div>
+                <div id="map"></div>
+            </div>
+
+            
         );
     }
 }
-
-/*
-const GMapsSechBox = (props) => {
-
-                    props.componentDidMount();
-
-                return (
-        <div>
-                    <input id="pac-input" type="text" placeholder="Search Box" />
-                    <div id="map"></div>
-                </div>
-                );
-
-
-}*/
-
 
 
 const mapStateToProps = state => {
@@ -318,7 +305,7 @@ const mapDispatchToProps = dispatch => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(GMapsSechBox);
+)(GMapsSechBoxAnda);
 
-// export default GMapsSechBox;
+// export default GMapsSechBoxAnda;
 

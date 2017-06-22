@@ -6,9 +6,9 @@ const MapsData = {
     gMapsElements: {
         map: {},
         markers: [],
-        infoWindow: {}
-    },
-    currentPlace: {}
+        infoWindow: {},
+        currentPlace: {}
+    }
 }
 
 
@@ -17,11 +17,18 @@ const maps = (state = MapsData, action) => {
     switch (action.type) {
         case 'INIT_GMAPS':
             // console.error("ENTRA VIEW");
-            return {
-                ...state,
-                gMapsElements: action.gMapsElements
-            };
-            break;
+
+            // Object.keys(action.gMapsElements).map((element, index) => {
+                
+                    
+                
+            // });
+                return {
+                    ...state,
+                    gMapsElements: action.gMapsElements,
+
+                };
+                break;
         case 'SET_LOCATION':
             // console.error("ENTRA VIEW");
             return {

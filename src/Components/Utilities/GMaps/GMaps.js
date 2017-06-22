@@ -108,7 +108,7 @@ class GMaps extends React.Component {
 
         gMapsElements.infoWindow = new google.maps.InfoWindow({ map: gMapsElements.map });
 
-        setCurrentPosition(gMapsElements.map, gMapsElements.markers, gMapsElements.infoWindow);
+        // setCurrentPosition(gMapsElements.map, gMapsElements.markers, gMapsElements.infoWindow);
         
         this.props.initGMaps(gMapsElements);
     }
