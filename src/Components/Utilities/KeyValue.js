@@ -16,13 +16,24 @@ const generateKeyValue = (data) => {
     })
 };
 
-const KeyValue = (props) => {
+class KeyValue extends React.Component {
 
-    return (
-        <div className="value-key-location">
-            {generateKeyValue(props.dataKeyValue)}
-        </div>
-    )
+    componentDidUpdate(prevProps, prevState) {
+        // setCurrentPosition(gMapsElements.map, gMapsElements.markers, gMapsElements.infoWindow);
+
+        if (this.props.dataKeyValue !== prevProps.dataKeyValue) {
+            // this.loadMap();
+            this.forceUpdate();
+        }
+    }
+
+    render() {
+        return (
+            <div className="value-key-location">
+                {generateKeyValue(this.props.dataKeyValue)}
+            </div>
+        )
+    }
 }
 
 

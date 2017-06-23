@@ -3,7 +3,7 @@
 import React from 'react';
 
 import { initGMaps } from '../../../Actions/actionsCreator';
-import KeyValue from '../KeyValue';
+// import KeyValue from '../KeyValue';
 import GMaps from './GMaps';
 
 import { connect } from "react-redux";
@@ -22,6 +22,8 @@ const addListenerToMap = (props, searchBox) => {
 
 const addListener = (props, searchBox) => {
     // searchBox.addListener('places_changed', function (currentPlaceState) {
+
+    var newProps = props.map;
     var places = searchBox.getPlaces();
     var markers = [];
 
@@ -30,10 +32,10 @@ const addListener = (props, searchBox) => {
     }
 
     // Clear out the old props.markers.
-    props.gMapsElements.markers.forEach(function (marker) {
+    newProps.markers.forEach(function (marker) {
         marker.setMap(null);
     });
-    // props.gMapsElements.props.gMapsElements.markers = [];
+    // newProps.newProps.markers = [];
 
     // For each place, get the icon, name and location.
     var bounds = new google.maps.LatLngBounds();
@@ -52,8 +54,8 @@ const addListener = (props, searchBox) => {
 
         // Create a marker for each place.
 
-        props.gMapsElements.markers.push(new google.maps.Marker({
-            map: props.gMapsElements.map,
+        newProps.markers.push(new google.maps.Marker({
+            map: newProps.map,
             icon: icon,
             title: place.name,
             position: place.geometry.location
@@ -120,6 +122,11 @@ const addListener = (props, searchBox) => {
             }
         });
 
+        newProps.infoWindow.setPosition(place.geometry.location);
+
+        if(currentPlace.route && currentPlace.streetNumber)
+        newProps.infoWindow.setContent(currentPlace.route.value + " " + currentPlace.streetNumber.value);
+
         if (place.geometry.viewport) {
             // Only geocodes have viewport.
             bounds.union(place.geometry.viewport);
@@ -127,12 +134,12 @@ const addListener = (props, searchBox) => {
             bounds.extend(place.geometry.location);
         }
     });
-    var map = props.gMapsElements.map;
+    var map = newProps.map;
     map.fitBounds(bounds);
 
     var gMapsElements = {
         currentPlace,
-        markers: props.gMapsElements.markers,
+        markers: newProps.markers,
         map
     }
     // gMapsElements gMapsElements.markers
@@ -146,26 +153,36 @@ const addListener = (props, searchBox) => {
 class GMapsSechBox extends React.Component {
 
 
-    componentDidMount() {
+    // componentDidMount() {
 
-        // var mapElement = document.getElementById('map');
-        var input = document.getElementById('pac-input');
-        // var markers = [];
+    //     // var mapElement = document.getElementById('map');
+    //     // var input = document.getElementById('pac-input');
+    //     // var markers = [];
 
-        // var map = initAutocomplete(mapElement);
+    //     // var map = initAutocomplete(mapElement);
 
-        // var infoWindow = new google.maps.InfoWindow({ map: map });
-        var searchBox = new google.maps.places.SearchBox(input);
+    //     // var infoWindow = new google.maps.InfoWindow({ map: map });
+    //     var searchBox = new google.maps.places.SearchBox(document.getElementById('pac-input'));
 
-        // setCurrentPosition(map, markers, infoWindow);
-        searchBox.addListener('places_changed', addListener.bind(null, this.props, searchBox));
-        this.props.gMapsElements.map.addListener('bounds_changed', addListenerToMap.bind(null, this.props, searchBox));
-        // map.addListener('bounds_changed', function () {
+    //     // setCurrentPosition(map, markers, infoWindow);
+    //     searchBox.addListener('places_changed', addListener.bind(null, this.props, searchBox));
+    //     // this.props.gMapsElements.map.addListener('bounds_changed', addListenerToMap.bind(null, this.props, searchBox));
+    //     // map.addListener('bounds_changed', function () {
 
-        // var place = currentPlace.map((object, index) =>
-        //     <p key={index}> {JSON.stringify(object)} </p>
-        // )
+    //     // var place = currentPlace.map((object, index) =>
+    //     //     <p key={index}> {JSON.stringify(object)} </p>
+    //     // )
+    // }
+
+    componentDidUpdate(prevProps, prevState) {
+        // setCurrentPosition(gMapsElements.map, gMapsElements.markers, gMapsElements.infoWindow);
+
+        if (this.props.map) {
+            var searchBox = new google.maps.places.SearchBox(document.getElementById('pac-input'));
+            searchBox.addListener('places_changed', addListener.bind(null, this.props, searchBox));
+        }
     }
+
 
     render() {
 
@@ -173,9 +190,6 @@ class GMapsSechBox extends React.Component {
 
         return (
             <div>
-
-                <KeyValue dataKeyValue={this.props.gMapsElements.currentPlace} />
-
                 <div>
                     <div className="input-text-container">
                         <input id="pac-input" className="inputMaterial" type="text" required placeholder=" " />

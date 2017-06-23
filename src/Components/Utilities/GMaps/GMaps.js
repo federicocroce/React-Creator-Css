@@ -41,7 +41,7 @@ const initAutocomplete = (mapElement) => {
 };
 
 
-const setCurrentPosition = (map, markers, infoWindow) => {
+const setCurrentPosition = (mapElements) => {
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -51,31 +51,31 @@ const setCurrentPosition = (map, markers, infoWindow) => {
             };
 
             var icon = {
-                url: pos.icon,
+                url: "https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png",
                 size: new google.maps.Size(71, 71),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(17, 34),
                 scaledSize: new google.maps.Size(25, 25)
             };
 
-            infoWindow.setPosition(pos);
+            mapElements.infoWindow.setPosition(pos);
 
-            infoWindow.setContent('Location found.');
+            mapElements.infoWindow.setContent('Location found.');
 
-            markers.push(new google.maps.Marker({
-                map: map,
+            mapElements.markers.push(new google.maps.Marker({
+                map: mapElements.map,
                 icon: icon,
                 title: pos.name,
                 position: pos
             }));
 
-            map.setCenter(pos);
+            mapElements.map.setCenter(pos);
         }, function () {
-            handleLocationError(true, infoWindow, map.getCenter());
+            handleLocationError(true, mapElements.infoWindow, mapElements.map.getCenter());
         });
     } else {
         // Browser doesn't support Geolocation
-        handleLocationError(false, infoWindow, map.getCenter());
+        handleLocationError(false, mapElements.infoWindow, mapElements.map.getCenter());
     }
 }
 
@@ -88,8 +88,12 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 
-const renderSerchBox = () => {
-    return <GMapsSechBox />
+const renderSerchBox = (gMapsElements) => {
+    return <GMapsSechBox map={gMapsElements}/>
+}
+const renderKeyValue = (gMaps) => {
+    if(gMaps)
+    return <KeyValue dataKeyValue={gMaps.currentPlace} />
 }
 
 
@@ -99,37 +103,41 @@ class GMaps extends React.Component {
     // componentDidUpdate(prevProps, prevState) {
     //     // setCurrentPosition(gMapsElements.map, gMapsElements.markers, gMapsElements.infoWindow);
 
-    //     if (this.props.gMaps !== prevProps.gMaps) {
+    //     if (this.props.gMaps.currentPlace !== prevProps.gMaps.currentPlace) {
     //         // this.loadMap();
     //         this.forceUpdate()
     //     }
     // }
 
+    
+
     componentDidMount() {
 
-        var gMapsElements = {};
+        this.gMapsElements = {};
 
         // var mapElement = document.getElementById('map');
         // var input = document.getElementById('pac-input');
-        gMapsElements.markers = [];
+        this.gMapsElements.markers = [];
 
-        gMapsElements.map = initAutocomplete(document.getElementById('map'));
+        this.gMapsElements.map = initAutocomplete(document.getElementById('map'));
 
-        gMapsElements.infoWindow = new google.maps.InfoWindow({ map: gMapsElements.map });
+        this.gMapsElements.infoWindow = new google.maps.InfoWindow({ map: this.gMapsElements.map });
 
-        // setCurrentPosition(gMapsElements.map, gMapsElements.markers, gMapsElements.infoWindow);
+        setCurrentPosition(this.gMapsElements);
 
         // if (this.props.gMaps !== gMapsElements) {
-            this.props.initGMaps(gMapsElements);
+            this.props.initGMaps(this.gMapsElements);
         // }
     }
 
     render() {
 
+        const test ="test";
 
         return (
             <div style={{ height: `500px` }}>
-                {renderSerchBox()}
+                {renderKeyValue(this.props.gMaps)}
+                {renderSerchBox(this.gMapsElements)}
                 <div id="map"></div>
             </div>
         );
