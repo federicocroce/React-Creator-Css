@@ -111,8 +111,8 @@ const PostDetails = (props) => {
       <RaisedButton className="primary-button" label="Volver" primary={true} onClick={() => back(props)} />
 
         {/*<SearchBoxExample />*/}
-        {/*<GMapsSechBoxAnda/>*/}
-        <GMaps/>
+        <GMapsSechBoxAnda/>
+        {/*<GMaps/>*/}
 
     </div>
 

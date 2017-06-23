@@ -114,7 +114,7 @@ const initAutocomplete = (mapElement) => {
 
 };
 
-const addListener = (searchBox, mapElement, markers) => {
+const addListener = (props, searchBox, mapElement, markers) => {
     // searchBox.addListener('places_changed', function (currentPlaceState) {
     var places = searchBox.getPlaces();
     // var markers = [];
@@ -145,7 +145,7 @@ const addListener = (searchBox, mapElement, markers) => {
         };
 
         // Create a marker for each place.
-        
+
         markers.push(new google.maps.Marker({
             map: mapElement,
             icon: icon,
@@ -226,11 +226,11 @@ const addListener = (searchBox, mapElement, markers) => {
     var gMapsElements = {
         currentPlace,
         markers,
-        map:mapElement
+        map: mapElement
     }
     // gMapsElements gMapsElements.markers
 
-    // props.initGMaps(gMapsElements);
+    props.initGMaps(gMapsElements);
 
 };
 
@@ -251,7 +251,7 @@ class GMapsSechBoxAnda extends React.Component {
         var searchBox = new google.maps.places.SearchBox(input);
 
         // setCurrentPosition(map, markers, infoWindow);
-        searchBox.addListener('places_changed', addListener.bind(null, searchBox, map, markers));
+        searchBox.addListener('places_changed', addListener.bind(null, this.props, searchBox, map, markers));
     }
 
     render() {
@@ -260,24 +260,24 @@ class GMapsSechBoxAnda extends React.Component {
 
         return (
 
-             <div style={{ height: `500px` }}>
-
+            <div style={{ height: `500px` }}>
+                {/*<KeyValue dataKeyValue={this.props.gMapsElements.currentPlace} />*/}
                 <div>
 
-                <KeyValue dataKeyValue={this.props.gMapsElements.currentPlace} />
+                    <KeyValue dataKeyValue={this.props.gMapsElements.currentPlace} />
 
-                <div>
-                    <div className="input-text-container">
-                        <input id="pac-input" className="inputMaterial" type="text" required placeholder=" " />
-                        <label>Search Box</label>
-                        <hr />
+                    <div>
+                        <div className="input-text-container">
+                            <input id="pac-input" className="inputMaterial" type="text" required placeholder=" " />
+                            <label>Search Box</label>
+                            <hr />
+                        </div>
                     </div>
                 </div>
-            </div>
                 <div id="map"></div>
             </div>
 
-            
+
         );
     }
 }
@@ -292,8 +292,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        initGMaps(place) {
-            dispatch(initGMaps(place));
+        initGMaps(gMapsElements) {
+            dispatch(initGMaps(gMapsElements));
         }
     };
 }

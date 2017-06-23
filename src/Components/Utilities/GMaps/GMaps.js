@@ -89,28 +89,39 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 
 const renderSerchBox = () => {
-    return <GMapsSechBox/>
+    return <GMapsSechBox />
 }
 
 
 class GMaps extends React.Component {
 
 
+    // componentDidUpdate(prevProps, prevState) {
+    //     // setCurrentPosition(gMapsElements.map, gMapsElements.markers, gMapsElements.infoWindow);
+
+    //     if (this.props.gMaps !== prevProps.gMaps) {
+    //         // this.loadMap();
+    //         this.forceUpdate()
+    //     }
+    // }
+
     componentDidMount() {
 
         var gMapsElements = {};
 
-        var mapElement = document.getElementById('map');
+        // var mapElement = document.getElementById('map');
         // var input = document.getElementById('pac-input');
         gMapsElements.markers = [];
 
-        gMapsElements.map = initAutocomplete(mapElement);
+        gMapsElements.map = initAutocomplete(document.getElementById('map'));
 
         gMapsElements.infoWindow = new google.maps.InfoWindow({ map: gMapsElements.map });
 
         // setCurrentPosition(gMapsElements.map, gMapsElements.markers, gMapsElements.infoWindow);
-        
-        this.props.initGMaps(gMapsElements);
+
+        // if (this.props.gMaps !== gMapsElements) {
+            this.props.initGMaps(gMapsElements);
+        // }
     }
 
     render() {
@@ -126,11 +137,11 @@ class GMaps extends React.Component {
 }
 
 
-// const mapStateToProps = state => {
-//     return {
-//         gMaps: state.maps
-//     };
-// }
+const mapStateToProps = state => {
+    return {
+        gMaps: state.maps.gMapsElements
+    };
+}
 
 
 const mapDispatchToProps = dispatch => {
@@ -142,7 +153,7 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(GMaps);
 

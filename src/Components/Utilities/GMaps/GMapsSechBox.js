@@ -12,122 +12,28 @@ import $ from 'jquery-lite'
 
 var currentPlace = null;
 
-// const initAutocomplete = (mapElement, searchBox) => {
-//     // var map = new google.maps.Map($("#map"), {
-//     var map = new google.maps.Map(mapElement, {
-//         center: { lat: -33.8688, lng: 151.2195 },
-//         zoom: 13,
-//         mapTypeId: 'roadmap'
-//     });
+// map.addListener('bounds_changed', function () {
+//     searchBox.setBounds(map.getBounds());
+// });
 
-//     return map;
-
-//     // Create the search box and link it to the UI element.
-//     // var input = $("#pac-input");
-
-
-//     // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-//     // Bias the SearchBox results towards current map's viewport.
-//     // map.addListener('bounds_changed', function () {
-//     //     searchBox.setBounds(map.getBounds());
-//     // });
-
-
-//     // Listen for the event fired when the user selects a prediction and retrieve
-//     // more details for that place.
-
-// };
-
-
-// const setCurrentPosition = (map, markers, infoWindow) => {
-//     // Try HTML5 geolocation.
-//     if (navigator.geolocation) {
-//         navigator.geolocation.getCurrentPosition(function (position) {
-//             var pos = {
-//                 lat: position.coords.latitude,
-//                 lng: position.coords.longitude
-//             };
-
-//             var icon = {
-//                 url: pos.icon,
-//                 size: new google.maps.Size(71, 71),
-//                 origin: new google.maps.Point(0, 0),
-//                 anchor: new google.maps.Point(17, 34),
-//                 scaledSize: new google.maps.Size(25, 25)
-//             };
-
-//             infoWindow.setPosition(pos);
-
-//             infoWindow.setContent('Location found.');
-
-//             markers.push(new google.maps.Marker({
-//                 map: map,
-//                 icon: icon,
-//                 title: pos.name,
-//                 position: pos
-//             }));
-
-//             map.setCenter(pos);
-//         }, function () {
-//             handleLocationError(true, infoWindow, map.getCenter());
-//         });
-//     } else {
-//         // Browser doesn't support Geolocation
-//         handleLocationError(false, infoWindow, map.getCenter());
-//     }
-// }
-
-
-// function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-//     infoWindow.setPosition(pos);
-//     infoWindow.setContent(browserHasGeolocation ?
-//         'Error: The Geolocation service failed.' :
-//         'Error: Your browser doesn\'t support geolocation.');
-// }
-
-
-const initAutocomplete = (mapElement) => {
-    // var map = new google.maps.Map($("#map"), {
-    var map = new google.maps.Map(mapElement, {
-        center: { lat: -33.8688, lng: 151.2195 },
-        zoom: 13,
-        mapTypeId: 'roadmap'
-    });
-
-    return map;
-
-    // Create the search box and link it to the UI element.
-    // var input = $("#pac-input");
-
-
-    // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-    // Bias the SearchBox results towards current map's viewport.
-    // map.addListener('bounds_changed', function () {
-    //     searchBox.setBounds(map.getBounds());
-    // });
-
-
-    // Listen for the event fired when the user selects a prediction and retrieve
-    // more details for that place.
-
+const addListenerToMap = (props, searchBox) => {
+    searchBox.setBounds(props.gMapsElements.map.getBounds());
 };
 
-const addListener = (searchBox, mapElement, markers) => {
+const addListener = (props, searchBox) => {
     // searchBox.addListener('places_changed', function (currentPlaceState) {
     var places = searchBox.getPlaces();
-    // var markers = [];
+    var markers = [];
 
     if (places.length == 0) {
         return;
     }
 
-    // Clear out the old markers.
-    markers.forEach(function (marker) {
+    // Clear out the old props.markers.
+    props.gMapsElements.markers.forEach(function (marker) {
         marker.setMap(null);
     });
-    // props.gMapsElements.markers = [];
+    // props.gMapsElements.props.gMapsElements.markers = [];
 
     // For each place, get the icon, name and location.
     var bounds = new google.maps.LatLngBounds();
@@ -145,9 +51,9 @@ const addListener = (searchBox, mapElement, markers) => {
         };
 
         // Create a marker for each place.
-        
-        markers.push(new google.maps.Marker({
-            map: mapElement,
+
+        props.gMapsElements.markers.push(new google.maps.Marker({
+            map: props.gMapsElements.map,
             icon: icon,
             title: place.name,
             position: place.geometry.location
@@ -221,16 +127,17 @@ const addListener = (searchBox, mapElement, markers) => {
             bounds.extend(place.geometry.location);
         }
     });
-    mapElement.fitBounds(bounds);
+    var map = props.gMapsElements.map;
+    map.fitBounds(bounds);
 
     var gMapsElements = {
         currentPlace,
-        markers,
-        map:mapElement
+        markers: props.gMapsElements.markers,
+        map
     }
     // gMapsElements gMapsElements.markers
 
-    // props.initGMaps(gMapsElements);
+    props.initGMaps(gMapsElements);
 
 };
 
@@ -241,17 +148,19 @@ class GMapsSechBox extends React.Component {
 
     componentDidMount() {
 
-        var mapElement = document.getElementById('map');
+        // var mapElement = document.getElementById('map');
         var input = document.getElementById('pac-input');
-        var markers = [];
+        // var markers = [];
 
-        var map = initAutocomplete(mapElement);
+        // var map = initAutocomplete(mapElement);
 
         // var infoWindow = new google.maps.InfoWindow({ map: map });
         var searchBox = new google.maps.places.SearchBox(input);
 
         // setCurrentPosition(map, markers, infoWindow);
-        searchBox.addListener('places_changed', addListener.bind(null, searchBox, map, markers));
+        searchBox.addListener('places_changed', addListener.bind(null, this.props, searchBox));
+        this.props.gMapsElements.map.addListener('bounds_changed', addListenerToMap.bind(null, this.props, searchBox));
+        // map.addListener('bounds_changed', function () {
 
         // var place = currentPlace.map((object, index) =>
         //     <p key={index}> {JSON.stringify(object)} </p>
