@@ -1,6 +1,10 @@
 import React from 'react';
 // import { NavLink } from 'react-router-dom';
+
 import { connect } from "react-redux";
+// import { Field, reduxForm, formValueSelector } from 'redux-form'
+import { LocalForm, Control } from 'react-redux-form';
+
 import { clearPost } from '../../Actions/actionsCreator';
 import Ripple from '../Utilities/Ripple';
 import InputText from '../Utilities/InputText';
@@ -33,8 +37,13 @@ import classnames from 'classnames';
 
 const PostDetails = (props) => {
 
+  // const { handleSubmit } = props;
+
   var postClass = '';
   var showPost = true;
+
+
+
 
   const back = props => {
     props.state.posts.currentPost = {};
@@ -44,18 +53,23 @@ const PostDetails = (props) => {
 
 
 
-  const ripple = e => {
+  // const ripple = e => {
 
-    const posX = e.offsetX,
-      posY = e.offsetY;
+  //   const posX = e.offsetX,
+  //     posY = e.offsetY;
 
 
-    // effect.style.top = (e.pageY - offset.top) + "px";
-    // effect.style.left = (e.pageX - offset.left) + "px";
+  //   // effect.style.top = (e.pageY - offset.top) + "px";
+  //   // effect.style.left = (e.pageX - offset.left) + "px";
 
-    console.log(e.target);
+  //   console.log(e.target);
 
-    // e.
+  //   // e.
+  // }
+
+
+const handleSubmit = val => {
+    console.log(val);
   }
 
 
@@ -73,8 +87,7 @@ const PostDetails = (props) => {
 
 
   return (
-    <div>
-
+    <LocalForm model="PostDetails" onChange={(val) => handleSubmit(val.PostDetails)}>
 
       <RadioButtonGroup className="radio-button horizontal-radio-button" name="shipSpeed" defaultSelected="not_light">
         {/*<RadioButtonGroup style={styles.RadioButtonGroup} name="shipSpeed" defaultSelected="not_light">*/}
@@ -97,21 +110,42 @@ const PostDetails = (props) => {
         />
       </RadioButtonGroup>
 
-      <InputText placeholderFloating="Escriba su nombre" placeholder="Nombre" />
+      <Control.text model=".lastName" id="lastName" />
+
+      {/*<InputText name="testFede" placeholderFloating="Escriba su nombre" placeholder="Nombre" />*/}
 
       <Button class="primary-button" label="VOLVER" onClick={() => back(props)} />
+
+      {/*<Field name="firstName" component={<Button class="primary-button" label="VOLVER" onClick={() => back(props)} />} type="text" placeholder="First Name"/>*/}
+
+      {/*<Field name="firstName" component="input" type="text" placeholder="First Name"/>*/}
+
+      {/*<Field name='Name' component={InputText} type="text"/>*/}
+{/*
+      <Field
+        name="firstName"
+        component="input"
+        type="text"
+        placeholder="First Name"
+      />*/}
+
 
       {/*<RaisedButton className="primary-button" label="Volver" primary={true} onClick={() => back(props)} />*/}
 
       <GMaps searchBox={true} currentLocation={true} keyValuePlace={true} />
 
-    </div>
-
-
+    </LocalForm>
   );
 }
 
 // export { PostDetails };
+// const selector = formValueSelector('selectingFormValues') // <-- same as form name
+
+// const PostDetailsReduxForm = reduxForm({
+//   form: "postDetails" // required by reduxForm()
+//   // warn: (values, props) => { ... }, // optional
+//   // error: (values, props) => { ... } // optional
+// })(PostDetails)
 
 const mapStateToProps = (state) => {
   return {
