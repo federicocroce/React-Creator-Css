@@ -3,6 +3,8 @@
 import React from 'react';
 
 import { initGMaps } from '../../../Actions/actionsCreator';
+import InputText from "../InputText";
+
 // import KeyValue from '../KeyValue';
 import GMaps from './GMaps';
 
@@ -122,10 +124,17 @@ const addListener = (props, searchBox) => {
             }
         });
 
+        var poly = new google.maps.Polyline({
+            strokeColor: '#000000',
+            strokeOpacity: 1.0,
+            strokeWeight: 3
+        });
+        poly.setMap(newProps.map);
+
         newProps.infoWindow.setPosition(place.geometry.location);
 
-        if(currentPlace.route && currentPlace.streetNumber)
-        newProps.infoWindow.setContent(currentPlace.route.value + " " + currentPlace.streetNumber.value);
+        if (currentPlace.route && currentPlace.streetNumber)
+            newProps.infoWindow.setContent(currentPlace.route.value + " " + currentPlace.streetNumber.value);
 
         if (place.geometry.viewport) {
             // Only geocodes have viewport.
@@ -150,7 +159,7 @@ const addListener = (props, searchBox) => {
 
 
 
-class GMapsSechBox extends React.Component {
+class GMapsSearchBox extends React.Component {
 
 
     // componentDidMount() {
@@ -191,11 +200,12 @@ class GMapsSechBox extends React.Component {
         return (
             <div>
                 <div>
-                    <div className="input-text-container">
+                    <InputText id="pac-input" placeholderFloating="Escriba su dirección" placeholder="Dirección" />
+                    {/*<div className="input-text-container">
                         <input id="pac-input" className="inputMaterial" type="text" required placeholder=" " />
                         <label>Search Box</label>
                         <hr />
-                    </div>
+                    </div>*/}
                 </div>
             </div>
         );
@@ -203,7 +213,7 @@ class GMapsSechBox extends React.Component {
 }
 
 /*
-const GMapsSechBox = (props) => {
+const GMapsSearchBox = (props) => {
 
                     props.componentDidMount();
 
@@ -241,7 +251,7 @@ const mapDispatchToProps = dispatch => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(GMapsSechBox);
+)(GMapsSearchBox);
 
-// export default GMapsSechBox;
+// export default GMapsSearchBox;
 

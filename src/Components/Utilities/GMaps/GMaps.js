@@ -5,7 +5,7 @@ import React from 'react';
 // import { setCurrentPlace } from '../../../Actions/actionsCreator';
 import { initGMaps } from '../../../Actions/actionsCreator';
 import KeyValue from '../KeyValue';
-import GMapsSechBox from './GMapsSechBox';
+import GMapsSearchBox from './GMapsSearchBox';
 
 import { connect } from "react-redux";
 
@@ -88,12 +88,11 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 
-const renderSerchBox = (gMapsElements) => {
-    return <GMapsSechBox map={gMapsElements}/>
+const renderSerchBox = (params) => {
+    return params.props.searchBox ? <GMapsSearchBox map={params.gMapsElements}/> : null;
 }
-const renderKeyValue = (gMaps) => {
-    if(gMaps)
-    return <KeyValue dataKeyValue={gMaps.currentPlace} />
+const renderKeyValue = (props) => {
+    return props.gMaps && props.keyValuePlace ? <KeyValue dataKeyValue={props.gMaps.currentPlace} /> : null;
 }
 
 
@@ -123,7 +122,7 @@ class GMaps extends React.Component {
 
         this.gMapsElements.infoWindow = new google.maps.InfoWindow({ map: this.gMapsElements.map });
 
-        setCurrentPosition(this.gMapsElements);
+        this.props.currentLocation ? setCurrentPosition(this.gMapsElements) : null;
 
         // if (this.props.gMaps !== gMapsElements) {
             this.props.initGMaps(this.gMapsElements);
@@ -136,8 +135,8 @@ class GMaps extends React.Component {
 
         return (
             <div style={{ height: `500px` }}>
-                {renderKeyValue(this.props.gMaps)}
-                {renderSerchBox(this.gMapsElements)}
+                {renderKeyValue(this.props)}
+                {renderSerchBox(this)}
                 <div id="map"></div>
             </div>
         );

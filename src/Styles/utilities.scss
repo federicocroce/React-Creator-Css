@@ -1,0 +1,115 @@
+@import 'base';
+////// INPUT TEXT ///////////////
+.input-text-container {
+    position: relative;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    text-align: left;
+    display: inline-block;
+    font-size: 1.1em;
+    margin-top: 20px;
+    input {
+        border: none;
+        outline: none;
+        &:focus,
+        &:valid {
+            &~label.floating {
+                color: $primary-color;
+                top: -100%;
+                font-size: .8em;
+            }
+            &:placeholder-shown~label.placeholder {
+                color: rgba(0, 0, 0, 0.3);
+                font-size: .8em;
+            }
+            &~hr {
+                transform: scaleX(1);
+            }
+        }
+        &:active {
+            &~.ripple {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    }
+    label.floating {
+        position: absolute;
+        color: rgba(0, 0, 0, 0.3);
+        left: 0;
+        transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+        top: 0px;
+        pointer-events: none;
+        transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+        // color: $secondary-color;
+    }
+    label.placeholder {
+        position: absolute;
+        color: transparent;
+        left: 0;
+        transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+        top: 0px;
+        pointer-events: none;
+        transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    }
+    hr {
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid $primary-color;
+        margin: 0 auto;
+        pointer-events: none;
+        transform: scaleX(0);
+        position: absolute;
+        transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    }
+    div.ripple {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+        background-color: rgb(0, 188, 212);
+        opacity: 0;
+        transform: scale(0);
+        pointer-events: none;
+        transition: opacity 2s cubic-bezier(0.23, 1, 0.32, 1) 0ms, transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    }
+}
+
+//////////// Button /////////////
+.button-container {
+    button,
+    button:after {
+        border-radius: 2px;
+        transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+        top: 0px;
+        background: $primary-color;
+        color: $primary-color-text;
+        padding: 10px 20px;
+        border: none;
+    }
+    button {
+        position: relative;
+        &:after {
+            position: absolute;
+            content: attr(label);
+            background: transparent;
+            left: 0;
+        }
+        &:hover:after {
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+        }
+    }
+}
+
+///////////////////////////////
+/////////////////////////////////////
+////// KEY VALUE ///////////////
+.value-key-location {
+    display: inline-block;
+    text-align: left;
+    float: left;
+}
+
+//////////////////////////////////////

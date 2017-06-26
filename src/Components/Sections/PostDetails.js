@@ -2,10 +2,12 @@ import React from 'react';
 // import { NavLink } from 'react-router-dom';
 import { connect } from "react-redux";
 import { clearPost } from '../../Actions/actionsCreator';
-import Ripple from '../Utilities/Ripple'
-import SearchBoxExample from '../Utilities/Map'
-import GMaps from '../Utilities/GMaps/GMaps'
-import GMapsSechBoxAnda from '../Utilities/GMaps/GMapsSechBoxAnda'
+import Ripple from '../Utilities/Ripple';
+import InputText from '../Utilities/InputText';
+import Button from '../Utilities/Button';
+import SearchBoxExample from '../Utilities/Map';
+import GMaps from '../Utilities/GMaps/GMaps';
+import GMapsSechBoxAnda from '../Utilities/GMaps/GMapsSechBoxAnda';
 // import { PostDetail } from './PostDetail';
 import $ from 'jquery-lite';
 
@@ -95,24 +97,13 @@ const PostDetails = (props) => {
         />
       </RadioButtonGroup>
 
-      <div className="input-text-container">
-        <input onClick={(e) => ripple(e)} className="inputMaterial" type="text" required />
-        <label>texto</label>
-        <Ripple />
-        <hr />
-      </div>
+      <InputText placeholderFloating="Escriba su nombre" placeholder="Nombre" />
 
-      <TextField className="input-text" hintText="Hint Text" floatingLabelText="Floating Label Text" />
+      <Button class="primary-button" label="VOLVER" onClick={() => back(props)} />
 
-      <TextField hintText="Hint Text" floatingLabelText="Floating Label Text" />
+      {/*<RaisedButton className="primary-button" label="Volver" primary={true} onClick={() => back(props)} />*/}
 
-      <TextField hintText="Hint Text" floatingLabelText="Floating Label Text" />
-
-      <RaisedButton className="primary-button" label="Volver" primary={true} onClick={() => back(props)} />
-
-        {/*<SearchBoxExample />*/}
-        {/*<GMapsSechBoxAnda/>*/}
-        <GMaps/>
+      <GMaps searchBox={true} currentLocation={true} keyValuePlace={true} />
 
     </div>
 
