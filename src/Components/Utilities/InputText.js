@@ -1,4 +1,5 @@
 import React from 'react';
+import { Field, reduxForm, formValueSelector } from 'redux-form'
 
 const ripple = e => {
 
@@ -14,6 +15,17 @@ const ripple = e => {
     // e.
 }
 
+const InputTextRender = (props) => {
+    return (
+        <div className="input-text-container">
+            <input id={props.id} onClick={(e) => ripple(e)} className="inputMaterial" type="text" placeholder=" " required />
+            <label className="floating">{props.placeholderFloating}</label>
+            <label className="placeholder">{props.placeholder}</label>
+            <hr />
+        </div>
+    );
+}
+
 
 const InputText = (props) => {
     return (
@@ -21,8 +33,15 @@ const InputText = (props) => {
             <input id={props.id} onClick={(e) => ripple(e)} className="inputMaterial" type="text" placeholder=" " required />
             <label className="floating">{props.placeholderFloating}</label>
             <label className="placeholder">{props.placeholder}</label>
-            {/*<Ripple />*/}
             <hr />
+            {/*<Field component={(props) => {
+                return (
+                    <div class="input-row">
+                        <input type="text" {...props} />
+                        {props.touched && props.error && <span className="error">{props.error}</span>}
+                    </div>
+                )
+            }} />*/}
         </div>
     );
 }

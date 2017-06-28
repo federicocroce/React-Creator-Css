@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from "react-router-redux";
-// import { reducer as form  } from 'redux-form';
-import { combineForms } from 'react-redux-form';
+import { reducer as reduxFormReducer } from 'redux-form';
+// import { combineForms } from 'react-redux-form';
 
 import { posts } from './Posts';
 import { maps } from './GMaps';
@@ -27,10 +27,12 @@ import { maps } from './GMaps';
 //     return state;
 // }
 
-const initialUserState = {
-    firstName: '',
-    lastName: ''
-};
+// const initialUserState = {
+//     firstName: '',
+//     lastName: ''
+// };
+
+// const rootReducer = combineForms(allReducers);
 
 // const forms = combineForms({
 //     postDetails: initialUserState,
@@ -41,9 +43,11 @@ const allReducers = {
     // postDetailsForm: initialUserState,
     posts,
     maps,
+    form:reduxFormReducer,
     routing: routerReducer
 }
 
-const rootReducer = combineForms(allReducers)
+// const rootReducer = combineForms(allReducers);
+const rootReducer = combineReducers(allReducers);
 
 export default rootReducer;
