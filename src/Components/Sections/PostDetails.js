@@ -86,13 +86,14 @@ const PostDetails = (props) => {
     },
   };
 
-  const renderField = (field) => (
-    <div className="input-row">
-      <input {...field.input} type="text" />
-      {/*{field.meta.touched && field.meta.error &&
-        <span className="error">{field.meta.error}</span>}*/}
+  const renderInput = field => {
+    const { input: { label, ...rest} } = field // extract label key out of input props
+    return <div>
+      <label>{label}</label>
+      <input {...rest} />
+      {field.touched && field.error && <span>{field.error}</span>}
     </div>
-  )
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -131,9 +132,30 @@ const PostDetails = (props) => {
 
       {/*<Field name="firstName" type="text" component={InputText} />*/}
 
-      <Field name="myField" component={renderField} />
+      {/*<Field name="myField" component={renderField} />*/}
 
-      <Button class="primary-button" label="VOLVER" onClick={() => back(props)} />
+      {/*<Field name="myField" type="text" component={(props) => {
+        const divProps = Object.assign({}, props);
+        return (
+          <div className="input-row">
+            <input type="text" {...divProps} />
+          </div>
+        )
+      }} />*/}
+
+      {/*<Field name="myField" component={renderField} />*/}
+
+      {/*<Field name="myField" component={renderInput} label="My Field" placeholder="Type here..." />*/}
+
+
+      <Field name="lazyComponent" component={username =>
+        <div>
+          <input type="text" {...username.input} placeholder="Username" />
+          {username.touched && username.error && <span>{username.error}</span>}
+        </div>
+      } />
+
+      <Button className="primary-button" label="VOLVER" onClick={() => back(props)} />
 
       {/*<Field name="firstName" component={<Button class="primary-button" label="VOLVER" onClick={() => back(props)} />} type="text" placeholder="First Name"/>*/}
 
@@ -164,7 +186,8 @@ const PostDetailsReduxForm = reduxForm({
   form: "postDetails" // required by reduxForm()
   // warn: (values, props) => { ... }, // optional
   // error: (values, props) => { ... } // optional
-})(PostDetails)
+})(PostDetails);
+
 
 const mapStateToProps = (state) => {
   return {
