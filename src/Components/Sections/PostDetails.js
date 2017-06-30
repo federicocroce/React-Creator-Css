@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react'
 // import { NavLink } from 'react-router-dom';
 
 import { connect } from "react-redux";
-import { Field, reduxForm, formValueSelector } from 'redux-form'
+import { reduxForm, Field } from 'redux-form' // imported Field
 // import { reduxForm } from 'redux-form/immutable'
-import { LocalForm, Control } from 'react-redux-form';
+// import { LocalForm, Control } from 'react-redux-form';
 
 import { clearPost } from '../../Actions/actionsCreator';
 import Ripple from '../Utilities/Ripple';
@@ -37,132 +37,118 @@ import {
 
 import classnames from 'classnames';
 
-const PostDetails = (props) => {
-
-  // const { handleSubmit } = props;
-
-  var postClass = '';
-  var showPost = true;
-
-
-
-
-  const back = props => {
-    props.state.posts.currentPost = {};
-    props.clearPost();
-  }
+const renderInput = field =>    // Define stateless component to render input and errors
+  <div>
+    <input {...field.input} type={field.type} />
+    {field.meta.touched &&
+      field.meta.error &&
+      <span className="error">{field.meta.error}</span>}
+  </div>
+  ;
 
 
+class MyForm extends Component {
 
+  render() {
+    // const PostDetails = (props) => {
 
-  // const ripple = e => {
+    // const { handleSubmit } = props;
 
-  //   const posX = e.offsetX,
-  //     posY = e.offsetY;
-
-
-  //   // effect.style.top = (e.pageY - offset.top) + "px";
-  //   // effect.style.left = (e.pageX - offset.left) + "px";
-
-  //   console.log(e.target);
-
-  //   // e.
-  // }
-
-
-  const handleSubmit = val => {
-    console.log(val);
-  }
+    var postClass = '';
+    var showPost = true;
 
 
 
 
-  const styles = {
-    block: {
-      maxWidth: 250,
-    },
-    radioButton: {
-      marginBottom: 16,
-    },
-  };
-
-  const renderInput = field => {
-    const { input: { label, ...rest} } = field // extract label key out of input props
-    return <div>
-      <label>{label}</label>
-      <input {...rest} />
-      {field.touched && field.error && <span>{field.error}</span>}
-    </div>
-  }
-
-  return (
-    <form onSubmit={handleSubmit}>
-
-      <RadioButtonGroup className="radio-button horizontal-radio-button" name="shipSpeed" defaultSelected="not_light">
-        {/*<RadioButtonGroup style={styles.RadioButtonGroup} name="shipSpeed" defaultSelected="not_light">*/}
-        <RadioButton
-          value="alquiler"
-          label="Alquiler"
-          style={styles.radioButton}
-        />
-
-        <RadioButton
-          value="temporario"
-          label="Alquiler Temporario"
-          style={styles.radioButton}
-        />
-
-        <RadioButton
-          value="venta"
-          label="Venta"
-          style={styles.radioButton}
-        />
-      </RadioButtonGroup>
-
-      {/*<div>
-        <Field
-          name="firstName"
-          component="input"
-          type="text"
-          placeholder="First Name"
-        />
-      </div>*/}
-
-      {/*<InputText name="firstName"/>*/}
-
-      {/*<Field name="firstName" type="text" component={InputText} />*/}
-
-      {/*<Field name="myField" component={renderField} />*/}
-
-      {/*<Field name="myField" type="text" component={(props) => {
-        const divProps = Object.assign({}, props);
-        return (
-          <div className="input-row">
-            <input type="text" {...divProps} />
-          </div>
-        )
-      }} />*/}
-
-      {/*<Field name="myField" component={renderField} />*/}
-
-      {/*<Field name="myField" component={renderInput} label="My Field" placeholder="Type here..." />*/}
+    const back = props => {
+      props.state.posts.currentPost = {};
+      props.clearPost();
+    }
 
 
-      <Field name="lazyComponent" component={username =>
-        <div>
-          <input type="text" {...username.input} placeholder="Username" />
-          {username.touched && username.error && <span>{username.error}</span>}
-        </div>
-      } />
+    // const ripple = e => {
 
-      <Button className="primary-button" label="VOLVER" onClick={() => back(props)} />
+    //   const posX = e.offsetX,
+    //     posY = e.offsetY;
 
-      {/*<Field name="firstName" component={<Button class="primary-button" label="VOLVER" onClick={() => back(props)} />} type="text" placeholder="First Name"/>*/}
 
-      {/*<Field name="firstName" component="input" type="text" placeholder="First Name"/>*/}
+    //   // effect.style.top = (e.pageY - offset.top) + "px";
+    //   // effect.style.left = (e.pageX - offset.left) + "px";
 
-      {/*<Field name='Name' component={InputText} type="text"/>*/}
-      {/*
+    //   console.log(e.target);
+
+    //   // e.
+    // }
+
+
+    const handleSubmit = val => {
+      console.log(val);
+    }
+
+
+
+
+    const styles = {
+      block: {
+        maxWidth: 250,
+      },
+      radioButton: {
+        marginBottom: 16,
+      },
+    };
+
+
+
+
+
+
+
+
+
+    const renderField = field => (
+      <div>
+        <label>{field.input.label}</label>
+        <input {...field.input} />
+        {/*{field.touched && field.error && <div className="error">{field.error}</div>}*/}
+      </div>
+    );
+
+    return (
+      <form onSubmit={handleSubmit}>
+
+        <RadioButtonGroup className="radio-button horizontal-radio-button" name="shipSpeed" defaultSelected="not_light">
+          {/*<RadioButtonGroup style={styles.RadioButtonGroup} name="shipSpeed" defaultSelected="not_light">*/}
+          <RadioButton
+            value="alquiler"
+            label="Alquiler"
+            style={styles.radioButton}
+          />
+
+          <RadioButton
+            value="temporario"
+            label="Alquiler Temporario"
+            style={styles.radioButton}
+          />
+
+          <RadioButton
+            value="venta"
+            label="Venta"
+            style={styles.radioButton}
+          />
+        </RadioButtonGroup>
+
+        {/*<Field {...this.props} {...componentToRender} component={this.field} />;*/}
+
+        <Field name="firstName" type="text" component={renderField.bind(this)} label="First Name" />
+
+        <Button className="primary-button" label="VOLVER" onClick={() => back(this.props)} />
+
+        {/*<Field name="firstName" component={<Button class="primary-button" label="VOLVER" onClick={() => back(props)} />} type="text" placeholder="First Name"/>*/}
+
+        {/*<Field name="firstName" component="input" type="text" placeholder="First Name"/>*/}
+
+        {/*<Field name='Name' component={InputText} type="text"/>*/}
+        {/*
       <Field
         name="firstName"
         component="input"
@@ -171,22 +157,18 @@ const PostDetails = (props) => {
       />*/}
 
 
-      {/*<RaisedButton className="primary-button" label="Volver" primary={true} onClick={() => back(props)} />*/}
+        {/*<RaisedButton className="primary-button" label="Volver" primary={true} onClick={() => back(props)} />*/}
 
-      <GMaps searchBox={true} currentLocation={true} keyValuePlace={true} />
+        <GMaps searchBox={true} currentLocation={true} keyValuePlace={true} />
 
-    </form>
-  );
+      </form>
+    );
+  }
 }
 
 // export {PostDetails};
 // const selector = formValueSelector('selectingFormValues') // <-- same as form name
 
-const PostDetailsReduxForm = reduxForm({
-  form: "postDetails" // required by reduxForm()
-  // warn: (values, props) => { ... }, // optional
-  // error: (values, props) => { ... } // optional
-})(PostDetails);
 
 
 const mapStateToProps = (state) => {
@@ -204,7 +186,11 @@ const mapDispatchToProps = dispatch => {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PostDetailsReduxForm);
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(PostDetailsReduxForm);
+export default reduxForm({
+  form: 'myForm'
+                                              // no fields array given
+})(MyForm)

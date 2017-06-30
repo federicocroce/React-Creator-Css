@@ -1,5 +1,5 @@
 import React from 'react';
-import { actions } from 'react-redux-form';
+// import { actions } from 'react-redux-form';
 import InputText from './InputText';
 
 
@@ -19,12 +19,12 @@ const ripple = e => {
 
 
 const InputTextForm = (props) => {
-    const { model, dispatch } = props;
+    /*const { model, dispatch } = props;
     return (
         <InputText
             onCustomChange={e => dispatch(actions.change(model, e))}
         />
-    );
+    );*/
 }
 
 
