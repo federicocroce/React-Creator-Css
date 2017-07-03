@@ -98,21 +98,6 @@ class MyForm extends Component {
     };
 
 
-
-
-
-
-
-
-
-    const renderField = field => (
-      <div>
-        <label>{field.input.label}</label>
-        <input {...field.input} />
-        {/*{field.touched && field.error && <div className="error">{field.error}</div>}*/}
-      </div>
-    );
-
     return (
       <form onSubmit={handleSubmit}>
 
@@ -137,27 +122,11 @@ class MyForm extends Component {
           />
         </RadioButtonGroup>
 
-        {/*<Field {...this.props} {...componentToRender} component={this.field} />;*/}
+        <InputText name="name" placeholderFloating="Escriba su nombre" customPlaceholder="Nombre" type="text" />
 
-        <Field name="firstName" type="text" component={renderField.bind(this)} label="First Name" />
 
         <Button className="primary-button" label="VOLVER" onClick={() => back(this.props)} />
 
-        {/*<Field name="firstName" component={<Button class="primary-button" label="VOLVER" onClick={() => back(props)} />} type="text" placeholder="First Name"/>*/}
-
-        {/*<Field name="firstName" component="input" type="text" placeholder="First Name"/>*/}
-
-        {/*<Field name='Name' component={InputText} type="text"/>*/}
-        {/*
-      <Field
-        name="firstName"
-        component="input"
-        type="text"
-        placeholder="First Name"
-      />*/}
-
-
-        {/*<RaisedButton className="primary-button" label="Volver" primary={true} onClick={() => back(props)} />*/}
 
         <GMaps searchBox={true} currentLocation={true} keyValuePlace={true} />
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, reduxForm, formValueSelector } from 'redux-form'
+import { Field, reduxForm } from 'redux-form'
 
 const ripple = e => {
 
@@ -15,34 +15,28 @@ const ripple = e => {
     // e.
 }
 
-const InputTextRender = (props) => {
+const renderField = (field) => {
+    let fieldProps = {...field};
     return (
         <div className="input-text-container">
-            <input id={props.id} onClick={(e) => ripple(e)} className="inputMaterial" type="text" placeholder=" " required />
-            <label className="floating">{props.placeholderFloating}</label>
-            <label className="placeholder">{props.placeholder}</label>
+            <input {...field.input} onClick={(e) => ripple(e)} className="inputMaterial" placeholder=" " required />
+            <label className="floating">{fieldProps.placeholderFloating}</label>
+            <label className="placeholder">{fieldProps.customPlaceholder}</label>
             <hr />
         </div>
-    );
+    )
 }
+
+{/*<div className="input-row">
+        <input {...field.input} type="text" />
+        {field.meta.touched && field.meta.error &&
+            <span className="error">{field.meta.error}</span>}
+    </div>*/}
 
 
 const InputText = (props) => {
     return (
-        <div className="input-text-container">
-            <input id={props.id} onClick={(e) => ripple(e)} className="inputMaterial" type="text" placeholder=" " required />
-            <label className="floating">{props.placeholderFloating}</label>
-            <label className="placeholder">{props.placeholder}</label>
-            <hr />
-            {/*<Field component={(props) => {
-                return (
-                    <div class="input-row">
-                        <input type="text" {...props} />
-                        {props.touched && props.error && <span className="error">{props.error}</span>}
-                    </div>
-                )
-            }} />*/}
-        </div>
+            <Field props={props} component={renderField} name={props.name} id={props.id} />
     );
 }
 

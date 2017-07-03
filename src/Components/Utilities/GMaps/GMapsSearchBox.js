@@ -200,7 +200,7 @@ class GMapsSearchBox extends React.Component {
         return (
             <div>
                 <div>
-                    <InputText id="pac-input" placeholderFloating="Escriba su dirección" placeholder="Dirección" />
+                    <InputText id="pac-input" name="adress" placeholderFloating="Escriba su dirección" placeholder="Dirección" />
                     {/*<div className="input-text-container">
                         <input id="pac-input" className="inputMaterial" type="text" required placeholder=" " />
                         <label>Search Box</label>
