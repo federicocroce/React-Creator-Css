@@ -10,8 +10,11 @@
     input {
         border: none;
         outline: none;
+        // &:required {
+        //     background-color: yellow;
+        // }
         &:focus,
-        &:valid {
+        &:not(:placeholder-shown) {
             &~label.floating {
                 color: $primary-color;
                 top: -100%;
@@ -25,6 +28,12 @@
                 transform: scaleX(1);
             }
         }
+        // &:not(:focus) {
+        //     &:placeholder-shown~label.placeholder {
+        //         color: rgba(0, 0, 0, 0.3);
+        //         font-size: .8em;
+        //     }
+        // }
         &:active {
             &~.ripple {
                 opacity: 1;

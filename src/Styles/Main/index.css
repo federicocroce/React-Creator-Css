@@ -182,14 +182,14 @@ body {
   .input-text-container input {
     border: none;
     outline: none; }
-    .input-text-container input:focus ~ label.floating, .input-text-container input:valid ~ label.floating {
+    .input-text-container input:focus ~ label.floating, .input-text-container input:not(:placeholder-shown) ~ label.floating {
       color: #01579b;
       top: -100%;
       font-size: .8em; }
-    .input-text-container input:focus:placeholder-shown ~ label.placeholder, .input-text-container input:valid:placeholder-shown ~ label.placeholder {
+    .input-text-container input:focus:placeholder-shown ~ label.placeholder, .input-text-container input:not(:placeholder-shown):placeholder-shown ~ label.placeholder {
       color: rgba(0, 0, 0, 0.3);
       font-size: .8em; }
-    .input-text-container input:focus ~ hr, .input-text-container input:valid ~ hr {
+    .input-text-container input:focus ~ hr, .input-text-container input:not(:placeholder-shown) ~ hr {
       transform: scaleX(1); }
     .input-text-container input:active ~ .ripple {
       opacity: 1;
