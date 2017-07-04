@@ -92,7 +92,7 @@ const renderSerchBox = (params) => {
     return params.props.searchBox ? <GMapsSearchBox map={params.gMapsElements}/> : null;
 }
 const renderKeyValue = (props) => {
-    return props.gMaps && props.keyValuePlace ? <KeyValue dataKeyValue={props.gMaps.currentPlace} /> : null;
+    return props.gMaps && props.keyValuePlace && props.gMaps.currentPlace ? <KeyValue dataKeyValue={props.gMaps.currentPlace.keyValue} /> : null;
 }
 
 

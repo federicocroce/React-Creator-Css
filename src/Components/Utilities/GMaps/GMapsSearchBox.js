@@ -63,60 +63,69 @@ const addListener = (props, searchBox) => {
             position: place.geometry.location
         }));
 
-        currentPlace = {};
+        currentPlace = {
+            "keyValue":{},
+            "data":{}
+        };
         // console.log(place.address_components);
         place.address_components.map((place, index) => {
             var types = place.types[0];
 
             switch (types) {
                 case 'street_number':
-                    currentPlace.streetNumber = {
+                    currentPlace.keyValue.streetNumber = {
                         key: 'Número: ',
                         value: place.long_name
                     }
-                    // currentPlace.streetNumber = place.long_name;
+                    currentPlace.data.streetNumber = place.long_name;
                     break;
                 case 'route':
-                    currentPlace.route = {
+                    currentPlace.keyValue.route = {
                         key: 'Dirección: ',
                         value: place.long_name
                     }
-                    // currentPlace.route = place.long_name;
+                    currentPlace.data.route = place.long_name;
+                    // currentPlace.keyValue.route = place.long_name;
                     break;
                 case 'sublocality_level_1':
-                    currentPlace.sublocality = {
+                    currentPlace.keyValue.sublocality = {
                         key: 'Zona: ',
                         value: place.long_name
                     }
-                    // currentPlace.sublocality = place.long_name;
+                    currentPlace.data.sublocality = place.long_name;
+                    // currentPlace.keyValue.sublocality = place.long_name;
                     break;
                 case 'locality':
-                    currentPlace.locality = {
+                    currentPlace.keyValue.locality = {
                         key: 'Localidad: ',
                         value: place.short_name
                     }
-                    // currentPlace.locality = place.short_name;
+                    currentPlace.data.locality = place.short_name;
+                    // currentPlace.keyValue.locality = place.short_name;
                     break;
                 case 'administrative_area_level_1':
-                    currentPlace.province = {
+                    currentPlace.keyValue.province = {
                         key: 'Provincia: ',
                         value: place.short_name
                     }
-                    // currentPlace.province = place.long_name;
+                    currentPlace.data.province = place.short_name;
+                    // currentPlace.keyValue.province = place.long_name;
                     break;
                 case 'country':
-                    currentPlace.country = {
+                    currentPlace.keyValue.country = {
                         key: 'País: ',
                         value: place.long_name
                     }
-                    // currentPlace.country = place.long_name;
+                    currentPlace.data.country = place.long_name;
+                    // currentPlace.keyValue.country = place.long_name;
                     break;
                 case 'postal_code':
-                    currentPlace.postalCode = {
+                    currentPlace.keyValue.postalCode = {
                         key: 'Código Postal: ',
                         value: place.long_name
                     }
-                    // currentPlace.postalCode = place.long_name;
+                    currentPlace.data.postalCode = place.long_name;
+                    // currentPlace.keyValue.postalCode = place.long_name;
                     break;
 
                 default:
