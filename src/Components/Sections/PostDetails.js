@@ -37,107 +37,69 @@ import {
 
 import classnames from 'classnames';
 
-const renderInput = field =>    // Define stateless component to render input and errors
-  <div>
-    <input {...field.input} type={field.type} />
-    {field.meta.touched &&
-      field.meta.error &&
-      <span className="error">{field.meta.error}</span>}
-  </div>
-  ;
-
-
-class MyForm extends Component {
-
-  render() {
-    // const PostDetails = (props) => {
-
-    // const { handleSubmit } = props;
-
-    var postClass = '';
-    var showPost = true;
-
-
-
-
-    const back = props => {
-      props.state.posts.currentPost = {};
-      props.clearPost();
-    }
-
-
-    // const ripple = e => {
-
-    //   const posX = e.offsetX,
-    //     posY = e.offsetY;
-
-
-    //   // effect.style.top = (e.pageY - offset.top) + "px";
-    //   // effect.style.left = (e.pageX - offset.left) + "px";
-
-    //   console.log(e.target);
-
-    //   // e.
-    // }
-
-
-    const handleSubmit = val => {
-      console.log(val);
-    }
-
-
-
-
-    const styles = {
-      block: {
-        maxWidth: 250,
-      },
-      radioButton: {
-        marginBottom: 16,
-      },
-    };
-
-
-    return (
-      <form onSubmit={handleSubmit}>
-
-        <RadioButtonGroup className="radio-button horizontal-radio-button" name="shipSpeed" defaultSelected="not_light">
-          {/*<RadioButtonGroup style={styles.RadioButtonGroup} name="shipSpeed" defaultSelected="not_light">*/}
-          <RadioButton
-            value="alquiler"
-            label="Alquiler"
-            style={styles.radioButton}
-          />
-
-          <RadioButton
-            value="temporario"
-            label="Alquiler Temporario"
-            style={styles.radioButton}
-          />
-
-          <RadioButton
-            value="venta"
-            label="Venta"
-            style={styles.radioButton}
-          />
-        </RadioButtonGroup>
-
-        <InputText name="name" placeholderFloating="Escriba su nombre" customPlaceholder="Nombre" type="text" />
-
-
-        <Button className="primary-button" label="VOLVER" onClick={() => back(this.props)} />
-
-
-        <GMaps searchBox={true} currentLocation={true} keyValuePlace={true} />
-
-      </form>
-    );
-  }
+const submit = values => {
+  console.log(values);
 }
 
-// export {PostDetails};
-// const selector = formValueSelector('selectingFormValues') // <-- same as form name
+const back = props => {
+  props.state.posts.currentPost = {};
+  props.clearPost();
+}
 
+
+const PostDetailsReduxForm = props => {
+
+  // render() {
+  var postClass = '';
+  var showPost = true;
+
+
+  const styles = {
+    block: {
+      maxWidth: 250,
+    },
+    radioButton: {
+      marginBottom: 16,
+    },
+  };
+
+
+  return (
+    <form onSubmit={props.handleSubmit(submit)}>
+
+      <RadioButtonGroup className="radio-button horizontal-radio-button" name="shipSpeed" defaultSelected="not_light">
+        {/*<RadioButtonGroup style={styles.RadioButtonGroup} name="shipSpeed" defaultSelected="not_light">*/}
+        <RadioButton
+          value="alquiler"
+          label="Alquiler"
+          style={styles.radioButton}
+        />
+
+        <RadioButton
+          value="temporario"
+          label="Alquiler Temporario"
+          style={styles.radioButton}
+        />
+
+        <RadioButton
+          value="venta"
+          label="Venta"
+          style={styles.radioButton}
+        />
+      </RadioButtonGroup>
+
+      <InputText name="name" placeholderFloating="Escriba su nombre" customPlaceholder="Nombre" type="text" required />
+
+      <Button type="submit" className="primary-button" label="SUBMIT" />
+
+      <Button className="primary-button" label="VOLVER" onClick={() => back(props)} />
+
+      <GMaps searchBox={true} currentLocation={true} keyValuePlace={true} />
+
+    </form>
+  );
+  // }
+}
 
 
 const mapStateToProps = (state) => {
@@ -155,11 +117,11 @@ const mapDispatchToProps = dispatch => {
   };
 }
 
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(PostDetailsReduxForm);
+const Form = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PostDetailsReduxForm);
+
 export default reduxForm({
   form: 'myForm'
-                                              // no fields array given
-})(MyForm)
+})(Form)

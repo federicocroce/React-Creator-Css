@@ -19,7 +19,7 @@ const renderField = (field) => {
     let fieldProps = {...field};
     return (
         <div className="input-text-container">
-            <input {...field.input} id={fieldProps.id} onClick={(e) => ripple(e)} className="inputMaterial" placeholder=" " required />
+            <input {...field.input} id={fieldProps.id} onClick={(e) => ripple(e)} className="inputMaterial" placeholder=" " required={fieldProps.required} />
             <label className="floating">{fieldProps.placeholderFloating}</label>
             <label className="placeholder">{fieldProps.customPlaceholder}</label>
             <hr />
