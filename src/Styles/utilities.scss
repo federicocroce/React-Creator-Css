@@ -85,6 +85,64 @@
     }
 }
 
+///////////////// RADIO BUTTON  ////////////////////////////
+.radio-button-group-container {
+    .radio-button-container {
+        display: inline-block;
+        &:hover {
+            label {
+                cursor: pointer;
+                color: $secondary-color-light;
+            }
+            div {
+                cursor: pointer;
+                border-color: $secondary-color-light;
+            }
+        }
+        input[type="radio"] {
+            display: none;
+            &:checked {
+                &~div {
+                    border-color: #01579b;
+                    &:before {
+                        content: "";
+                        display: inline-block;
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 50px;
+                        position: absolute;
+                        background: #01579b;
+                        left: 3px;
+                        top: 3px;
+                    }
+                }
+            }
+        }
+        // .icon,
+        // label {
+        //     &:hover {
+        //         cursor: pointer;
+        //         color: $secondary-color-light;
+        //         border-color: $secondary-color-light;
+        //     }
+        // }
+        .icon {
+            content: "";
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50px;
+            border: 2px solid $secondary-color;
+            position: relative;
+        }
+        label {
+            margin-left: 5px;
+            top: -5px;
+            position: relative;
+        }
+    }
+}
+
 //////////// Button /////////////
 .button-container {
     button,
