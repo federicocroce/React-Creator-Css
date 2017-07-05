@@ -9,12 +9,11 @@ import { reduxForm, Field } from 'redux-form' // imported Field
 import { clearPost } from '../../Actions/actionsCreator';
 import Ripple from '../Utilities/Ripple';
 import InputText from '../Utilities/InputText';
+import RadioButtons from '../Utilities/RadioButton';
 import InputTextForm from '../Utilities/InputTextForm';
 import Button from '../Utilities/Button';
 import SearchBoxExample from '../Utilities/Map';
 import GMaps from '../Utilities/GMaps/GMaps';
-import GMapsSechBoxAnda from '../Utilities/GMaps/GMapsSechBoxAnda';
-// import { PostDetail } from './PostDetail';
 import $ from 'jquery-lite';
 
 
@@ -63,6 +62,25 @@ const PostDetailsReduxForm = props => {
     },
   };
 
+  const radioButtonsProps = {
+    name: "operationsTypes",
+    options: [
+      {
+        value: "rent",
+        label: "Alquiler"
+      },
+      {
+        value: "rentTime",
+        label: "Alquiler Temporario"
+      },
+      {
+        value: "sell",
+        label: "Venta"
+      }
+    ],
+
+  }
+
 
   return (
     <form onSubmit={props.handleSubmit(submit)}>
@@ -88,7 +106,9 @@ const PostDetailsReduxForm = props => {
         />
       </RadioButtonGroup>
 
-      <InputText name="name" placeholderFloating="Escriba su nombre" customPlaceholder="Nombre" type="text" required />
+      <RadioButtons radioButtonsProps={radioButtonsProps} />
+
+      <InputText name="name" placeholderFloating="Escriba su nombre" customPlaceholder="ej: Federico Croce" type="text" required />
 
       <Button type="submit" className="primary-button" label="SUBMIT" />
 

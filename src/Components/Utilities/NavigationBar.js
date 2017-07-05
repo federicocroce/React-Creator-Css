@@ -17,7 +17,7 @@ import {
 
 
 
-const NavigationBar = (props) => {
+const NavigationBar = props => {
 
     const linksRoutes = props.linksRoutes;
 
