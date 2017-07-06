@@ -233,7 +233,6 @@ body {
     transition: opacity 2s cubic-bezier(0.23, 1, 0.32, 1) 0ms, transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0ms; }
 
 .radio-button-group-container .radio-button-container {
-  display: inline-block;
   position: relative; }
   .radio-button-group-container .radio-button-container.display-inline-block {
     display: inline-block; }
@@ -241,7 +240,7 @@ body {
     cursor: pointer;
     color: #4f5b62;
     border-color: #4f5b62; }
-    .radio-button-group-container .radio-button-container:hoverinput[type="radio"] {
+    .radio-button-group-container .radio-button-container:hover input[type="radio"] {
       border-color: #4f5b62; }
   .radio-button-group-container .radio-button-container input[type="radio"] {
     appearance: none;

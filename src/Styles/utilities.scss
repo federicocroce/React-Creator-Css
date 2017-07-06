@@ -93,7 +93,6 @@ $input-box-check-size: 20px;
 
 .radio-button-group-container {
     .radio-button-container {
-        display: inline-block;
         position: relative;
         &.display-inline-block{
             display: inline-block;
@@ -102,7 +101,7 @@ $input-box-check-size: 20px;
             cursor: pointer;
             color: $secondary-color-light;
             border-color: $secondary-color-light;
-            &input[type="radio"] {
+            input[type="radio"] {
                 border-color: $secondary-color-light;
             }
         }

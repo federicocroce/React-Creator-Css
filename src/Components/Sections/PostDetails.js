@@ -85,8 +85,7 @@ const PostDetailsReduxForm = props => {
   return (
     <form onSubmit={props.handleSubmit(submit)}>
 
-      <RadioButtonGroup className="radio-button horizontal-radio-button" name="shipSpeed" defaultSelected="not_light">
-        {/*<RadioButtonGroup style={styles.RadioButtonGroup} name="shipSpeed" defaultSelected="not_light">*/}
+      {/*<RadioButtonGroup className="radio-button horizontal-radio-button" name="shipSpeed" defaultSelected="not_light">
         <RadioButton
           value="alquiler"
           label="Alquiler"
@@ -104,7 +103,7 @@ const PostDetailsReduxForm = props => {
           label="Venta"
           style={styles.radioButton}
         />
-      </RadioButtonGroup>
+      </RadioButtonGroup>*/}
 
       <RadioButtons radioButtonsProps={radioButtonsProps} />
 

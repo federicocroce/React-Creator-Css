@@ -43,15 +43,6 @@ const RadioGrp = props => {
     return (
         <div className="radio-button-group-container">
             {renderRadioButtons(props.radioButtonsProps)}
-            <label>
-                <input type="radio" className="option-input radio" name="example" />
-                Radio option
-            </label>
-
-            <label>
-                <input type="radio" className="option-input" name="example" />
-                Radio option
-            </label>
         </div>
     )
 
