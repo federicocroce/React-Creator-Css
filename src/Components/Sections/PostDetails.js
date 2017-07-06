@@ -85,26 +85,6 @@ const PostDetailsReduxForm = props => {
   return (
     <form onSubmit={props.handleSubmit(submit)}>
 
-      {/*<RadioButtonGroup className="radio-button horizontal-radio-button" name="shipSpeed" defaultSelected="not_light">
-        <RadioButton
-          value="alquiler"
-          label="Alquiler"
-          style={styles.radioButton}
-        />
-
-        <RadioButton
-          value="temporario"
-          label="Alquiler Temporario"
-          style={styles.radioButton}
-        />
-
-        <RadioButton
-          value="venta"
-          label="Venta"
-          style={styles.radioButton}
-        />
-      </RadioButtonGroup>*/}
-
       <RadioButtons radioButtonsProps={radioButtonsProps} />
 
       <InputText name="name" placeholderFloating="Escriba su nombre" customPlaceholder="ej: Federico Croce" type="text" required />
