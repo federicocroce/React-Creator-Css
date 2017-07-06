@@ -23,45 +23,35 @@ import ReactDOM from 'react-dom'
 
 const RadioGrp = props => {
 
-    // constructor() {
-    //     super();
-    //     this.state = {
-    //         selectedIndex: null,
-    //         selectedValue: null,
-    //         options: ["option 0", "option 1", "option 2", "option 3"]
-    //     };
-    // }
-
-    // toggleRadioBtn(index) {
-    //     this.setState({
-    //         selectedIndex: index,
-    //         selectedValue: this.state.options[index],
-    //         options: this.state.options
-    //     });
-    // }
-    const renderRadioButtons = (props) => {
-        return props.options.map((option) => {
-            return (
-                <div className="radio-button-container">
+    {/*<div className="radio-button-container">
                     <input className="option-input" type="radio" id={option.value} name={props.name} />
                     <div className="ripple" />
                     <label htmlFor={option.value}><span className="ripple"></span>{option.label}</label>
-                </div>)
+                </div>*/}
+
+    const renderRadioButtons = (props) => {
+        return props.options.map((option) => {
+            return (
+                <label className="radio-button-container display-inline-block">
+                    <input type="radio" id={option.value} name={props.name} />
+                    {option.label}
+                </label>
+            )
         })
     };
 
     return (
         <div className="radio-button-group-container">
             {renderRadioButtons(props.radioButtonsProps)}
-            <div>
-                <input type="radio" id="radio01" name="radio" />
-                <label for="radio01"><span></span>Radio Button 1</label>
-            </div>
+            <label>
+                <input type="radio" className="option-input radio" name="example" />
+                Radio option
+            </label>
 
-            <div>
-                <input type="radio" id="radio02" name="radio" />
-                <label for="radio02"><span></span>Radio Button 2</label>
-            </div>
+            <label>
+                <input type="radio" className="option-input" name="example" />
+                Radio option
+            </label>
         </div>
     )
 
