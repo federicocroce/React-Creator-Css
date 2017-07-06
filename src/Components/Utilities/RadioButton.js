@@ -43,9 +43,9 @@ const RadioGrp = props => {
         return props.options.map((option) => {
             return (
                 <div className="radio-button-container">
-                    <input type="radio" id={option.value} name={props.name} />
-                    <div className="icon" />
-                    <label htmlFor={option.value}><span></span>{option.label}</label>
+                    <input className="option-input" type="radio" id={option.value} name={props.name} />
+                    <div className="ripple" />
+                    <label htmlFor={option.value}><span className="ripple"></span>{option.label}</label>
                 </div>)
         })
     };
