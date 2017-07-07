@@ -100,8 +100,7 @@ const PostDetailsReduxForm = props => {
         value: "sell",
         label: "Venta"
       }
-    ],
-
+    ]
   }
 
 
