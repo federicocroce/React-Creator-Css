@@ -175,22 +175,6 @@ $input-box-check-size: 20px;
                         left: 50%;
                     }
                 }
-                // &:disabled {
-                //     &:checked {
-                //         &:after {
-                //             // Ripple
-                //             animation: click-wave 0.65s;
-                //             background: $primary-color;
-                //             content: '';
-                //             display: block;
-                //             position: relative;
-                //             z-index: 100;
-                //             transform: translate(-50%, -50%);
-                //             top: -50%;
-                //             left: 50%;
-                //         }
-                //     }
-                // }
                 &:active {
                     transform: scale3d(.4, .4, .4);
                 }

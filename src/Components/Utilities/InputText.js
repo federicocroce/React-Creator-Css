@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form'
+import { Field } from 'redux-form';
 
 const ripple = e => {
 
@@ -15,7 +15,7 @@ const ripple = e => {
     // e.
 }
 
-const renderField = (field) => {
+const renderInput = (field) => {
     let fieldProps = {...field};
     return (
         <div className="input-text-container">
@@ -36,7 +36,7 @@ const renderField = (field) => {
 
 const InputText = (props) => {
     return (
-            <Field props={props} component={renderField} name={props.name} />
+            <Field props={props} component={renderInput} name={props.name} />
     );
 }
 

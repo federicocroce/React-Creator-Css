@@ -64,7 +64,7 @@ const PostDetailsReduxForm = props => {
 
   const radioButtonsProps = {
     name: "operationsTypes",
-    display: "inline",
+    display: "inline ",
     type: "radio",
     options: [
       {
@@ -109,7 +109,8 @@ const PostDetailsReduxForm = props => {
     <form onSubmit={props.handleSubmit(submit)}>
 
       <SwitchesGroup switchesProps={radioButtonsProps} />
-      <SwitchesGroup switchesProps={checkboxProps} />
+
+      {/*<SwitchesGroup switchesProps={checkboxProps} />*/}
 
       <InputText name="name" placeholderFloating="Escriba su nombre" customPlaceholder="ej: Federico Croce" type="text" required />
 

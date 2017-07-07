@@ -1,32 +1,51 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import { Field } from 'redux-form';
 
 
 
 const SwitchesGroup = props => {
 
-    {/*<div className="radio-button-container">
-                    <input className="option-input" type="radio" id={option.value} name={props.name} />
-                    <div className="ripple" />
-                    <label htmlFor={option.value}><span className="ripple"></span>{option.label}</label>
-                </div>*/}
-
-    const renderSwitches = (props) => {
-        return props.options.map((option, index) => {
+    
+        const renderInput = (field) => {
+            let fieldProps = { ...field };
             return (
-                <li key={index} className={props.display}>
+                <li className={props.switchesProps.display}>
                     <label>
-                        <input type={props.type} id={option.value} name={props.name} />
-                        {option.label}
+                        <input {...field.input} type={props.switchesProps.type} name={fieldProps.input.name} value={fieldProps.value}/>
+                        {fieldProps.label}
                     </label>
                 </li>
             )
-        })
-    };
+        }
+        
+    /*const renderInput = (field) => {
+        let fieldProps = { ...field };
+        return (
+            <li className={props.switchesProps.display}>
+                <label>
+                    <input {...field.input} type="radio" name="gender" value="male" />
+                    {fieldProps.label}
+                </label>
+            </li>
+        )
+    }*/
+
+    const returnNameFromType = (props, option) => {
+        return props.type == "radio" ? props.name : option.value;
+    }
 
     return (
         <ul className="switches-container">
-            {renderSwitches(props.switchesProps)}
+
+            {props.switchesProps.options.map((option, index) => {
+                return <Field type={props.switchesProps.type} value={option.value} key={index} props={option} component={renderInput} name={returnNameFromType(props.switchesProps, option)} />
+            }
+            )}
+
+            {/*{props.options.map((option, index) => {
+                <Field props={props.switchesProps} component={renderField} name={props.switchesProps.name} />*/}
+
+            {/*{renderSwitches(props.switchesProps)}*/}
         </ul>
     )
 
