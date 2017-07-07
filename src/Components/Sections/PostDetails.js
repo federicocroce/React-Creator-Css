@@ -9,7 +9,7 @@ import { reduxForm, Field } from 'redux-form' // imported Field
 import { clearPost } from '../../Actions/actionsCreator';
 import Ripple from '../Utilities/Ripple';
 import InputText from '../Utilities/InputText';
-import RadioButtons from '../Utilities/RadioButton';
+import SwitchesGroup from '../Utilities/SwitchesGroup';
 import InputTextForm from '../Utilities/InputTextForm';
 import Button from '../Utilities/Button';
 import SearchBoxExample from '../Utilities/Map';
@@ -108,8 +108,8 @@ const PostDetailsReduxForm = props => {
   return (
     <form onSubmit={props.handleSubmit(submit)}>
 
-      <RadioButtons radioButtonsProps={radioButtonsProps} />
-      <RadioButtons radioButtonsProps={checkboxProps} />
+      <SwitchesGroup switchesProps={radioButtonsProps} />
+      <SwitchesGroup switchesProps={checkboxProps} />
 
       <InputText name="name" placeholderFloating="Escriba su nombre" customPlaceholder="ej: Federico Croce" type="text" required />
 

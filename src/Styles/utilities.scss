@@ -90,7 +90,8 @@ $input-radio-size: 20px;
 $input-radio-check-size: 10px;
 $input-box-size: 20px;
 $input-box-check-size: 20px;
-.input-button-group-container {
+.switches-container {
+    list-style-type: none;
     li {
         &.inline {
             display: inline-block;
@@ -131,6 +132,15 @@ $input-box-check-size: 20px;
                     &:after {
                         border-radius: 50px;
                     }
+                    &:checked:before{
+                        transform: scale3d(1, 1, 1);
+                    }
+                }
+                &[type="checkbox"] {
+                    &:checked:before{
+                        transform: scale3d(1, 1, 1);
+                        content: ""
+                    }
                 }
                 &:before {
                     // The checkmark
@@ -151,7 +161,6 @@ $input-box-check-size: 20px;
                     &:before {
                         // The checkmark
                         opacity: 1;
-                        transform: scale3d(1, 1, 1);
                     }
                     &:after {
                         // Ripple
@@ -166,22 +175,22 @@ $input-box-check-size: 20px;
                         left: 50%;
                     }
                 }
-                &:disabled {
-                    &:checked {
-                        &:after {
-                            // Ripple
-                            animation: click-wave 0.65s;
-                            background: $primary-color;
-                            content: '';
-                            display: block;
-                            position: relative;
-                            z-index: 100;
-                            transform: translate(-50%, -50%);
-                            top: -50%;
-                            left: 50%;
-                        }
-                    }
-                }
+                // &:disabled {
+                //     &:checked {
+                //         &:after {
+                //             // Ripple
+                //             animation: click-wave 0.65s;
+                //             background: $primary-color;
+                //             content: '';
+                //             display: block;
+                //             position: relative;
+                //             z-index: 100;
+                //             transform: translate(-50%, -50%);
+                //             top: -50%;
+                //             left: 50%;
+                //         }
+                //     }
+                // }
                 &:active {
                     transform: scale3d(.4, .4, .4);
                 }

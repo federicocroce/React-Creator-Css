@@ -232,82 +232,76 @@ body {
     pointer-events: none;
     transition: opacity 2s cubic-bezier(0.23, 1, 0.32, 1) 0ms, transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0ms; }
 
-.input-button-group-container li.inline {
-  display: inline-block; }
-
-.input-button-group-container li label {
-  position: relative; }
-  .input-button-group-container li label:hover {
-    cursor: pointer;
-    color: #4f5b62;
-    border-color: #4f5b62; }
-    .input-button-group-container li label:hover input {
+.switches-container {
+  list-style-type: none; }
+  .switches-container li.inline {
+    display: inline-block; }
+  .switches-container li label {
+    position: relative; }
+    .switches-container li label:hover {
+      cursor: pointer;
+      color: #4f5b62;
       border-color: #4f5b62; }
-  .input-button-group-container li label input {
-    appearance: none;
-    position: relative;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #263238;
-    vertical-align: middle;
-    position: absolute;
-    left: 0;
-    transition: all 100ms ease;
-    cursor: pointer;
-    display: inline-block;
-    outline: none;
-    position: relative;
-    background: transparent;
-    pointer-events: none;
-    margin: 0 10px; }
-    .input-button-group-container li label input li:first-child {
-      margin-left: 0; }
-    .input-button-group-container li label input[type="radio"] {
-      border-radius: 50px; }
-      .input-button-group-container li label input[type="radio"]:before, .input-button-group-container li label input[type="radio"]:after {
-        border-radius: 50px; }
-    .input-button-group-container li label input:before {
-      content: "";
+      .switches-container li label:hover input {
+        border-color: #4f5b62; }
+    .switches-container li label input {
+      appearance: none;
+      position: relative;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #263238;
+      vertical-align: middle;
+      position: absolute;
+      left: 0;
+      transition: all 100ms ease;
+      cursor: pointer;
       display: inline-block;
-      width: 10px;
-      height: 10px;
+      outline: none;
       position: relative;
-      background: #01579b;
-      left: 3px;
-      top: 1px;
-      opacity: 0;
-      transform: scale3d(0, 0, 0);
-      transition: all 100ms ease; }
-    .input-button-group-container li label input:checked {
-      border-color: #01579b; }
-      .input-button-group-container li label input:checked:before {
-        opacity: 1;
-        transform: scale3d(1, 1, 1); }
-      .input-button-group-container li label input:checked:after {
-        animation: click-wave 0.65s;
-        background: #01579b;
-        content: '';
-        display: block;
+      background: transparent;
+      pointer-events: none;
+      margin: 0 10px; }
+      .switches-container li label input li:first-child {
+        margin-left: 0; }
+      .switches-container li label input[type="radio"] {
+        border-radius: 50px; }
+        .switches-container li label input[type="radio"]:before, .switches-container li label input[type="radio"]:after {
+          border-radius: 50px; }
+        .switches-container li label input[type="radio"]:checked:before {
+          transform: scale3d(1, 1, 1); }
+      .switches-container li label input[type="checkbox"]:checked:before {
+        transform: scale3d(1, 1, 1);
+        content: ""; }
+      .switches-container li label input:before {
+        content: "";
+        display: inline-block;
+        width: 10px;
+        height: 10px;
         position: relative;
-        z-index: 100;
-        transform: translate(-50%, -50%);
-        top: -50%;
-        left: 50%; }
-    .input-button-group-container li label input:disabled:checked:after {
-      animation: click-wave 0.65s;
-      background: #01579b;
-      content: '';
-      display: block;
-      position: relative;
-      z-index: 100;
-      transform: translate(-50%, -50%);
-      top: -50%;
-      left: 50%; }
-    .input-button-group-container li label input:active {
-      transform: scale3d(0.4, 0.4, 0.4); }
-
-.input-button-group-container li:first-child input {
-  margin-left: 0; }
+        background: #01579b;
+        left: 3px;
+        top: 1px;
+        opacity: 0;
+        transform: scale3d(0, 0, 0);
+        transition: all 100ms ease; }
+      .switches-container li label input:checked {
+        border-color: #01579b; }
+        .switches-container li label input:checked:before {
+          opacity: 1; }
+        .switches-container li label input:checked:after {
+          animation: click-wave 0.65s;
+          background: #01579b;
+          content: '';
+          display: block;
+          position: relative;
+          z-index: 100;
+          transform: translate(-50%, -50%);
+          top: -50%;
+          left: 50%; }
+      .switches-container li label input:active {
+        transform: scale3d(0.4, 0.4, 0.4); }
+  .switches-container li:first-child input {
+    margin-left: 0; }
 
 @keyframes click-wave {
   0% {
