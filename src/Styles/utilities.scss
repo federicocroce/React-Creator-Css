@@ -85,81 +85,111 @@
     }
 }
 
-///////////////// RADIO BUTTON  ////////////////////////////
+///////////////// RADIO BUTTON / CHECK BOX ////////////////////////////
 $input-radio-size: 20px;
 $input-radio-check-size: 10px;
 $input-box-size: 20px;
 $input-box-check-size: 20px;
-
-.radio-button-group-container {
-    .radio-button-container {
-        position: relative;
-        &.display-inline-block{
+.input-button-group-container {
+    li {
+        &.inline {
             display: inline-block;
         }
-        &:hover {
-            cursor: pointer;
-            color: $secondary-color-light;
-            border-color: $secondary-color-light;
-            input[type="radio"] {
+        label {
+            position: relative;
+            &:hover {
+                cursor: pointer;
+                color: $secondary-color-light;
                 border-color: $secondary-color-light;
+                input {
+                    border-color: $secondary-color-light;
+                }
             }
-        }
-        input[type="radio"] {
-            appearance: none;
-            position: relative;
-            width: $input-radio-size;
-            height: $input-radio-size;
-            border-radius: 50px;
-            border: 2px solid $secondary-color;
-            vertical-align: middle;
-            position: absolute;
-            left: 0;
-            transition: all 100ms ease;
-            cursor: pointer;
-            display: inline-block;
-            outline: none;
-            position: relative;
-            background: transparent;
-            &:before {
-                // The checkmark
-                content: "";
-                display: inline-block;
-                width: $input-radio-check-size;
-                height: $input-radio-check-size;
-                border-radius: 50px;
+            input {
+                appearance: none;
                 position: relative;
-                background: $primary-color;
-                left: 3px;
-                top: 1px;
-                opacity: 0;
-                transform: scale3d(0, 0, 0);
+                width: $input-radio-size;
+                height: $input-radio-size;
+                border: 2px solid $secondary-color;
+                vertical-align: middle;
+                position: absolute;
+                left: 0;
                 transition: all 100ms ease;
-            }
-            &:checked {
-                border-color: $primary-color;
+                cursor: pointer;
+                display: inline-block;
+                outline: none;
+                position: relative;
+                background: transparent;
+                pointer-events: none;
+                margin: 0 10px;
+                li:first-child {
+                    margin-left: 0;
+                }
+                &[type="radio"] {
+                    border-radius: 50px;
+                    &:before,
+                    &:after {
+                        border-radius: 50px;
+                    }
+                }
                 &:before {
                     // The checkmark
-                    opacity: 1;
-                    transform: scale3d(1, 1, 1);
-                }
-                &:after {
-                    // Ripple
-                    animation: click-wave 0.65s;
-                    background: $primary-color;
-                    content: '';
-                    display: block;
+                    content: "";
+                    display: inline-block;
+                    width: $input-radio-check-size;
+                    height: $input-radio-check-size;
                     position: relative;
-                    z-index: 100;
-                    border-radius: 50%;
-                    transform: translate(-50%, -50%);
-                    top: -50%;
-                    left: 50%;
+                    background: $primary-color;
+                    left: 3px;
+                    top: 1px;
+                    opacity: 0;
+                    transform: scale3d(0, 0, 0);
+                    transition: all 100ms ease;
+                }
+                &:checked {
+                    border-color: $primary-color;
+                    &:before {
+                        // The checkmark
+                        opacity: 1;
+                        transform: scale3d(1, 1, 1);
+                    }
+                    &:after {
+                        // Ripple
+                        animation: click-wave 0.65s;
+                        background: $primary-color;
+                        content: '';
+                        display: block;
+                        position: relative;
+                        z-index: 100;
+                        transform: translate(-50%, -50%);
+                        top: -50%;
+                        left: 50%;
+                    }
+                }
+                &:disabled {
+                    &:checked {
+                        &:after {
+                            // Ripple
+                            animation: click-wave 0.65s;
+                            background: $primary-color;
+                            content: '';
+                            display: block;
+                            position: relative;
+                            z-index: 100;
+                            transform: translate(-50%, -50%);
+                            top: -50%;
+                            left: 50%;
+                        }
+                    }
+                }
+                &:active {
+                    transform: scale3d(.4, .4, .4);
                 }
             }
-            &:active {
-                transform: scale3d(.4, .4, .4);
-            }
+        }
+        // li:first-child input[type="radio"] {
+        &:first-child input {
+            margin-left: 0;
         }
     }
 }
@@ -172,7 +202,7 @@ $input-box-check-size: 20px;
         position: relative;
     }
     100% {
-        height: $input-radio-check-size * 5 ;
+        height: $input-radio-check-size * 5;
         width: $input-radio-check-size * 5;
         opacity: 0.0;
     }

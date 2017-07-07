@@ -30,20 +30,22 @@ const RadioGrp = props => {
                 </div>*/}
 
     const renderRadioButtons = (props) => {
-        return props.options.map((option) => {
+        return props.options.map((option, index) => {
             return (
-                <label className="radio-button-container display-inline-block">
-                    <input type="radio" id={option.value} name={props.name} />
-                    {option.label}
-                </label>
+                <li key={index} className={props.display}>
+                    <label>
+                        <input type={props.type} id={option.value} name={props.name} />
+                        {option.label}
+                    </label>
+                </li>
             )
         })
     };
 
     return (
-        <div className="radio-button-group-container">
+        <ul className="input-button-group-container">
             {renderRadioButtons(props.radioButtonsProps)}
-        </div>
+        </ul>
     )
 
 }

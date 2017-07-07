@@ -64,6 +64,29 @@ const PostDetailsReduxForm = props => {
 
   const radioButtonsProps = {
     name: "operationsTypes",
+    display: "inline",
+    type: "radio",
+    options: [
+      {
+        value: "rent",
+        label: "Alquiler"
+      },
+      {
+        value: "rentTime",
+        label: "Alquiler Temporario"
+      },
+      {
+        value: "sell",
+        label: "Venta"
+      }
+    ],
+
+  }
+
+  const checkboxProps = {
+    name: "operationsTypes",
+    // display: "inline",
+    type: "checkbox",
     options: [
       {
         value: "rent",
@@ -86,6 +109,7 @@ const PostDetailsReduxForm = props => {
     <form onSubmit={props.handleSubmit(submit)}>
 
       <RadioButtons radioButtonsProps={radioButtonsProps} />
+      <RadioButtons radioButtonsProps={checkboxProps} />
 
       <InputText name="name" placeholderFloating="Escriba su nombre" customPlaceholder="ej: Federico Croce" type="text" required />
 

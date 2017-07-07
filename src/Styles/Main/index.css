@@ -232,22 +232,22 @@ body {
     pointer-events: none;
     transition: opacity 2s cubic-bezier(0.23, 1, 0.32, 1) 0ms, transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0ms; }
 
-.radio-button-group-container .radio-button-container {
+.input-button-group-container li.inline {
+  display: inline-block; }
+
+.input-button-group-container li label {
   position: relative; }
-  .radio-button-group-container .radio-button-container.display-inline-block {
-    display: inline-block; }
-  .radio-button-group-container .radio-button-container:hover {
+  .input-button-group-container li label:hover {
     cursor: pointer;
     color: #4f5b62;
     border-color: #4f5b62; }
-    .radio-button-group-container .radio-button-container:hover input[type="radio"] {
+    .input-button-group-container li label:hover input {
       border-color: #4f5b62; }
-  .radio-button-group-container .radio-button-container input[type="radio"] {
+  .input-button-group-container li label input {
     appearance: none;
     position: relative;
     width: 20px;
     height: 20px;
-    border-radius: 50px;
     border: 2px solid #263238;
     vertical-align: middle;
     position: absolute;
@@ -257,13 +257,20 @@ body {
     display: inline-block;
     outline: none;
     position: relative;
-    background: transparent; }
-    .radio-button-group-container .radio-button-container input[type="radio"]:before {
+    background: transparent;
+    pointer-events: none;
+    margin: 0 10px; }
+    .input-button-group-container li label input li:first-child {
+      margin-left: 0; }
+    .input-button-group-container li label input[type="radio"] {
+      border-radius: 50px; }
+      .input-button-group-container li label input[type="radio"]:before, .input-button-group-container li label input[type="radio"]:after {
+        border-radius: 50px; }
+    .input-button-group-container li label input:before {
       content: "";
       display: inline-block;
       width: 10px;
       height: 10px;
-      border-radius: 50px;
       position: relative;
       background: #01579b;
       left: 3px;
@@ -271,24 +278,36 @@ body {
       opacity: 0;
       transform: scale3d(0, 0, 0);
       transition: all 100ms ease; }
-    .radio-button-group-container .radio-button-container input[type="radio"]:checked {
+    .input-button-group-container li label input:checked {
       border-color: #01579b; }
-      .radio-button-group-container .radio-button-container input[type="radio"]:checked:before {
+      .input-button-group-container li label input:checked:before {
         opacity: 1;
         transform: scale3d(1, 1, 1); }
-      .radio-button-group-container .radio-button-container input[type="radio"]:checked:after {
+      .input-button-group-container li label input:checked:after {
         animation: click-wave 0.65s;
         background: #01579b;
         content: '';
         display: block;
         position: relative;
         z-index: 100;
-        border-radius: 50%;
         transform: translate(-50%, -50%);
         top: -50%;
         left: 50%; }
-    .radio-button-group-container .radio-button-container input[type="radio"]:active {
+    .input-button-group-container li label input:disabled:checked:after {
+      animation: click-wave 0.65s;
+      background: #01579b;
+      content: '';
+      display: block;
+      position: relative;
+      z-index: 100;
+      transform: translate(-50%, -50%);
+      top: -50%;
+      left: 50%; }
+    .input-button-group-container li label input:active {
       transform: scale3d(0.4, 0.4, 0.4); }
+
+.input-button-group-container li:first-child input {
+  margin-left: 0; }
 
 @keyframes click-wave {
   0% {
