@@ -3,20 +3,21 @@ import { Field } from 'redux-form';
 
 
 
+const renderInput = (field) => {
+    return (
+        <li className={field.switchesProps.display}>
+            <label>
+                <input {...field.input} type={field.switchesProps.type} />
+                {field.label}
+            </label>
+        </li>
+    )
+}
+
 const SwitchesGroup = props => {
 
 
-    const renderInput = (field) => {
-        let fieldProps = { ...field };
-        return (
-            <li className={props.switchesProps.display}>
-                <label>
-                    <input {...field.input} type={props.switchesProps.type} name={fieldProps.input.name} value={fieldProps.value} />
-                    {fieldProps.label}
-                </label>
-            </li>
-        )
-    }
+
 
     /*const renderInput = (field) => {
         let fieldProps = { ...field };
@@ -36,12 +37,8 @@ const SwitchesGroup = props => {
 
     return (
         <ul className="switches-container">
-        {/*<ul>*/}
-
-            {/*<Field name="sex" component="input" type="radio" value="male" />*/}
-
             {props.switchesProps.options.map((option, index) => {
-                return <Field type={props.switchesProps.type} value={option.value} key={index} props={option} component={renderInput} name={returnNameFromType(props.switchesProps, option)} />
+                return <Field key={index} type={props.switchesProps.type} value={option.value} props={option} switchesProps={props.switchesProps} component={renderInput} name={returnNameFromType(props.switchesProps, option)} />
             }
             )}
         </ul>

@@ -109,7 +109,7 @@ const PostDetailsReduxForm = props => {
 
       <SwitchesGroup switchesProps={radioButtonsProps} />
 
-      {/*<SwitchesGroup switchesProps={checkboxProps} />*/}
+      <SwitchesGroup switchesProps={checkboxProps} />
 
       <InputText name="name" placeholderFloating="Escriba su nombre" customPlaceholder="ej: Federico Croce" type="text" required />
 
