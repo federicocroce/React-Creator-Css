@@ -3,7 +3,7 @@ import React from 'react';
 import PostsGrid from '../Sections/PostsGrid';
 // import Home from '../Sections/Home';
 import NewPost from '../Sections/NewPost';
-import PostDetail from '../Sections/PostDetail'
+import PostDetails from '../Sections/PostDetails'
 
 
 
@@ -38,7 +38,7 @@ const mainLinksRoutes = [
   },
   {
     path: "/view",
-    component: PostDetail,
+    component: PostDetails,
     name: "",
     show:false
   }

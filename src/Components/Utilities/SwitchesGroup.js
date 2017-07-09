@@ -5,7 +5,7 @@ import { Field } from 'redux-form';
 
 const renderInput = (field) => {
     return (
-        <li className={field.switchesProps.display}>
+        <li className={field.switchesProps.style}>
             <label>
                 <input {...field.input} type={field.switchesProps.type} />
                 {field.label}
@@ -15,21 +15,6 @@ const renderInput = (field) => {
 }
 
 const SwitchesGroup = props => {
-
-
-
-
-    /*const renderInput = (field) => {
-        let fieldProps = { ...field };
-        return (
-            <li className={props.switchesProps.display}>
-                <label>
-                    <input {...field.input} type="radio" name="gender" value="male" />
-                    {fieldProps.label}
-                </label>
-            </li>
-        )
-    }*/
 
     const returnNameFromType = (props, option) => {
         return props.type == "radio" ? props.name : option.value;

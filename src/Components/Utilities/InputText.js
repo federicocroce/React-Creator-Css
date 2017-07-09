@@ -15,24 +15,18 @@ const ripple = e => {
     // e.
 }
 
+
 const renderInput = (field) => {
     let fieldProps = {...field};
     return (
         <div className="input-text-container">
-            <input {...field.input} id={fieldProps.id} onClick={(e) => ripple(e)} className="inputMaterial" placeholder=" " required={fieldProps.required} />
+            <input {...field.input} id={fieldProps.id} className="inputMaterial" placeholder=" " required={fieldProps.required} onClick={(e) => ripple(e)}/>
             <label className="floating">{fieldProps.placeholderFloating}</label>
             <label className="placeholder">{fieldProps.customPlaceholder}</label>
             <hr />
         </div>
     )
 }
-
-{/*<div className="input-row">
-        <input {...field.input} type="text" />
-        {field.meta.touched && field.meta.error &&
-            <span className="error">{field.meta.error}</span>}
-    </div>*/}
-
 
 const InputText = (props) => {
     return (

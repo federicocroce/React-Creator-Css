@@ -22,11 +22,11 @@ const addListenerToMap = (props, searchBox) => {
     searchBox.setBounds(props.gMapsElements.map.getBounds());
 };
 
-const addListener = (props, searchBox) => {
+const addListener = (props, searchBoxGmaps, searchBox) => {
     // searchBox.addListener('places_changed', function (currentPlaceState) {
 
     var newProps = props.map;
-    var places = searchBox.getPlaces();
+    var places = searchBoxGmaps.getPlaces();
     var markers = [];
 
     if (places.length == 0) {
@@ -65,7 +65,8 @@ const addListener = (props, searchBox) => {
 
         currentPlace = {
             "keyValue":{},
-            "data":{}
+            "data":{},
+            "formatted_address": places[0].formatted_address
         };
         // console.log(place.address_components);
         place.address_components.map((place, index) => {
@@ -196,10 +197,12 @@ class GMapsSearchBox extends React.Component {
         // setCurrentPosition(gMapsElements.map, gMapsElements.markers, gMapsElements.infoWindow);
 
         if (this.props.map) {
-            var searchBox = new google.maps.places.SearchBox(document.getElementById('pac-input'));
-            searchBox.addListener('places_changed', addListener.bind(null, this.props, searchBox));
+            var searchBox = document.getElementById('pac-input');
+            var searchBoxGmaps = new google.maps.places.SearchBox(searchBox);
+            searchBoxGmaps.addListener('places_changed', addListener.bind(null, this.props, searchBoxGmaps, searchBox));
         }
     }
+
 
 
     render() {

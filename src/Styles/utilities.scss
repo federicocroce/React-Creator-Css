@@ -10,9 +10,6 @@
     input {
         border: none;
         outline: none;
-        // &:required {
-        //     background-color: yellow;
-        // }
         &:focus,
         &:not(:placeholder-shown) {
             &~label.floating {
@@ -28,12 +25,7 @@
                 transform: scaleX(1);
             }
         }
-        // &:not(:focus) {
-        //     &:placeholder-shown~label.placeholder {
-        //         color: rgba(0, 0, 0, 0.3);
-        //         font-size: .8em;
-        //     }
-        // }
+
         &:active {
             &~.ripple {
                 opacity: 1;
@@ -180,7 +172,6 @@ $input-box-check-size: 20px;
                 }
             }
         }
-        // li:first-child input[type="radio"] {
         &:first-child input {
             margin-left: 0;
         }

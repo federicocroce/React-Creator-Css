@@ -10,7 +10,6 @@ import { clearPost } from '../../Actions/actionsCreator';
 import Ripple from '../Utilities/Ripple';
 import InputText from '../Utilities/InputText';
 import SwitchesGroup from '../Utilities/SwitchesGroup';
-import InputTextForm from '../Utilities/InputTextForm';
 import Button from '../Utilities/Button';
 import SearchBoxExample from '../Utilities/Map';
 import GMaps from '../Utilities/GMaps/GMaps';
@@ -64,7 +63,7 @@ const PostDetailsReduxForm = props => {
 
   const radioButtonsProps = {
     name: "operationsTypes",
-    display: "inline ",
+    style: "inline ",
     type: "radio",
     options: [
       {
@@ -85,7 +84,7 @@ const PostDetailsReduxForm = props => {
 
   const checkboxProps = {
     name: "operationsTypes",
-    // display: "inline",
+    // style: "inline",
     type: "checkbox",
     options: [
       {
