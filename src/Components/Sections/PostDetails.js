@@ -104,15 +104,14 @@ const PostDetailsReduxForm = props => {
   return (
     <form onSubmit={props.handleSubmit(submit)}>
 
-      <ImagesUploader
-        optimisticPreviews
-        multiple={false}
-        onLoadEnd={(err) => {
-          if (err) {
-            console.error(err);
-          }
+      <input id="upload" ref="upload" type="file" accept="image/*"
+        onChange={(event) => {
+          this.readFile(event)
         }}
-        label="Upload a picture"
+        onClick={(event) => {
+          event.target.value = null
+        }}
+
       />
 
       <SwitchesGroup switchesProps={radioButtonsProps} />
