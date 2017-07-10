@@ -1,19 +1,18 @@
 import React, { Component } from 'react'
-// import { NavLink } from 'react-router-dom';
 
 import { connect } from "react-redux";
 import { reduxForm, Field } from 'redux-form' // imported Field
-// import { reduxForm } from 'redux-form/immutable'
-// import { LocalForm, Control } from 'react-redux-form';
+import ImagesUploader from 'react-images-uploader';
+import 'react-images-uploader/styles.css';
+import 'react-images-uploader/font.css';
+
 
 import { clearPost } from '../../Actions/actionsCreator';
-import Ripple from '../Utilities/Ripple';
 import InputText from '../Utilities/InputText';
 import SwitchesGroup from '../Utilities/SwitchesGroup';
 import Button from '../Utilities/Button';
-import SearchBoxExample from '../Utilities/Map';
 import GMaps from '../Utilities/GMaps/GMaps';
-import $ from 'jquery-lite';
+
 
 
 import RaisedButton from 'material-ui/RaisedButton';
@@ -102,9 +101,19 @@ const PostDetailsReduxForm = props => {
     ]
   }
 
-
   return (
     <form onSubmit={props.handleSubmit(submit)}>
+
+      <ImagesUploader
+        optimisticPreviews
+        multiple={false}
+        onLoadEnd={(err) => {
+          if (err) {
+            console.error(err);
+          }
+        }}
+        label="Upload a picture"
+      />
 
       <SwitchesGroup switchesProps={radioButtonsProps} />
 

@@ -33,7 +33,7 @@ const mainLinksRoutes = [
   ,
   {
     path: "/new",
-    component: NewPost,
+    component: PostDetails,
     name: "Nuevo"
   },
   {
