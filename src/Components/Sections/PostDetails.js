@@ -9,6 +9,7 @@ import 'react-images-uploader/font.css';
 
 import { clearPost } from '../../Actions/actionsCreator';
 import InputText from '../Utilities/InputText';
+import UploadImg from '../Utilities/UploadImg';
 import SwitchesGroup from '../Utilities/SwitchesGroup';
 import Button from '../Utilities/Button';
 import GMaps from '../Utilities/GMaps/GMaps';
@@ -104,15 +105,7 @@ const PostDetailsReduxForm = props => {
   return (
     <form onSubmit={props.handleSubmit(submit)}>
 
-      <input id="upload" ref="upload" type="file" accept="image/*"
-        onChange={(event) => {
-          this.readFile(event)
-        }}
-        onClick={(event) => {
-          event.target.value = null
-        }}
-
-      />
+      <UploadImg />
 
       <SwitchesGroup switchesProps={radioButtonsProps} />
 
