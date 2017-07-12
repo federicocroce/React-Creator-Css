@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 
 class UploadImg extends React.Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class UploadImg extends React.Component {
       }
     }
 
-    reader.readAsDataURL(file)
+    // reader.readAsDataURL(file)
   }
 
 
@@ -58,6 +58,134 @@ class UploadImg extends React.Component {
     )
   }
 
+}
+
+export default UploadImg;*/
+
+
+import React from 'react';
+import { Field } from 'redux-form';
+
+
+
+/*class renderInput extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      file: '',
+      imagePreviewUrl: ''
+    };
+    this.onChange = this.onChange.bind(this)
+  }
+
+  onChange(e) {
+    const { input: { onChange } } = this.props
+    onChange(e.target.files[0])
+
+    let reader = new FileReader();
+    let file = e.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        imagePreviewUrl: reader.result
+      });
+    }
+
+    // reader.onloadend = () => {
+    //   let result = {
+    //     file: file,
+    //     imagePreviewUrl: reader.result
+    //   }
+    //   onChange(result)
+    // }
+
+    reader.readAsDataURL(file)
+
+  }
+
+  render() {
+    const { input: { value } } = this.props
+
+    let { imagePreviewUrl } = this.state;
+    let $imagePreview = null;
+    if (imagePreviewUrl) {
+      $imagePreview = (<img src={imagePreviewUrl} />);
+    }
+
+    return (
+      <div>
+        <input type="file" value={value} onChange={this.onChange} />
+        {$imagePreview}
+      </div>
+    )
+  }
+}*/
+
+/*class renderInput extends React.Component {
+  constructor(props) {
+    super(props)
+    this.onChange = this.onChange.bind(this)
+  }
+
+  onChange(e) {
+    const { input: { onChange } } = this.props
+    onChange(e.target.files[0])
+  }
+
+  render() {
+    const { input: { value } } = this.props
+
+    return (<input
+      type="file"
+      value={value}
+      onChange={this.onChange}
+    />)
+  }
+}
+
+const UploadImg = props => {
+
+  return (
+    <Field
+      type="file"
+      name="poster"
+      component={renderInput}
+    />
+  )
+}*/
+
+class renderInput extends React.Component {
+  constructor(props) {
+    super(props)
+    this.onChange = this.onChange.bind(this)
+  }
+
+  onChange(e) {
+    const { input: { onChange } } = this.props
+    onChange(e.target.files[0])
+  }
+
+  render() {
+    const { input: { value } } = this.props
+
+    return (<input
+      type="file"
+      value={value}
+      onChange={this.onChange}
+    />)
+  }
+}
+
+const UploadImg = props => {
+
+  return (
+    <Field
+      type="file"
+      name="poster"
+      component={renderInput}
+    />
+  )
 }
 
 export default UploadImg;
