@@ -9,7 +9,8 @@ import 'react-images-uploader/font.css';
 
 import { clearPost } from '../../Actions/actionsCreator';
 import InputText from '../Utilities/InputText';
-import UploadImg from '../Utilities/UploadImg';
+// import UploadImg from '../Utilities/UploadImg';
+import FileUpload from '../Utilities/UploadImg';
 import SwitchesGroup from '../Utilities/SwitchesGroup';
 import Button from '../Utilities/Button';
 import GMaps from '../Utilities/GMaps/GMaps';
@@ -102,10 +103,25 @@ const PostDetailsReduxForm = props => {
     ]
   }
 
+  const uploadFileToServer = (file) => {
+    const delay = file.size / 100;
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve();
+      }, delay);
+    });
+  };
+
   return (
     <form onSubmit={props.handleSubmit(submit)}>
 
-      <UploadImg />
+      {/*<UploadImg />*/}
+
+      <FileUpload multiple={true}
+        name='example-upload'
+        maxSize={300000}
+        onUpload={uploadFileToServer}
+        label='Upload Files' />
 
       <SwitchesGroup switchesProps={radioButtonsProps} />
 
