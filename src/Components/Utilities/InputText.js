@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field } from 'redux-form';
-import {formatValidateArray} from '../Config/Validations';
+import { formatValidateArray } from '../Config/Validations';
 
 const ripple = e => {
 
@@ -25,12 +25,14 @@ const ripple = e => {
 
 const renderInput = (field) => {
     let fieldProps = { ...field };
-    let hasError = fieldProps.meta.invalid && fieldProps.meta.touched;
+    let hasError = fieldProps.meta.invalid && fieldProps.meta.submitFailed;
     return (
         <div className={`input-text-container ${hasError ? 'input-error' : ''}`}>
             <input {...field.input} id={fieldProps.id} className="inputMaterial" placeholder=" " required={fieldProps.required} onClick={(e) => ripple(e)} />
             <label className="floating">{fieldProps.placeholderFloating}</label>
-            <label className="placeholder">{fieldProps.customPlaceholder}</label>
+            <div className="container-placeholder">
+                <label className="placeholder">{fieldProps.customPlaceholder}</label>
+            </div>
             {hasError ? <label className="error-text">{fieldProps.meta.error}</label> : null}
             <hr />
         </div>
