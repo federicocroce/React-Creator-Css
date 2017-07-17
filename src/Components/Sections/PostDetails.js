@@ -52,15 +52,9 @@ const PostDetailsReduxForm = props => {
   var postClass = '';
   var showPost = true;
 
-
-  const styles = {
-    block: {
-      maxWidth: 250,
-    },
-    radioButton: {
-      marginBottom: 16,
-    },
-  };
+  const isNewUpadtePost = () =>{
+    if(props.state.routing.location.pathname == "/new") return true;
+  }
 
   const radioButtonsProps = {
     name: "operationsTypes",
@@ -117,17 +111,19 @@ const PostDetailsReduxForm = props => {
 
       {/*<UploadImg />*/}
 
-      <FileUpload multiple={true}
+      {isNewUpadtePost() ? <FileUpload multiple={true}
         name='example-upload'
         maxSize={300000}
         onUpload={uploadFileToServer}
-        label='Upload Files' />
+        label='Upload Files' />: null}
 
       <SwitchesGroup switchesProps={radioButtonsProps} />
 
       <SwitchesGroup switchesProps={checkboxProps} />
 
-      <InputText name="name" placeholderFloating="Escriba su nombre" customPlaceholder="ej: Federico Croce" type="text" required />
+      <InputText name="name" placeholderFloating="Escriba su nombre" customPlaceholder="ej: Federico Croce" type="text" validate={['number', 'minValue18', 'required']}  />
+
+      <InputText name="age" placeholderFloating="Escriba su edad" customPlaceholder="ej: Federico Croce" type="number" validate={['number', 'minValue18']}  />
 
       <Button type="submit" className="primary-button" label="SUBMIT" />
 
