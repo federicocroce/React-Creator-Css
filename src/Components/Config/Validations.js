@@ -1,11 +1,16 @@
-const required = value => value ? undefined : 'Required';
+const errorFunctions = {}
 
-const number = value => value && isNaN(Number(value)) ? 'Must be a number' : undefined;
+const required = params => value => value ? undefined : 'Ingrese ' + params;
+
+const number = params => value => value && isNaN(Number(value)) ? params + ' solo puede ser numérica' : undefined;
 
 const minValue = min => value =>
     value && value < min ? `Must be at least ${min}` : undefined
 
-const minValue18 = minValue(18)
+const minValue18 = minValue(18);
+
+const test = params => console.log(params);
+
 
 
 const formatValidateArray = (validate) => {
@@ -20,5 +25,14 @@ const formatValidateArray = (validate) => {
     return validateFunction;
 }
 
-export {formatValidateArray};
+
+const validations = {
+    age: [number('Su edad '), minValue(18), required('su edad')]
+} 
+
+const messageError = {
+    required : "Ingrese"
+}
+
+export {formatValidateArray, errorFunctions, validations};
 

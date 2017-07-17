@@ -28,13 +28,15 @@ const renderInput = (field) => {
     let hasError = fieldProps.meta.invalid && fieldProps.meta.submitFailed;
     return (
         <div className={`input-text-container ${hasError ? 'input-error' : ''}`}>
-            <input {...field.input} id={fieldProps.id} className="inputMaterial" placeholder=" " required={fieldProps.required} onClick={(e) => ripple(e)} />
-            <label className="floating">{fieldProps.placeholderFloating}</label>
-            <div className="container-placeholder">
-                <label className="placeholder">{fieldProps.customPlaceholder}</label>
+            <div>
+                <input {...field.input} id={fieldProps.id} className="inputMaterial" placeholder=" " required={fieldProps.required} onClick={(e) => ripple(e)} />
+                <label className="floating">{fieldProps.placeholderFloating}</label>
+                <div className="container-placeholder">
+                    <label className="placeholder">{fieldProps.customPlaceholder}</label>
+                </div>
+                <hr />
             </div>
             {hasError ? <label className="error-text">{fieldProps.meta.error}</label> : null}
-            <hr />
         </div>
     )
 }
@@ -44,7 +46,7 @@ const renderInput = (field) => {
 const InputText = (props) => {
 
     return (
-        <Field props={props} component={renderInput} name={props.name} validate={formatValidateArray(props.validate)} />
+        <Field props={props} component={renderInput} name={props.name} validate={props.validate} />
     );
 }
 

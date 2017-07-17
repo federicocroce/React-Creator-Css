@@ -5,6 +5,7 @@ import { reduxForm, Field } from 'redux-form' // imported Field
 import ImagesUploader from 'react-images-uploader';
 import 'react-images-uploader/styles.css';
 import 'react-images-uploader/font.css';
+import { validations } from '../Config/Validations';
 
 
 import { clearPost } from '../../Actions/actionsCreator';
@@ -97,6 +98,8 @@ const PostDetailsReduxForm = props => {
     ]
   }
 
+  // const validations = ['number', 'minValue18', 'required'];
+
   const uploadFileToServer = (file) => {
     const delay = file.size / 100;
     return new Promise((resolve, reject) => {
@@ -121,9 +124,11 @@ const PostDetailsReduxForm = props => {
 
       <SwitchesGroup switchesProps={checkboxProps} />
 
-      <InputText name="name" placeholderFloating="Escriba su nombre" customPlaceholder="ej: Federico Croce" type="text" validate={['number', 'minValue18', 'required']}  />
+      <InputText name="name" placeholderFloating="Escriba su nombre" customPlaceholder="ej: Federico Croce" type="text" validate={validations.age}  />
 
-      <InputText name="age" placeholderFloating="Escriba su edad" customPlaceholder="ej: Federico Croce" type="number" validate={['number', 'minValue18']}  />
+      {/*<InputText name="name" placeholderFloating="Escriba su nombre" customPlaceholder="ej: Federico Croce" type="text" validate={['number', 'minValue18', 'required']}  />*/}
+
+      <InputText name="age" placeholderFloating="Escriba su edad" customPlaceholder="ej: Federico Croce" type="number" />
 
       <Button type="submit" className="primary-button" label="SUBMIT" />
 

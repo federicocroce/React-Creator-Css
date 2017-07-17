@@ -89,48 +89,48 @@
 form {
   padding: 20px; }
 
-.input-text-container {
+.input-text-container > div {
   position: relative;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   text-align: left;
   display: inline-block;
   font-size: 1.1em;
   margin: 20px 0; }
-  .input-text-container input {
+  .input-text-container > div input {
     border: none;
     outline: none; }
-    .input-text-container input:focus ~ label.floating, .input-text-container input:not(:placeholder-shown) ~ label.floating {
+    .input-text-container > div input:focus ~ label.floating, .input-text-container > div input:not(:placeholder-shown) ~ label.floating {
       color: #01579b;
       top: -100%;
       font-size: .8em; }
-    .input-text-container input:focus:placeholder-shown ~ div label.placeholder, .input-text-container input:not(:placeholder-shown):placeholder-shown ~ div label.placeholder {
+    .input-text-container > div input:focus:placeholder-shown ~ div label.placeholder, .input-text-container > div input:not(:placeholder-shown):placeholder-shown ~ div label.placeholder {
       color: rgba(0, 0, 0, 0.3);
       font-size: .8em; }
-    .input-text-container input:focus ~ hr, .input-text-container input:not(:placeholder-shown) ~ hr {
+    .input-text-container > div input:focus ~ hr, .input-text-container > div input:not(:placeholder-shown) ~ hr {
       transform: scaleX(1); }
-    .input-text-container input:active ~ .ripple {
+    .input-text-container > div input:active ~ .ripple {
       opacity: 1;
       transform: scale(1); }
-  .input-text-container label.floating {
+  .input-text-container > div label.floating {
     position: absolute;
     color: rgba(0, 0, 0, 0.3);
     left: 0;
     top: 0px;
     pointer-events: none;
     transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; }
-  .input-text-container .container-placeholder {
+  .input-text-container > div .container-placeholder {
     position: absolute;
     left: 0;
     top: 0px;
     pointer-events: none;
     overflow: hidden;
     width: 100%; }
-    .input-text-container .container-placeholder label.placeholder {
+    .input-text-container > div .container-placeholder label.placeholder {
       color: transparent;
       pointer-events: none;
       transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
       white-space: nowrap; }
-  .input-text-container hr {
+  .input-text-container > div hr {
     width: 100%;
     border: none;
     border-bottom: 1px solid #01579b;
@@ -139,7 +139,7 @@ form {
     transform: scaleX(0);
     position: absolute;
     transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; }
-  .input-text-container div.ripple {
+  .input-text-container > div div.ripple {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -151,7 +151,7 @@ form {
     transform: scale(0);
     pointer-events: none;
     transition: opacity 2s cubic-bezier(0.23, 1, 0.32, 1) 0ms, transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0ms; }
-  .input-text-container.input-error hr {
+  .input-text-container > div.input-error hr {
     border-bottom: 1px solid red; }
 
 .switches-container {
