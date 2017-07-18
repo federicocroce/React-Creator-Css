@@ -27,7 +27,7 @@ const renderInput = (field) => {
     let fieldProps = { ...field };
     let hasError = fieldProps.meta.invalid && fieldProps.meta.submitFailed;
     return (
-        <div className={`input-text-container ${hasError ? 'input-error' : ''}`}>
+        <div className={`input-text-container ${hasError ? 'input-error' : ''} ${fieldProps.style}`}>
             <div>
                 <input {...field.input} id={fieldProps.id} className="inputMaterial" placeholder=" " required={fieldProps.required} onClick={(e) => ripple(e)} />
                 <label className="floating">{fieldProps.placeholderFloating}</label>

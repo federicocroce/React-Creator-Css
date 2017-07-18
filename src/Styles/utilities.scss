@@ -2,9 +2,11 @@
 ////// INPUT TEXT ///////////////
 .input-text-container {
     position: relative;
-    display: inline-grid;
     width: 250px;
     padding: 10px;
+    &.inline {
+        display: inline-grid;
+    }
     >div {
         position: relative;
         border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -16,6 +18,7 @@
         input {
             border: none;
             outline: none;
+            width: 100%;
             &:focus,
             &:not(:placeholder-shown) {
                 &~label.floating {
@@ -29,6 +32,7 @@
                 }
                 &~hr {
                     transform: scaleX(1);
+                    border-bottom: 2px solid $primary-color;
                 }
             }
             &:active {
@@ -84,8 +88,12 @@
             pointer-events: none;
             transition: opacity 2s cubic-bezier(0.23, 1, 0.32, 1) 0ms, transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
         }
-        &.input-error hr {
-            border-bottom: 1px solid red;
+    }
+    &.input-error {
+       > div input:focus ~ label.floating{color: red !important}
+       input ~ hr {
+            border-bottom: 2px solid red !important;
+            transform: scaleX(1);
         }
     }
 }
@@ -219,11 +227,11 @@ $input-box-check-size: 20px;
     text-align: left;
     color: red;
     left: 0;
-    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
     bottom: -20px;
     pointer-events: none;
     transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
     font-size: .8em;
+    margin-top: 5px;
 }
 
 //////////// Button /////////////

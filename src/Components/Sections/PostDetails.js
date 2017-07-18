@@ -118,6 +118,10 @@ const PostDetailsReduxForm = props => {
     ]
   }
 
+  const inputTextStyle = {
+    
+  }
+
   // const validations = ['number', 'minValue18', 'required'];
 
   const uploadFileToServer = (file) => {
@@ -145,10 +149,11 @@ const PostDetailsReduxForm = props => {
       <SwitchesGroup switchesProps={checkboxProps} />
 
       <div>
-        <InputText name="name" placeholderFloating="Escriba su nombre" customPlaceholder="ej: Federico Croce" type="text" />
+        <InputText name="name" style="inline" placeholderFloating="Escriba su nombre" customPlaceholder="ej: Federico Croce" type="text" />
 
-        <InputText name="age" placeholderFloating="Escriba su edad" customPlaceholder="ej: 28" type="text" validate={validations.age} />
+        <InputText name="age" style="inline" placeholderFloating="Escriba su edad" customPlaceholder="ej: 28" type="text" validate={validations.age} />
       </div>
+
 
 
 

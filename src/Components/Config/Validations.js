@@ -4,8 +4,8 @@ const required = params => value => value ? undefined : 'Ingrese ' + params;
 
 const number = params => value => value && isNaN(Number(value)) ? params + ' solo puede ser numérica' : undefined;
 
-const minValue = min => value =>
-    value && value < min ? `Must be at least ${min}` : undefined
+const minValue = (min, label) => value =>
+    value && value < min ? label : undefined
 
 const minValue18 = minValue(18);
 
@@ -27,7 +27,7 @@ const formatValidateArray = (validate) => {
 
 
 const validations = {
-    age: [number('Su edad '), minValue(18), required('su edad')]
+    age: [number('Su edad '), minValue(18, 'Su edad debe ser igual o mayor a 18 años'), required('su edad')]
 } 
 
 const messageError = {
