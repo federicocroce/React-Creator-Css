@@ -89,70 +89,76 @@
 form {
   padding: 20px; }
 
-.input-text-container > div {
+.input-text-container {
   position: relative;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  text-align: left;
-  display: inline-block;
-  font-size: 1.1em;
-  margin: 20px 0; }
-  .input-text-container > div input {
-    border: none;
-    outline: none; }
-    .input-text-container > div input:focus ~ label.floating, .input-text-container > div input:not(:placeholder-shown) ~ label.floating {
-      color: #01579b;
-      top: -100%;
-      font-size: .8em; }
-    .input-text-container > div input:focus:placeholder-shown ~ div label.placeholder, .input-text-container > div input:not(:placeholder-shown):placeholder-shown ~ div label.placeholder {
-      color: rgba(0, 0, 0, 0.3);
-      font-size: .8em; }
-    .input-text-container > div input:focus ~ hr, .input-text-container > div input:not(:placeholder-shown) ~ hr {
-      transform: scaleX(1); }
-    .input-text-container > div input:active ~ .ripple {
-      opacity: 1;
-      transform: scale(1); }
-  .input-text-container > div label.floating {
-    position: absolute;
-    color: rgba(0, 0, 0, 0.3);
-    left: 0;
-    top: 0px;
-    pointer-events: none;
-    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; }
-  .input-text-container > div .container-placeholder {
-    position: absolute;
-    left: 0;
-    top: 0px;
-    pointer-events: none;
-    overflow: hidden;
+  display: inline-grid;
+  width: 250px;
+  padding: 10px; }
+  .input-text-container > div {
+    position: relative;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    text-align: left;
+    display: inline-block;
+    font-size: 1.1em;
+    margin-top: 20px;
     width: 100%; }
-    .input-text-container > div .container-placeholder label.placeholder {
-      color: transparent;
+    .input-text-container > div input {
+      border: none;
+      outline: none; }
+      .input-text-container > div input:focus ~ label.floating, .input-text-container > div input:not(:placeholder-shown) ~ label.floating {
+        color: #01579b;
+        top: -100%;
+        font-size: .8em; }
+      .input-text-container > div input:focus:placeholder-shown ~ div label.placeholder, .input-text-container > div input:not(:placeholder-shown):placeholder-shown ~ div label.placeholder {
+        color: rgba(0, 0, 0, 0.3);
+        font-size: .8em; }
+      .input-text-container > div input:focus ~ hr, .input-text-container > div input:not(:placeholder-shown) ~ hr {
+        transform: scaleX(1); }
+      .input-text-container > div input:active ~ .ripple {
+        opacity: 1;
+        transform: scale(1); }
+    .input-text-container > div label.floating {
+      position: absolute;
+      color: rgba(0, 0, 0, 0.3);
+      left: 0;
+      top: 0px;
       pointer-events: none;
-      transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
-      white-space: nowrap; }
-  .input-text-container > div hr {
-    width: 100%;
-    border: none;
-    border-bottom: 1px solid #01579b;
-    margin: 0 auto;
-    pointer-events: none;
-    transform: scaleX(0);
-    position: absolute;
-    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; }
-  .input-text-container > div div.ripple {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
-    background-color: #00bcd4;
-    opacity: 0;
-    transform: scale(0);
-    pointer-events: none;
-    transition: opacity 2s cubic-bezier(0.23, 1, 0.32, 1) 0ms, transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0ms; }
-  .input-text-container > div.input-error hr {
-    border-bottom: 1px solid red; }
+      transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; }
+    .input-text-container > div .container-placeholder {
+      position: absolute;
+      left: 0;
+      top: 0px;
+      pointer-events: none;
+      overflow: hidden;
+      width: 100%; }
+      .input-text-container > div .container-placeholder label.placeholder {
+        color: transparent;
+        pointer-events: none;
+        transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+        white-space: nowrap; }
+    .input-text-container > div hr {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid #01579b;
+      margin: 0 auto;
+      pointer-events: none;
+      transform: scaleX(0);
+      position: absolute;
+      transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; }
+    .input-text-container > div div.ripple {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      height: 100%;
+      width: 100%;
+      border-radius: 50%;
+      background-color: #00bcd4;
+      opacity: 0;
+      transform: scale(0);
+      pointer-events: none;
+      transition: opacity 2s cubic-bezier(0.23, 1, 0.32, 1) 0ms, transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0ms; }
+    .input-text-container > div.input-error hr {
+      border-bottom: 1px solid red; }
 
 .switches-container {
   list-style-type: none; }
@@ -245,7 +251,8 @@ form {
   z-index: -1; }
 
 .error-text {
-  position: absolute;
+  display: block;
+  text-align: left;
   color: red;
   left: 0;
   transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;

@@ -53,13 +53,14 @@ const PostDetailsReduxForm = props => {
   var postClass = '';
   var showPost = true;
 
-  const isNewUpadtePost = () =>{
-    if(props.state.routing.location.pathname == "/new") return true;
+  const isNewUpadtePost = () => {
+    if (props.state.routing.location.pathname == "/new") return true;
   }
 
-  const radioButtonsProps = {
+
+  const inputTextProps = {
     name: "operationsTypes",
-    style: "inline ",
+    style: "inline",
     type: "radio",
     options: [
       {
@@ -74,8 +75,27 @@ const PostDetailsReduxForm = props => {
         value: "sell",
         label: "Venta"
       }
-    ],
+    ]
+  }
 
+  const radioButtonsProps = {
+    name: "operationsTypes",
+    style: "inline",
+    type: "radio",
+    options: [
+      {
+        value: "rent",
+        label: "Alquiler"
+      },
+      {
+        value: "rentTime",
+        label: "Alquiler Temporario"
+      },
+      {
+        value: "sell",
+        label: "Venta"
+      }
+    ]
   }
 
   const checkboxProps = {
@@ -118,17 +138,19 @@ const PostDetailsReduxForm = props => {
         name='example-upload'
         maxSize={300000}
         onUpload={uploadFileToServer}
-        label='Upload Files' />: null}
+        label='Upload Files' /> : null}
 
       <SwitchesGroup switchesProps={radioButtonsProps} />
 
       <SwitchesGroup switchesProps={checkboxProps} />
 
-      <InputText name="name" placeholderFloating="Escriba su nombre" customPlaceholder="ej: Federico Croce" type="text" validate={validations.age}  />
+      <div>
+        <InputText name="name" placeholderFloating="Escriba su nombre" customPlaceholder="ej: Federico Croce" type="text" />
 
-      {/*<InputText name="name" placeholderFloating="Escriba su nombre" customPlaceholder="ej: Federico Croce" type="text" validate={['number', 'minValue18', 'required']}  />*/}
+        <InputText name="age" placeholderFloating="Escriba su edad" customPlaceholder="ej: 28" type="text" validate={validations.age} />
+      </div>
 
-      <InputText name="age" placeholderFloating="Escriba su edad" customPlaceholder="ej: Federico Croce" type="number" />
+
 
       <Button type="submit" className="primary-button" label="SUBMIT" />
 
