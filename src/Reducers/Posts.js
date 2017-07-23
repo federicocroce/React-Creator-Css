@@ -1,6 +1,7 @@
 // a reducer takes in two things
 // import { store } from '../Store.js'
 import { postsResponse } from "../Data/data";
+import firebaseApp from '../Components/Config/Firebase';
 
 const postsData = {
     allPosts: postsResponse,

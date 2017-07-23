@@ -1,35 +1,53 @@
-//Increment
-export function increment(index){
-    return{
-        type:'INCREMENT_LIKES',
+import firebaseApp from '../Components/Config/Firebase';
+import * as firebase from 'firebase';
+
+const dbRef = firebase.database().ref().child('texto');
+
+const fetchTexo = (currentPost) => {
+    return dispatch => {
+        dbRef.on('value', snapshot => {
+            dispatch({
+                type: 'FETCH_TEXTO',
+                payload: snapshot.val()
+            });
+        });
+    }
+}
+
+// console.error(firebaseApp);
+
+export function increment(index) {
+    return {
+        type: 'INCREMENT_LIKES',
         index
     }
 }
 
-const viewPost = (currentPost) =>{
-    return{
-        type:'VIEW_POST',
+const viewPost = (currentPost) => {
+    return {
+        type: 'VIEW_POST',
         currentPost
     }
 }
 
-const clearPost = () =>{
-    return{
-        type:'CLEAR_POST'
+
+const clearPost = () => {
+    return {
+        type: 'CLEAR_POST'
     }
 }
 
 
-const setCurrentPlace = (currentPlace) =>{
-    return{
-        type:'SET_LOCATION',
+const setCurrentPlace = (currentPlace) => {
+    return {
+        type: 'SET_LOCATION',
         currentPlace
     }
 }
 
-const initGMaps = (gMapsElements) =>{
-    return{
-        type:'INIT_GMAPS',
+const initGMaps = (gMapsElements) => {
+    return {
+        type: 'INIT_GMAPS',
         gMapsElements
     }
 }
@@ -37,9 +55,9 @@ const initGMaps = (gMapsElements) =>{
 
 ///////////////////////////////
 
-const filterPosts = (posts, action) =>{
+const filterPosts = (posts, action) => {
     // console.error(action);
-    return{
+    return {
         type: action,
         posts
     }
@@ -48,4 +66,4 @@ const filterPosts = (posts, action) =>{
 
 
 
-export {viewPost, filterPosts, clearPost, setCurrentPlace, initGMaps};
+export { viewPost, filterPosts, clearPost, setCurrentPlace, initGMaps,  fetchTexo};
