@@ -2,28 +2,50 @@ import React from 'react';
 import { connect } from "react-redux";
 import classnames from 'classnames';
 import Post from './Post';
+import { fetchPosts } from '../../Actions/actionsCreator';
+import _ from 'lodash';
 
-const postsGrid = (props) => {
 
-  var title = "Ventas";
+class postsGrid extends React.Component {
 
-  return (
-    <div className="posts-container">
-    {/*// <div className="posts-container {props.activePost}">*/}
-    {/*// <div className={classnames('posts-container', props.activePost)}>*/}
-    {/*<div className="posts-container active-post">*/}
+  // const postsGrid = (props) => {
 
-      {/*<h1>{props.posts.title}</h1>*/}
+  constructor(props) {
+    super(props);
+  }
 
-      {props.posts.postList.map((object, index) =>
-        <Post key={index} index={index} object={object} />
-      )}
+  // const title = "Ventas";
 
-      {/*<button onClick={() => props.filterPosts(props.state.posts.allPosts, "SELL_POSTS")}> Ventas</button>
+  componentDidMount() {
+    this.props.fetchPosts();
+  }
+
+  render() {
+    let props = this.props;
+    return (
+      <div className="posts-container">
+
+
+
+        {Object.keys(props.firebasePosts).map((object, index) => {
+          return Object.keys(props.firebasePosts[object]).map((value, index) => {
+            return <p key={index}> {props.firebasePosts[object][value]}</p>
+          }
+          )
+        }
+        )}
+
+
+        {props.posts.postList.map((object, index) =>
+          <Post key={index} index={index} object={object} />
+        )}
+
+        {/*<button onClick={() => props.filterPosts(props.state.posts.allPosts, "SELL_POSTS")}> Ventas</button>
       <button onClick={() => props.filterPosts(props.state.posts.allPosts, "RENT_POSTS")}> Alquileres</button>*/}
 
-    </div>
-  );
+      </div>
+    );
+  }
 
 }
 
@@ -55,18 +77,19 @@ const getFilterPosts = (posts, path) => {
 */
 const mapStateToProps = (state) => {
   return {
-    posts: getFilterPosts(state.posts.allPosts, state.routing.location.pathname)
+    posts: getFilterPosts(state.posts.allPosts, state.routing.location.pathname),
+    firebasePosts: state.posts.firebasePosts
   };
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     filterPosts(currentPost, action) {
-//       console.error(action);
-//       dispatch(filterPosts(currentPost, action));
-//     }
-//   };
-// }
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchPosts() {
+      fetchPosts(dispatch)
+    }
+
+  };
+}
 
 /*
 * Dispatch de las acciones
@@ -78,5 +101,5 @@ const mapStateToProps = (state) => {
 // const { connect } = ReactRedux;
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(postsGrid);

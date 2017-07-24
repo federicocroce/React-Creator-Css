@@ -1,18 +1,44 @@
 import firebaseApp from '../Components/Config/Firebase';
 import * as firebase from 'firebase';
 
-const dbRef = firebase.database().ref().child('texto');
+const dbRefText = firebase.database().ref('/').child('texto');
+const dbRefPosts = firebase.database().ref('/').child('Posts');
 
-const fetchTexo = (currentPost) => {
-    return dispatch => {
-        dbRef.on('value', snapshot => {
-            dispatch({
-                type: 'FETCH_TEXTO',
-                payload: snapshot.val()
-            });
+// const fetchTexo = () => {
+//     return dispatch => {
+//         dbRef.on('value', snapshot => {
+//             dispatch({
+//                 type: 'FETCH_TEXTO',
+//                 payload: snapshot.val()
+//             });
+//         });
+//     }
+// }
+
+const fetchPosts = (dispatch) => {
+    dbRefPosts.on('value', snapshot => {
+        dispatch({
+            type: 'FETCH_POSTS',
+            payload: snapshot.val()
         });
-    }
+    });
 }
+
+const fetchTexo = (dispatch) => {
+    dbRefText.on('value', snapshot => {
+        dispatch({
+            type: 'FETCH_TEXTO',
+            payload: snapshot.val()
+        });
+    });
+}
+
+// const fetchTexo = (index) => {
+//     return {
+//         type: 'FETCH_TEXTO',
+//         payload: "Nuevo Texto"
+//     }
+// }
 
 // console.error(firebaseApp);
 
@@ -66,4 +92,4 @@ const filterPosts = (posts, action) => {
 
 
 
-export { viewPost, filterPosts, clearPost, setCurrentPlace, initGMaps,  fetchTexo};
+export { viewPost, filterPosts, clearPost, setCurrentPlace, initGMaps, fetchTexo, fetchPosts };

@@ -8,7 +8,7 @@ import 'react-images-uploader/font.css';
 import { validations } from '../Config/Validations';
 
 
-import { clearPost } from '../../Actions/actionsCreator';
+import { clearPost, fetchTexo } from '../../Actions/actionsCreator';
 import InputText from '../Utilities/InputText';
 // import UploadImg from '../Utilities/UploadImg';
 import FileUpload from '../Utilities/UploadImg';
@@ -46,6 +46,10 @@ const back = props => {
   props.clearPost();
 }
 
+const setText = props => {
+  props.fetchTexo();
+}
+
 
 const PostDetailsReduxForm = props => {
 
@@ -56,6 +60,9 @@ const PostDetailsReduxForm = props => {
   const isNewUpadtePost = () => {
     if (props.state.routing.location.pathname == "/new") return true;
   }
+
+
+  //  props.fetchTexo();
 
 
   const inputTextProps = {
@@ -138,6 +145,8 @@ const PostDetailsReduxForm = props => {
 
       {/*<UploadImg />*/}
 
+      {props.state.posts.text ? <h1>{props.state.posts.text}</h1> : null}
+
       {isNewUpadtePost() ? <FileUpload multiple={true}
         name='example-upload'
         maxSize={300000}
@@ -160,6 +169,7 @@ const PostDetailsReduxForm = props => {
       <Button type="submit" className="primary-button" label="SUBMIT" />
 
       <Button className="primary-button" label="VOLVER" onClick={() => back(props)} />
+      <Button className="primary-button" label=" Set Text" onClick={() => setText(props)} />
 
       <GMaps searchBox={true} currentLocation={true} keyValuePlace={true} />
 
@@ -180,6 +190,9 @@ const mapDispatchToProps = dispatch => {
   return {
     clearPost() {
       dispatch(clearPost());
+    },
+    fetchTexo(){
+      fetchTexo(dispatch)
     }
   };
 }

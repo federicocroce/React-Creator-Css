@@ -1,17 +1,32 @@
 // a reducer takes in two things
 // import { store } from '../Store.js'
 import { postsResponse } from "../Data/data";
-import firebaseApp from '../Components/Config/Firebase';
 
 const postsData = {
     allPosts: postsResponse,
-    currentPost: {}
+    currentPost: {},
+    text: 'ALGO',
+    firebasePosts: {}
 }
 
 
 const posts = (state = postsData, action) => {
     // console.error("ENTRA");
     switch (action.type) {
+        case 'FETCH_POSTS':
+            // console.error("ENTRA VIEW");
+            return {
+                ...state,
+                firebasePosts : action.payload
+            };
+            break;
+        case 'FETCH_TEXTO':
+            // console.error("ENTRA VIEW");
+            return {
+                ...state,
+                text: action.payload
+            };
+            break;
         case 'VIEW_POST':
             // console.error("ENTRA VIEW");
             return {

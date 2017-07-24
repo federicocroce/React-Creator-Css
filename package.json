@@ -6,6 +6,7 @@
     "react": "^15.5.4"
   },
   "devDependencies": {
+    "babel-plugin-lodash": "^3.2.11",
     "classnames": "^2.2.5",
     "create-react-app-sass": "^1.1.0",
     "firebase": "^4.1.3",
