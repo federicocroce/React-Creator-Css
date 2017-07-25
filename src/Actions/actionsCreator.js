@@ -5,18 +5,32 @@ const dbRefText = firebase.database().ref('/').child('texto');
 const dbRefPosts = firebase.database().ref().child('Posts');
 
 const fetchPosts = (dispatch) => {
-    dbRefPosts.on('value', snapshot => {
-        dispatch({
-            type: 'FETCH_POSTS',
-            payload: snapshot.val()
+    // return dispatch => {
+        dbRefPosts.on('value', snapshot => {
+            dispatch({
+                type: 'FETCH_POSTS',
+                payload: snapshot.val()
+            });
         });
-    });
+    // }
 }
 
 const createPost = (post, dispatch) => {
-    // let post123 = { post };
-    return dbRefPosts.child("newPost").push(post);
+    // return dbRefPosts.child("newPost").set(post);   CAMBIO DE NOMBRE DEL POST A PUSHEAR
+    return dbRefPosts.push().set(post);
 }
+
+const removePost = (key, dispatch) => {
+    // return dbRefPosts.child("newPost").set(post);   CAMBIO DE NOMBRE DEL POST A PUSHEAR
+    return dbRefPosts.child(key).remove;
+}
+
+const updatePost = (post, key) => {
+    // return dbRefPosts.child("newPost").set(post);   CAMBIO DE NOMBRE DEL POST A PUSHEAR
+    return dbRefPosts.child(key).update(post);
+}
+
+
 
 const fetchTexo = (dispatch) => {
     dbRefText.on('value', snapshot => {
@@ -86,4 +100,4 @@ const filterPosts = (posts, action) => {
 
 
 
-export { viewPost, filterPosts, clearPost, setCurrentPlace, initGMaps, fetchTexo, fetchPosts, createPost };
+export { viewPost, filterPosts, clearPost, setCurrentPlace, initGMaps, fetchTexo, fetchPosts, createPost, updatePost, removePost };

@@ -36,8 +36,12 @@ class postsGrid extends React.Component {
         )}
 
 
-        {props.posts.postList.map((object, index) =>
-          <Post key={index} index={index} object={object} />
+        {Object.keys(props.posts.postList).map((object, index) => {
+          let post = {
+            [object]: props.posts.postList[object]
+          }
+          return <Post key={index} index={index} object={post} />
+        }
         )}
 
         {/*<button onClick={() => props.filterPosts(props.state.posts.allPosts, "SELL_POSTS")}> Ventas</button>

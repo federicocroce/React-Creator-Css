@@ -17,7 +17,7 @@ const posts = (state = postsData, action) => {
             // console.error("ENTRA VIEW");
             return {
                 ...state,
-                firebasePosts : action.payload
+                allPosts : action.payload
             };
             break;
         case 'FETCH_TEXTO':

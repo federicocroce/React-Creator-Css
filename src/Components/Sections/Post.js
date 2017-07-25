@@ -27,6 +27,9 @@ const Post = (props) => {
     }
   }
 
+
+  const currentPostDetails = props.object[Object.keys(props.object)[0]];
+
   return (
     // 
     showPost ?
@@ -37,8 +40,8 @@ const Post = (props) => {
             <img src={props.object.display_src} />
           </div>
 
-          <p>{props.object.likes}</p>
-          <p>{props.object.type}</p>
+          <p>{currentPostDetails.age}</p>
+          <p>{currentPostDetails.name}</p>
 
 
         </div>

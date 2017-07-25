@@ -8,7 +8,7 @@ import 'react-images-uploader/font.css';
 import { validations } from '../Config/Validations';
 
 
-import { clearPost, fetchTexo, createPost } from '../../Actions/actionsCreator';
+import { clearPost, fetchTexo, createPost, updatePost } from '../../Actions/actionsCreator';
 import InputText from '../Utilities/InputText';
 // import UploadImg from '../Utilities/UploadImg';
 import FileUpload from '../Utilities/UploadImg';
@@ -37,19 +37,6 @@ import {
 
 import classnames from 'classnames';
 
-const submit = (values, dispatch) => {
-  let payload = { values }
-  createPost(values, dispatch);
-}
-
-const back = props => {
-  props.state.posts.currentPost = {};
-  props.clearPost();
-}
-
-const setText = props => {
-  props.fetchTexo();
-}
 
 
 const PostDetailsReduxForm = props => {
@@ -57,9 +44,25 @@ const PostDetailsReduxForm = props => {
   // render() {
   var postClass = '';
   var showPost = true;
+  const currentPost = props.state.posts.currentPost;
 
   const isNewUpadtePost = () => {
-    if (props.state.routing.location.pathname == "/new") return true;
+    return props.state.routing.location.pathname == "/new" ? true : false;
+  }
+
+
+  const submit = (values, dispatch) => {
+    let payload = { values }
+    isNewUpadtePost() ? createPost(values, dispatch) : updatePost(values, Object.keys(currentPost)[0]);
+  }
+
+  const back = props => {
+    props.state.posts.currentPost = {};
+    props.clearPost();
+  }
+
+  const setText = props => {
+    props.fetchTexo();
   }
 
 
@@ -127,7 +130,7 @@ const PostDetailsReduxForm = props => {
   }
 
   const inputTextStyle = {
-    
+
   }
 
   // const validations = ['number', 'minValue18', 'required'];
@@ -192,9 +195,9 @@ const mapDispatchToProps = dispatch => {
     clearPost() {
       dispatch(clearPost());
     },
-    fetchTexo(){
+    fetchTexo() {
       fetchTexo(dispatch)
-    }    
+    }
   };
 }
 
