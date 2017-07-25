@@ -8,7 +8,7 @@ import 'react-images-uploader/font.css';
 import { validations } from '../Config/Validations';
 
 
-import { clearPost, fetchTexo } from '../../Actions/actionsCreator';
+import { clearPost, fetchTexo, createPost } from '../../Actions/actionsCreator';
 import InputText from '../Utilities/InputText';
 // import UploadImg from '../Utilities/UploadImg';
 import FileUpload from '../Utilities/UploadImg';
@@ -37,8 +37,9 @@ import {
 
 import classnames from 'classnames';
 
-const submit = values => {
-  console.log(values);
+const submit = (values, dispatch) => {
+  let payload = { values }
+  createPost(values, dispatch);
 }
 
 const back = props => {
@@ -141,7 +142,7 @@ const PostDetailsReduxForm = props => {
   };
 
   return (
-    <form onSubmit={props.handleSubmit(submit)}>
+    <form onSubmit={props.handleSubmit(submit.bind(this))}>
 
       {/*<UploadImg />*/}
 
@@ -193,7 +194,7 @@ const mapDispatchToProps = dispatch => {
     },
     fetchTexo(){
       fetchTexo(dispatch)
-    }
+    }    
   };
 }
 

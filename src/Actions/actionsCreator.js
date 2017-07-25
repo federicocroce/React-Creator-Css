@@ -2,18 +2,7 @@ import firebaseApp from '../Components/Config/Firebase';
 import * as firebase from 'firebase';
 
 const dbRefText = firebase.database().ref('/').child('texto');
-const dbRefPosts = firebase.database().ref('/').child('Posts');
-
-// const fetchTexo = () => {
-//     return dispatch => {
-//         dbRef.on('value', snapshot => {
-//             dispatch({
-//                 type: 'FETCH_TEXTO',
-//                 payload: snapshot.val()
-//             });
-//         });
-//     }
-// }
+const dbRefPosts = firebase.database().ref().child('Posts');
 
 const fetchPosts = (dispatch) => {
     dbRefPosts.on('value', snapshot => {
@@ -22,6 +11,11 @@ const fetchPosts = (dispatch) => {
             payload: snapshot.val()
         });
     });
+}
+
+const createPost = (post, dispatch) => {
+    // let post123 = { post };
+    return dbRefPosts.child("newPost").push(post);
 }
 
 const fetchTexo = (dispatch) => {
@@ -92,4 +86,4 @@ const filterPosts = (posts, action) => {
 
 
 
-export { viewPost, filterPosts, clearPost, setCurrentPlace, initGMaps, fetchTexo, fetchPosts };
+export { viewPost, filterPosts, clearPost, setCurrentPlace, initGMaps, fetchTexo, fetchPosts, createPost };
