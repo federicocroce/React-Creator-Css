@@ -20,9 +20,9 @@ const createPost = (post, dispatch) => {
     return dbRefPosts.push().set(post);
 }
 
-const removePost = (key, dispatch) => {
+const removePost = (key) => {
     // return dbRefPosts.child("newPost").set(post);   CAMBIO DE NOMBRE DEL POST A PUSHEAR
-    return dbRefPosts.child(key).remove;
+    return dbRefPosts.child(key).remove();
 }
 
 const updatePost = (post, key) => {
@@ -30,6 +30,8 @@ const updatePost = (post, key) => {
     return dbRefPosts.child(key).update(post);
 }
 
+
+// const load = data => ({ type: "LOAD", data });
 
 
 const fetchTexo = (dispatch) => {

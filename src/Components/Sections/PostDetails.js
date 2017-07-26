@@ -8,7 +8,7 @@ import 'react-images-uploader/font.css';
 import { validations } from '../Config/Validations';
 
 
-import { clearPost, fetchTexo, createPost, updatePost } from '../../Actions/actionsCreator';
+import { clearPost, fetchTexo, createPost, updatePost, removePost } from '../../Actions/actionsCreator';
 import InputText from '../Utilities/InputText';
 // import UploadImg from '../Utilities/UploadImg';
 import FileUpload from '../Utilities/UploadImg';
@@ -38,154 +38,179 @@ import {
 import classnames from 'classnames';
 
 
+// class PostDetailsReduxForm extends React.Component {
+  const PostDetailsReduxForm = props => {
 
-const PostDetailsReduxForm = props => {
+  // constructor(props) {
+  //   super(props);
+  // }
+
+  // componentDidMount() {
+  //   this.props.value;
+  // }
 
   // render() {
-  var postClass = '';
-  var showPost = true;
-  const currentPost = props.state.posts.currentPost;
+    let postClass = '';
+    let showPost = true;
 
-  const isNewUpadtePost = () => {
-    return props.state.routing.location.pathname == "/new" ? true : false;
-  }
+    const currentPost = props.state.posts.currentPost;
 
+    console.log(props.postDetails);
 
-  const submit = (values, dispatch) => {
-    let payload = { values }
-    isNewUpadtePost() ? createPost(values, dispatch) : updatePost(values, Object.keys(currentPost)[0]);
-  }
-
-  const back = props => {
-    props.state.posts.currentPost = {};
-    props.clearPost();
-  }
-
-  const setText = props => {
-    props.fetchTexo();
-  }
+    const isNewUpadtePost = () => {
+      return props.state.routing.location.pathname == "/new" ? true : false;
+    }
 
 
-  //  props.fetchTexo();
+    const submit = (values, dispatch) => {
+      let payload = { values }
+      isNewUpadtePost() ? createPost(values, dispatch) : updatePost(values, Object.keys(currentPost)[0]);
+    }
+
+    const remove = () => {
+      back(props);
+      removePost(Object.keys(currentPost)[0]);
+      
+    }
+
+    const back = props => {
+      props.state.posts.currentPost = {};
+      props.clearPost();
+    }
+
+    const setText = props => {
+      props.fetchTexo();
+    }
 
 
-  const inputTextProps = {
-    name: "operationsTypes",
-    style: "inline",
-    type: "radio",
-    options: [
-      {
-        value: "rent",
-        label: "Alquiler"
-      },
-      {
-        value: "rentTime",
-        label: "Alquiler Temporario"
-      },
-      {
-        value: "sell",
-        label: "Venta"
-      }
-    ]
-  }
-
-  const radioButtonsProps = {
-    name: "operationsTypes",
-    style: "inline",
-    type: "radio",
-    options: [
-      {
-        value: "rent",
-        label: "Alquiler"
-      },
-      {
-        value: "rentTime",
-        label: "Alquiler Temporario"
-      },
-      {
-        value: "sell",
-        label: "Venta"
-      }
-    ]
-  }
-
-  const checkboxProps = {
-    name: "operationsTypes",
-    // style: "inline",
-    type: "checkbox",
-    options: [
-      {
-        value: "rent",
-        label: "Alquiler"
-      },
-      {
-        value: "rentTime",
-        label: "Alquiler Temporario"
-      },
-      {
-        value: "sell",
-        label: "Venta"
-      }
-    ]
-  }
-
-  const inputTextStyle = {
-
-  }
-
-  // const validations = ['number', 'minValue18', 'required'];
-
-  const uploadFileToServer = (file) => {
-    const delay = file.size / 100;
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve();
-      }, delay);
-    });
-  };
-
-  return (
-    <form onSubmit={props.handleSubmit(submit.bind(this))}>
-
-      {/*<UploadImg />*/}
-
-      {props.state.posts.text ? <h1>{props.state.posts.text}</h1> : null}
-
-      {isNewUpadtePost() ? <FileUpload multiple={true}
-        name='example-upload'
-        maxSize={300000}
-        onUpload={uploadFileToServer}
-        label='Upload Files' /> : null}
-
-      <SwitchesGroup switchesProps={radioButtonsProps} />
-
-      <SwitchesGroup switchesProps={checkboxProps} />
-
-      <div>
-        <InputText name="name" style="inline" placeholderFloating="Escriba su nombre" customPlaceholder="ej: Federico Croce" type="text" />
-
-        <InputText name="age" style="inline" placeholderFloating="Escriba su edad" customPlaceholder="ej: 28" type="text" validate={validations.age} />
-      </div>
+    //  props.fetchTexo();
 
 
+    const inputTextProps = {
+      name: "operationsTypes",
+      style: "inline",
+      type: "radio",
+      options: [
+        {
+          value: "rent",
+          label: "Alquiler"
+        },
+        {
+          value: "rentTime",
+          label: "Alquiler Temporario"
+        },
+        {
+          value: "sell",
+          label: "Venta"
+        }
+      ]
+    }
+
+    const radioButtonsProps = {
+      name: "operationsTypes",
+      style: "inline",
+      type: "radio",
+      options: [
+        {
+          value: "rent",
+          label: "Alquiler"
+        },
+        {
+          value: "rentTime",
+          label: "Alquiler Temporario"
+        },
+        {
+          value: "sell",
+          label: "Venta"
+        }
+      ]
+    }
+
+    const checkboxProps = {
+      name: "operationsTypes",
+      // style: "inline",
+      type: "checkbox",
+      options: [
+        {
+          value: "rent",
+          label: "Alquiler"
+        },
+        {
+          value: "rentTime",
+          label: "Alquiler Temporario"
+        },
+        {
+          value: "sell",
+          label: "Venta"
+        }
+      ]
+    }
+
+    const inputTextStyle = {
+
+    }
+
+    // const validations = ['number', 'minValue18', 'required'];
+
+    const uploadFileToServer = (file) => {
+      const delay = file.size / 100;
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve();
+        }, delay);
+      });
+    };
+
+    return (
+      <form onSubmit={props.handleSubmit(submit.bind(this))}>
+
+        {/*<UploadImg />*/}
+
+        {props.state.posts.text ? <h1>{props.state.posts.text}</h1> : null}
+
+        {isNewUpadtePost() ? <FileUpload multiple={true}
+          name='example-upload'
+          maxSize={300000}
+          onUpload={uploadFileToServer}
+          label='Upload Files' /> : null}
+
+        <SwitchesGroup switchesProps={radioButtonsProps} />
+
+        <SwitchesGroup switchesProps={checkboxProps} />
+
+        <div>
+          <InputText name="name" style="inline" placeholderFloating="Escriba su nombre" customPlaceholder="ej: Federico Croce" type="text" />
+
+          <InputText name="age" style="inline" placeholderFloating="Escriba su edad" customPlaceholder="ej: 28" type="text" validate={validations.age} />
+        </div>
 
 
-      <Button type="submit" className="primary-button" label="SUBMIT" />
 
-      <Button className="primary-button" label="VOLVER" onClick={() => back(props)} />
-      <Button className="primary-button" label=" Set Text" onClick={() => setText(props)} />
 
-      <GMaps searchBox={true} currentLocation={true} keyValuePlace={true} />
+        <Button type="submit" className="primary-button" label="SUBMIT" />
 
-    </form>
-  );
+        <Button className="primary-button" label="VOLVER" onClick={() => back(props)} />
+        <Button className="primary-button" label=" Set Text" onClick={() => setText(props)} />
+        <Button className="primary-button" label="Eliminar" onClick={() => remove(props)} />
+
+        <GMaps searchBox={true} currentLocation={true} keyValuePlace={true} />
+
+      </form>
+    );
   // }
 }
 
+PostDetailsReduxForm = reduxForm({
+  form: 'postDetails'
+})(PostDetailsReduxForm)
+
 
 const mapStateToProps = (state) => {
+  const currentPost = state.posts.currentPost[Object.keys(state.posts.currentPost)[0]];
+
   return {
-    state: state
+    state: state,
+    initialValues: currentPost,
   };
 }
 
@@ -201,11 +226,11 @@ const mapDispatchToProps = dispatch => {
   };
 }
 
-const Form = connect(
+PostDetailsReduxForm = connect(
   mapStateToProps,
   mapDispatchToProps
 )(PostDetailsReduxForm);
 
-export default reduxForm({
-  form: 'myForm'
-})(Form)
+
+
+export default PostDetailsReduxForm
