@@ -55,6 +55,8 @@ import classnames from 'classnames';
 
     const currentPost = props.state.posts.currentPost;
 
+    props.initialValues = currentPost;
+
     console.log(props.postDetails);
 
     const isNewUpadtePost = () => {
@@ -205,16 +207,6 @@ PostDetailsReduxForm = reduxForm({
 })(PostDetailsReduxForm)
 
 
-
-
-// const mapStateToProps = (state) => { 
-//   state: state
-// }
-
-// const mapStateToProps = (state) => ({
-//     state: state
-// });
-
 const mapStateToProps = (state) => {
   const currentPost = state.posts.currentPost[Object.keys(state.posts.currentPost)[0]];
 
@@ -223,6 +215,7 @@ const mapStateToProps = (state) => {
     initialValues: currentPost,
   };
 }
+
 
 const mapDispatchToProps = dispatch => {
   return {
