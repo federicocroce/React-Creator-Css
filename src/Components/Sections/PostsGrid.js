@@ -21,28 +21,43 @@ class postsGrid extends React.Component {
   }
 
   render() {
+    console.log("Grid");
     let props = this.props;
+    const posts = props.posts.postList;
     return (
       <div className="posts-container">
 
 
 
-        {Object.keys(props.firebasePosts).map((object, index) => {
-          return Object.keys(props.firebasePosts[object]).map((value, index) => {
-            return <p key={index}> {props.firebasePosts[object][value]}</p>
+        {Object.keys(posts).map((object, index) => {
+          {/*const currentPost =  posts[object];*/ }
+          let post = {
+            [object]: props.posts.postList[object]
           }
-          )
+          return <Post key={index} index={index} object={post} />
+          {/*return Object.keys(posts[object]).map((value, index) => {
+            return <Post key={index} index={index} object={posts[object]} />
+          }
+          )*/}
         }
         )}
 
 
-        {Object.keys(props.posts.postList).map((object, index) => {
+        {/*{Object.keys(props.firebasePosts).map((object, index) => {
+          return Object.keys(props.firebasePosts[object]).map((value, index) => {
+            return <p key={index}> {props.firebasePosts[object][value]}</p>
+          }
+          )
+        }*/}
+
+
+        {/*{Object.keys(props.posts.postList).map((object, index) => {
           let post = {
             [object]: props.posts.postList[object]
           }
           return <Post key={index} index={index} object={post} />
         }
-        )}
+        )}*/}
 
         {/*<button onClick={() => props.filterPosts(props.state.posts.allPosts, "SELL_POSTS")}> Ventas</button>
       <button onClick={() => props.filterPosts(props.state.posts.allPosts, "RENT_POSTS")}> Alquileres</button>*/}
@@ -55,12 +70,12 @@ class postsGrid extends React.Component {
 
 
 const getFilterPosts = (posts, path) => {
-  const filter = (value) => posts.filter(post => post.type == value);
+  const filter = (value, posts) => posts[Object.keys(posts)].filter(post => post.operationsTypes == value);
   switch (path) {
     case '/sale':
       return {
         title: "Ventas",
-        postList: filter("sale")
+        postList: filter("sale", posts)
       }
     case '/rent':
       return {
@@ -81,8 +96,7 @@ const getFilterPosts = (posts, path) => {
 */
 const mapStateToProps = (state) => {
   return {
-    posts: getFilterPosts(state.posts.allPosts, state.routing.location.pathname),
-    firebasePosts: state.posts.firebasePosts
+    posts: getFilterPosts(state.posts.allPosts, state.routing.location.pathname)
   };
 }
 

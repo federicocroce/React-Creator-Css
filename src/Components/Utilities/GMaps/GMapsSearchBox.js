@@ -6,11 +6,11 @@ import { initGMaps } from '../../../Actions/actionsCreator';
 import InputText from "../InputText";
 
 // import KeyValue from '../KeyValue';
-import GMaps from './GMaps';
+// import GMaps from './GMaps';
 
 import { connect } from "react-redux";
 
-import $ from 'jquery-lite'
+// import $ from 'jquery-lite'
 
 var currentPlace = null;
 
@@ -18,18 +18,18 @@ var currentPlace = null;
 //     searchBox.setBounds(map.getBounds());
 // });
 
-const addListenerToMap = (props, searchBox) => {
-    searchBox.setBounds(props.gMapsElements.map.getBounds());
-};
+// const addListenerToMap = (props, searchBox) => {
+//     searchBox.setBounds(props.gMapsElements.map.getBounds());
+// };
 
 const addListener = (props, searchBoxGmaps, searchBox) => {
     // searchBox.addListener('places_changed', function (currentPlaceState) {
 
     var newProps = props.map;
     var places = searchBoxGmaps.getPlaces();
-    var markers = [];
+    // var markers = [];
 
-    if (places.length == 0) {
+    if (places.length === 0) {
         return;
     }
 
@@ -207,7 +207,7 @@ class GMapsSearchBox extends React.Component {
 
     render() {
 
-        var a = false;
+        // var a = false;
 
         return (
             <div>

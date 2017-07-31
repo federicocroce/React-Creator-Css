@@ -1,6 +1,6 @@
 // a reducer takes in two things
 // import { store } from '../Store.js'
-import { postsResponse } from "../Data/data";
+// import { postsResponse } from "../Data/data";
 
 const MapsData = {
     gMapsElements: {

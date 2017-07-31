@@ -120,7 +120,7 @@ import classnames from 'classnames';
           label: "Alquiler Temporario"
         },
         {
-          value: "sell",
+          value: "sale",
           label: "Venta"
         }
       ]

@@ -27,7 +27,7 @@ const Post = (props) => {
     }
   }
 
-
+console.log("Post");
   const currentPostDetails = props.object[Object.keys(props.object)[0]];
 
   return (
