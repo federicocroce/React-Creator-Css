@@ -9,6 +9,7 @@ import { store, history } from '../Config/Store.js'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import Home from './Home';
+import Post from './Post';
 
 const Index = () => {
 
@@ -18,6 +19,7 @@ const Index = () => {
         <ConnectedRouter history={history}>
           <div>
             <Route path="/" component={Home}></Route>
+            {/* <Route path="/" component={Post}></Route> */}
           </div>
         </ConnectedRouter>
       </MuiThemeProvider>

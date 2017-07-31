@@ -10,11 +10,6 @@ import {
     goBack,
     goForward,
 } from 'react-router-redux';
-// import AppBar from 'material-ui/AppBar';
-
-// import PhotoGrid from './PhotoGrid'
-
-
 
 
 const NavigationBar = props => {

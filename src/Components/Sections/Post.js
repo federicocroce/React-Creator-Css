@@ -9,6 +9,8 @@ import classnames from 'classnames';
 
 const Post = (props) => {
 
+  console.log("POST");
+
   var postClass = '';
   var showPost = true;
   var showPostDetails = false;

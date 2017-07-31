@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 import { mainLinksRoutes as linksRoutes } from '../Config/AppRoutes.js'
 import NavigationBar from '../Utilities/NavigationBar';
-
-import postsGrid from './PostsGrid';
+import Post from './Post';
+import PostGrid from './PostsGrid';
 
 class Home extends React.Component {
 
@@ -21,10 +21,11 @@ class Home extends React.Component {
           <Link className='title-home' to="/">Venta/Alquier Inmuebles</Link>
         </h1>
         <div className="nav-bar-container">
-          <NavigationBar linksRoutes={linksRoutes} />
+          {/* <NavigationBar linksRoutes={linksRoutes} /> */}
+          <PostGrid />
           {/*<RaisedButton label="Default" />*/}
         </div>
-        <postsGrid />
+
       </div>
     );
   }

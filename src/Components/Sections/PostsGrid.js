@@ -22,18 +22,21 @@ class postsGrid extends React.Component {
 
   render() {
     let props = this.props;
+    console.log("Grid");
     return (
       <div className="posts-container">
 
 
 
-        {Object.keys(props.firebasePosts).map((object, index) => {
+        {/* {Object.keys(props.firebasePosts).map((object, index) => {
           return Object.keys(props.firebasePosts[object]).map((value, index) => {
             return <p key={index}> {props.firebasePosts[object][value]}</p>
           }
           )
         }
-        )}
+        )} */}
+
+        {/* <Post/> */}
 
 
         {Object.keys(props.posts.postList).map((object, index) => {
@@ -81,8 +84,8 @@ const getFilterPosts = (posts, path) => {
 */
 const mapStateToProps = (state) => {
   return {
-    posts: getFilterPosts(state.posts.allPosts, state.routing.location.pathname),
-    firebasePosts: state.posts.firebasePosts
+    posts: getFilterPosts(state.posts.allPosts, state.routing.location.pathname)
+    // firebasePosts: state.posts.firebasePosts
   };
 }
 
