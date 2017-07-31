@@ -26,220 +26,105 @@ import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import ReactTestUtils from 'react-dom/test-utils';
 
 import { store } from '../Config/Store.js';
-
-import {
-  push,
-  replace,
-  go,
-  goBack,
-  goForward,
-} from 'react-router-redux';
-
-import classnames from 'classnames';
+// import Test1 from './Test1';
 
 
-// class PostDetailsReduxForm extends React.Component {
-  const PostDetailsReduxForm = props => {
 
-  // constructor(props) {
-  //   super(props);
-  // }
 
-  // componentDidMount() {
-  //   this.props.value;
-  // }
 
-  // render() {
-    let postClass = '';
-    let showPost = true;
+// import { mainLinksRoutes as linksRoutes } from '../Config/AppRoutes.js'
+// import NavigationBar from '../Utilities/NavigationBar';
+// import Post from './Post';
+// import PostGrid from './PostsGrid';
 
-    const currentPost = props.state.posts.currentPost;
+class Home extends React.Component {
 
-    console.log(props.postDetails);
+  constructor(props) {
+    super(props);
 
-    const isNewUpadtePost = () => {
-      return props.state.routing.location.pathname == "/new" ? true : false;
+    this.state = {
+      show: false
     }
+  }
 
+  show = () => {
+    //   alert("Entro")
+    this.setState({
+      show: true
+    });
+    // console.log(this.state.show)
+    // this.state.show = true
+  }
+
+  
+
+
+  render() {
 
     const submit = (values, dispatch) => {
-      let payload = { values }
-      isNewUpadtePost() ? createPost(values, dispatch) : updatePost(values, Object.keys(currentPost)[0]);
+      // let payload = { values }
+      // isNewUpadtePost() ? createPost(values, dispatch) : updatePost(values, Object.keys(currentPost)[0]);
     }
 
-    const remove = () => {
-      back(props);
-      removePost(Object.keys(currentPost)[0]);
-      
-    }
+    const props = this.props;
 
-    const back = props => {
-      props.state.posts.currentPost = {};
-      props.clearPost();
-    }
-
-    const setText = props => {
-      props.fetchTexo();
-    }
-
-
-    //  props.fetchTexo();
-
-
-    const inputTextProps = {
-      name: "operationsTypes",
-      style: "inline",
-      type: "radio",
-      options: [
-        {
-          value: "rent",
-          label: "Alquiler"
-        },
-        {
-          value: "rentTime",
-          label: "Alquiler Temporario"
-        },
-        {
-          value: "sell",
-          label: "Venta"
-        }
-      ]
-    }
-
-    const radioButtonsProps = {
-      name: "operationsTypes",
-      style: "inline",
-      type: "radio",
-      options: [
-        {
-          value: "rent",
-          label: "Alquiler"
-        },
-        {
-          value: "rentTime",
-          label: "Alquiler Temporario"
-        },
-        {
-          value: "sell",
-          label: "Venta"
-        }
-      ]
-    }
-
-    const checkboxProps = {
-      name: "operationsTypes",
-      // style: "inline",
-      type: "checkbox",
-      options: [
-        {
-          value: "rent",
-          label: "Alquiler"
-        },
-        {
-          value: "rentTime",
-          label: "Alquiler Temporario"
-        },
-        {
-          value: "sell",
-          label: "Venta"
-        }
-      ]
-    }
-
-    const inputTextStyle = {
-
-    }
-
-    // const validations = ['number', 'minValue18', 'required'];
-
-    const uploadFileToServer = (file) => {
-      const delay = file.size / 100;
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve();
-        }, delay);
-      });
-    };
-
+    console.log("Test");
     return (
-      <form onSubmit={props.handleSubmit(submit.bind(this))}>
-
-        {/*<UploadImg />*/}
-
-        {props.state.posts.text ? <h1>{props.state.posts.text}</h1> : null}
-
-        {isNewUpadtePost() ? <FileUpload multiple={true}
-          name='example-upload'
-          maxSize={300000}
-          onUpload={uploadFileToServer}
-          label='Upload Files' /> : null}
-
-        <SwitchesGroup switchesProps={radioButtonsProps} />
-
-        <SwitchesGroup switchesProps={checkboxProps} />
-
+      // <form onSubmit={props.handleSubmit(submit.bind(this))}>
         <div>
+          <h1>
+            Test
+        </h1>
+
+          {/* {this.state.show ? < Test1 /> : null} */}
+          {/* A{a} */}
+          {/* {this.state.show ? <h1>Test1</h1>: null} */}
+          <input type="button" onClick={this.show}>
+            {/* button  */}
+          </input>
+          <div>
           <InputText name="name" style="inline" placeholderFloating="Escriba su nombre" customPlaceholder="ej: Federico Croce" type="text" />
 
           <InputText name="age" style="inline" placeholderFloating="Escriba su edad" customPlaceholder="ej: 28" type="text" validate={validations.age} />
         </div>
-
-
-
-
-        <Button type="submit" className="primary-button" label="SUBMIT" />
-
-        <Button className="primary-button" label="VOLVER" onClick={() => back(props)} />
-        <Button className="primary-button" label=" Set Text" onClick={() => setText(props)} />
-        <Button className="primary-button" label="Eliminar" onClick={() => remove(props)} />
-
-        <GMaps searchBox={true} currentLocation={true} keyValuePlace={true} />
-
-      </form>
+        </div>
+      // </form>
     );
-  // }
+  }
 }
 
-PostDetailsReduxForm = reduxForm({
-  form: 'postDetails'
-})(PostDetailsReduxForm)
 
 
+// Home = reduxForm({
+//   form: 'postDetails'
+// })(Home)
 
 
-// const mapStateToProps = (state) => { 
-//   state: state
+// const mapStateToProps = (state) => {
+//   const currentPost = state.posts.currentPost[Object.keys(state.posts.currentPost)[0]];
+
+//   return {
+//     state: state,
+//   };
 // }
 
-// const mapStateToProps = (state) => ({
-//     state: state
-// });
 
-const mapStateToProps = (state) => {
-  const currentPost = state.posts.currentPost[Object.keys(state.posts.currentPost)[0]];
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     // clearPost() {
+//     //   dispatch(clearPost());
+//     // },
+//     // fetchTexo() {
+//     //   fetchTexo(dispatch)
+//     // }
+//   };
+// }
 
-  return {
-    state: state,
-    initialValues: currentPost,
-  };
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    clearPost() {
-      dispatch(clearPost());
-    },
-    fetchTexo() {
-      fetchTexo(dispatch)
-    }
-  };
-}
-
-PostDetailsReduxForm = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PostDetailsReduxForm);
+// Home = connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(Home);
 
 
 
-export default PostDetailsReduxForm
+export default Home

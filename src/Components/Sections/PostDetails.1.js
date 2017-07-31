@@ -55,7 +55,7 @@ import classnames from 'classnames';
 
     const currentPost = props.state.posts.currentPost;
 
-    props.initialValues = currentPost;
+    // props.initialValues = currentPost;
 
     console.log(props.postDetails);
 
