@@ -5,6 +5,7 @@ import { mainLinksRoutes as linksRoutes } from '../Config/AppRoutes.js'
 import NavigationBar from '../Utilities/NavigationBar';
 
 import postsGrid from './PostsGrid';
+import Test from './Test';
 
 class Home extends React.Component {
 
@@ -18,6 +19,7 @@ class Home extends React.Component {
     return (
       <div>
        <h1> FEDEEEE </h1>
+       <Test/>
       </div>
     );
   }
