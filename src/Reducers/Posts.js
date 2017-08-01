@@ -3,7 +3,7 @@
 // import { postsResponse } from "../Data/data";
 
 const postsData = {
-    allPosts: {},
+    allPosts: [],
     currentPost: {},
     text: 'ALGO',
     firebasePosts: {}

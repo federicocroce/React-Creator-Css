@@ -64,12 +64,14 @@ import classnames from 'classnames';
 
     const submit = (values, dispatch) => {
       let payload = { values }
-      isNewUpadtePost() ? createPost(values, dispatch) : updatePost(values, Object.keys(currentPost)[0]);
+      // isNewUpadtePost() ? createPost(values, dispatch) : updatePost(values, currentPost);
+      isNewUpadtePost() ? createPost(values, dispatch) : updatePost(values, Object.keys(currentPost)[0]); // Mapeo de objecto desde firebase
     }
 
     const remove = () => {
       back(props);
-      removePost(Object.keys(currentPost)[0]);
+      // removePost(currentPost);
+      removePost(Object.keys(currentPost)[0]); // Mapeo de objecto
       
     }
 

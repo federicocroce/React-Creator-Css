@@ -4,14 +4,24 @@ import * as firebase from 'firebase';
 const dbRefText = firebase.database().ref('/').child('texto');
 const dbRefPosts = firebase.database().ref().child('Posts');
 
+const snapshotToArray = snapshot => {
+    let returnArr = [];
+
+    snapshot.forEach(childSnapshot => {
+        let item = { [childSnapshot.key] : childSnapshot.val()}
+        returnArr.push(item);
+    });
+    return returnArr;
+};
+
 const fetchPosts = (dispatch) => {
     // return dispatch => {
-        dbRefPosts.on('value', snapshot => {
-            dispatch({
-                type: 'FETCH_POSTS',
-                payload: snapshot.val()
-            });
+    dbRefPosts.on('value', snapshot => {
+        dispatch({
+            type: 'FETCH_POSTS',
+            payload: snapshotToArray(snapshot)
         });
+    });
     // }
 }
 
@@ -32,6 +42,8 @@ const updatePost = (post, key) => {
 
 
 // const load = data => ({ type: "LOAD", data });
+
+
 
 
 const fetchTexo = (dispatch) => {

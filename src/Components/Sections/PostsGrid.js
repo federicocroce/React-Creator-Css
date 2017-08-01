@@ -20,6 +20,11 @@ class postsGrid extends React.Component {
     this.props.fetchPosts();
   }
 
+   componentDidUpdate(prevProps, prevState) {
+        // setCurrentPosition(gMapsElements.map, gMapsElements.markers, gMapsElements.infoWindow);
+      let a = {};
+    }
+
   render() {
     console.log("Grid");
     let props = this.props;
@@ -28,19 +33,40 @@ class postsGrid extends React.Component {
       <div className="posts-container">
 
 
+        {posts ? posts.map((post, index) => {
+          {/* const currentPost = posts[object]; */}
+          {/* let post = {
+            [object]: props.posts.postList[object]
+          } */}
+          return <Post key={index} index={index} object={post} />
+{/* 
 
-        {Object.keys(posts).map((object, index) => {
-          {/*const currentPost =  posts[object];*/ }
+          return Object.keys(posts[object]).map((value, index) => {
+            return <Post key={index} index={index} object={posts[object]} />
+          }
+          ) */}
+        }
+        ) : null}
+
+
+        {/* Mapeo de objectos desde firbase */}
+        {/* {Object.keys(posts).map((object, index) => {
+
+          const currentPost =  posts[object]; // No va
+
+
           let post = {
             [object]: props.posts.postList[object]
           }
           return <Post key={index} index={index} object={post} />
-          {/*return Object.keys(posts[object]).map((value, index) => {
-            return <Post key={index} index={index} object={posts[object]} />
-          }
-          )*/}
+
+
+          return Object.keys(posts[object]).map((value, index) => {// No va
+            return <Post key={index} index={index} object={posts[object]} />// No va
+          }// No va
+          )// No va
         }
-        )}
+        )} */}
 
 
         {/*{Object.keys(props.firebasePosts).map((object, index) => {
@@ -70,7 +96,7 @@ class postsGrid extends React.Component {
 
 
 const getFilterPosts = (posts, path) => {
-  const filter = (value, posts) => posts[Object.keys(posts)].filter(post => post.operationsTypes == value);
+  const filter = (value, posts) => posts.filter(post => post[Object.keys(post)[0]].operationsTypes == value);
   switch (path) {
     case '/sale':
       return {
@@ -80,7 +106,7 @@ const getFilterPosts = (posts, path) => {
     case '/rent':
       return {
         title: "Alquileres",
-        postList: filter("rent")
+        postList: filter("rent", posts)
       }
     default:
       return {
@@ -96,7 +122,7 @@ const getFilterPosts = (posts, path) => {
 */
 const mapStateToProps = (state) => {
   return {
-    posts: getFilterPosts(state.posts.allPosts, state.routing.location.pathname)
+    posts: state.posts.allPosts
   };
 }
 

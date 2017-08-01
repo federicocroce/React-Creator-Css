@@ -16,7 +16,7 @@ const Post = (props) => {
   // showPost = !$.isEmptyObject(props.currentPost) && props.currentPost.id == props.object.id ? 'active-post' : null;
 
   if (!$.isEmptyObject(props.currentPost)) {
-    if (props.currentPost.id == props.object.id) {
+    if (Object.keys(props.currentPost)[0] == Object.keys(props.object)[0]) {
       showPost = true;
       showPostDetails = true;
       postClass = 'active-post';
@@ -28,7 +28,9 @@ const Post = (props) => {
   }
 
 console.log("Post");
-  const currentPostDetails = props.object[Object.keys(props.object)[0]];
+  
+  // const currentPostDetails = props.object;
+  const currentPostDetails = props.object[Object.keys(props.object)[0]]; // Mapeo de objecto desde firebase
 
   return (
     // 
@@ -45,7 +47,7 @@ console.log("Post");
 
 
         </div>
-       {showPostDetails ? <PostDetails postDetails={props.object} /> : null}
+       {showPostDetails ? <PostDetails postDetails={currentPostDetails} /> : null}
        {/*{showPostDetails ? <TestForms postDetails={props.object} /> : null}*/}
       </div>
       : null
