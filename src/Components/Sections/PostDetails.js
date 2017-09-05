@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-
+import React, { Component } from 'react';
+import { store } from '../Config/Store';
 import { connect } from "react-redux";
 import { reduxForm, Field } from 'redux-form' // imported Field
 import ImagesUploader from 'react-images-uploader';
@@ -24,8 +24,6 @@ import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 
 
 import ReactTestUtils from 'react-dom/test-utils';
-
-import { store } from '../Config/Store.js';
 
 import {
   push,
@@ -78,6 +76,7 @@ import classnames from 'classnames';
     const back = props => {
       props.state.posts.currentPost = {};
       props.clearPost();
+      store.dispatch(goBack());
     }
 
     const setText = props => {

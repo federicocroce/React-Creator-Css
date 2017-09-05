@@ -11,14 +11,13 @@ const ripple = e => {
 
     console.log(e.target);
 
-    // e.
 }
 
 
 const Button = (props) => {
     return (
         <div className="button-container">
-            <button type={props.type} className={props.class} onClick={props.onClick} label={props.label}>{props.label} </button>
+            <button type={props.type ? props.type : "button"} className={props.class} onClick={props.onClick} label={props.label}>{props.label} </button>
         </div>
     );
 }
