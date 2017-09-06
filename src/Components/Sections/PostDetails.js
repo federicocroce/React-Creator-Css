@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { store } from '../Config/Store';
+import { store, history } from '../Config/Store';
 import { connect } from "react-redux";
 import { reduxForm, Field } from 'redux-form' // imported Field
 import ImagesUploader from 'react-images-uploader';
@@ -76,7 +76,8 @@ import classnames from 'classnames';
     const back = props => {
       props.state.posts.currentPost = {};
       props.clearPost();
-      store.dispatch(goBack());
+      // store.dispatch(goBack());
+      history.goBack();
     }
 
     const setText = props => {

@@ -5,6 +5,11 @@ import Post from './Post';
 import { fetchPosts } from '../../Actions/actionsCreator';
 import _ from 'lodash';
 
+import { history } from '../Config/Store';
+
+const back = props => {
+    history.goBack();
+  }
 
 class postsGrid extends React.Component {
 
@@ -20,10 +25,12 @@ class postsGrid extends React.Component {
     this.props.fetchPosts();
   }
 
-   componentDidUpdate(prevProps, prevState) {
-        // setCurrentPosition(gMapsElements.map, gMapsElements.markers, gMapsElements.infoWindow);
-      let a = {};
-    }
+  componentDidUpdate(prevProps, prevState) {
+    // setCurrentPosition(gMapsElements.map, gMapsElements.markers, gMapsElements.infoWindow);
+    let a = {};
+  }
+
+  
 
   render() {
     console.log("Grid");
@@ -34,12 +41,12 @@ class postsGrid extends React.Component {
 
 
         {posts ? posts.map((post, index) => {
-          {/* const currentPost = posts[object]; */}
+          {/* const currentPost = posts[object]; */ }
           {/* let post = {
             [object]: props.posts.postList[object]
           } */}
           return <Post key={index} index={index} object={post} />
-{/* 
+          {/* 
 
           return Object.keys(posts[object]).map((value, index) => {
             return <Post key={index} index={index} object={posts[object]} />
@@ -47,6 +54,8 @@ class postsGrid extends React.Component {
           ) */}
         }
         ) : null}
+
+        <button onClick={() => back(props)}> VOLVER </button>
 
 
         {/* Mapeo de objectos desde firbase */}
