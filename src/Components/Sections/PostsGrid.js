@@ -131,7 +131,7 @@ const getFilterPosts = (posts, path) => {
 */
 const mapStateToProps = (state) => {
   return {
-    posts: getFilterPosts(state.posts.allPosts, state.routing.location.pathname)
+    posts: getFilterPosts(state.posts.allPosts, state.router.location.pathname)
   };
 }
 

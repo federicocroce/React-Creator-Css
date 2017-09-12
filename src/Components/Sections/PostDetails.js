@@ -56,7 +56,7 @@ import classnames from 'classnames';
     console.log(props.postDetails);
 
     const isNewUpadtePost = () => {
-      return props.state.routing.location.pathname == "/new" ? true : false;
+      return props.state.router.location.pathname == "/new" ? true : false;
     }
 
 

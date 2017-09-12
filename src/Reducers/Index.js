@@ -44,7 +44,7 @@ const allReducers = {
     posts,
     maps,
     form:reduxFormReducer,
-    routing: routerReducer
+    router: routerReducer
 }
 
 // const rootReducer = combineForms(allReducers);
