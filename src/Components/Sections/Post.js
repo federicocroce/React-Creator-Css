@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { viewPost } from '../../Actions/actionsCreator';
 import PostDetails from './PostDetails';
 import $ from 'jquery-lite'
+import { store } from '../Config/Store';
+import {push} from 'react-router-redux';
 
 import classnames from 'classnames';
 
@@ -66,6 +68,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     viewPost(currentPost, activePost) {
+      store.dispatch(push("/view"));
       dispatch(viewPost(currentPost));
     }
   };
