@@ -6,7 +6,10 @@ import { Route } from 'react-router-dom';
 
 import { store, history } from '../Config/Store.js'
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import PostsGrid from '../Sections/PostsGrid';
+
+import { mainLinksRoutes as linksRoutes } from '../Config/AppRoutes.js'
+import NavigationBar from '../Utilities/NavigationBar';
 
 import Home from './Home';
 
@@ -14,15 +17,23 @@ const Index = () => {
 
   return (
     <Provider store={store}>
-      <MuiThemeProvider>
-        <ConnectedRouter history={history}>
-          <div>
-            <Route path="/" component={Home}></Route>
+
+      <ConnectedRouter history={history}>
+
+        <div>
+          <h1> TItulo </h1>
+          <Route exact path="/" component={Home}></Route>
+          <div className="nav-bar-container">
+            <NavigationBar linksRoutes={linksRoutes} />
           </div>
-        </ConnectedRouter>
-      </MuiThemeProvider>
+        </div>
+
+
+      </ConnectedRouter>
+
     </Provider>
   )
 }
 
 export default Index;
+{/* <Route path="/main" component={PostsGrid}></Route> */ }

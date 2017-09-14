@@ -22,18 +22,21 @@ class postsGrid extends React.Component {
   // const title = "Ventas";
 
   componentDidMount() {
+    if(this.props.posts.postList.length != 0) return;
     this.props.fetchPosts();
+    console.log("Grid");
   }
 
   componentDidUpdate(prevProps, prevState) {
+
     // setCurrentPosition(gMapsElements.map, gMapsElements.markers, gMapsElements.infoWindow);
-    let a = {};
+    // let a = {};
   }
 
   
 
   render() {
-    console.log("Grid");
+
     let props = this.props;
     const posts = props.posts.postList;
     return (

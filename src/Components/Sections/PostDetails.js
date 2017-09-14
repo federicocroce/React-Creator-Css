@@ -51,30 +51,30 @@ import classnames from 'classnames';
     let postClass = '';
     let showPost = true;
 
-    const currentPost = props.state.posts.currentPost;
+    // const currentPost = props.state.posts.currentPost;
 
     console.log(props.postDetails);
 
     const isNewUpadtePost = () => {
-      return props.state.router.location.pathname == "/new" ? true : false;
+      // return props.state.router.location.pathname == "/new" ? true : false;
     }
 
 
     const submit = (values, dispatch) => {
       let payload = { values }
       // isNewUpadtePost() ? createPost(values, dispatch) : updatePost(values, currentPost);
-      isNewUpadtePost() ? createPost(values, dispatch) : updatePost(values, Object.keys(currentPost)[0]); // Mapeo de objecto desde firebase
+      // isNewUpadtePost() ? createPost(values, dispatch) : updatePost(values, Object.keys(currentPost)[0]); // Mapeo de objecto desde firebase
     }
 
     const remove = () => {
       back(props);
       // removePost(currentPost);
-      removePost(Object.keys(currentPost)[0]); // Mapeo de objecto
+      // removePost(Object.keys(currentPost)[0]); // Mapeo de objecto
       
     }
 
     const back = props => {
-      props.state.posts.currentPost = {};
+      // props.state.posts.currentPost = {};
       props.clearPost();
       // store.dispatch(goBack());
       history.goBack();
@@ -164,11 +164,11 @@ import classnames from 'classnames';
     };
 
     return (
-      <form onSubmit={props.handleSubmit(submit.bind(this))}>
+      <form >
 
         {/*<UploadImg />*/}
 
-        {props.state.posts.text ? <h1>{props.state.posts.text}</h1> : null}
+        {/* {props.state.posts.text ? <h1>{props.state.posts.text}</h1> : null} */}
 
         {isNewUpadtePost() ? <FileUpload multiple={true}
           name='example-upload'
@@ -221,7 +221,7 @@ const mapStateToProps = (state) => {
   const currentPost = state.posts.currentPost[Object.keys(state.posts.currentPost)[0]];
 
   return {
-    state: state,
+    // state: state,
     initialValues: currentPost,
   };
 }
