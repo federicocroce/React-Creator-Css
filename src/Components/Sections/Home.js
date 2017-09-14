@@ -18,10 +18,10 @@ class Home extends React.Component {
     return (
       <div>
         <h1>
-          <Link className='title-home' to="/">Venta/Alquier Inmuebles</Link>
+          {/*<Link className='title-home' to="/">Venta/Alquier Inmuebles</Link>*/}
         </h1>
         <div className="nav-bar-container">
-          <NavigationBar linksRoutes={linksRoutes} />
+          {/*<NavigationBar linksRoutes={linksRoutes} />*/}
           {/*<RaisedButton label="Default" />*/}
         </div>
         <postsGrid />

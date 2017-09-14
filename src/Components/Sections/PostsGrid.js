@@ -22,6 +22,7 @@ class postsGrid extends React.Component {
   // const title = "Ventas";
 
   componentDidMount() {
+    if(this.props.posts.postList != 0) return;
     this.props.fetchPosts();
   }
 

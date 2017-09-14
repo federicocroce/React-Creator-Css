@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-
+import React, { Component } from 'react';
+import { store, history } from '../Config/Store';
 import { connect } from "react-redux";
 import { reduxForm, Field } from 'redux-form' // imported Field
 import ImagesUploader from 'react-images-uploader';
@@ -24,8 +24,6 @@ import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 
 
 import ReactTestUtils from 'react-dom/test-utils';
-
-import { store } from '../Config/Store.js';
 
 import {
   push,
@@ -55,29 +53,31 @@ import classnames from 'classnames';
 
     const currentPost = props.state.posts.currentPost;
 
-    props.initialValues = currentPost;
-
     console.log(props.postDetails);
 
     const isNewUpadtePost = () => {
-      return props.state.routing.location.pathname == "/new" ? true : false;
+      return props.state.router.location.pathname == "/new" ? true : false;
     }
 
 
     const submit = (values, dispatch) => {
       let payload = { values }
-      isNewUpadtePost() ? createPost(values, dispatch) : updatePost(values, Object.keys(currentPost)[0]);
+      // isNewUpadtePost() ? createPost(values, dispatch) : updatePost(values, currentPost);
+      isNewUpadtePost() ? createPost(values, dispatch) : updatePost(values, Object.keys(currentPost)[0]); // Mapeo de objecto desde firebase
     }
 
     const remove = () => {
       back(props);
-      removePost(Object.keys(currentPost)[0]);
+      // removePost(currentPost);
+      removePost(Object.keys(currentPost)[0]); // Mapeo de objecto
       
     }
 
     const back = props => {
       props.state.posts.currentPost = {};
       props.clearPost();
+      // store.dispatch(goBack());
+      history.goBack();
     }
 
     const setText = props => {
@@ -122,7 +122,7 @@ import classnames from 'classnames';
           label: "Alquiler Temporario"
         },
         {
-          value: "sell",
+          value: "sale",
           label: "Venta"
         }
       ]
@@ -207,6 +207,16 @@ PostDetailsReduxForm = reduxForm({
 })(PostDetailsReduxForm)
 
 
+
+
+// const mapStateToProps = (state) => { 
+//   state: state
+// }
+
+// const mapStateToProps = (state) => ({
+//     state: state
+// });
+
 const mapStateToProps = (state) => {
   const currentPost = state.posts.currentPost[Object.keys(state.posts.currentPost)[0]];
 
@@ -215,7 +225,6 @@ const mapStateToProps = (state) => {
     initialValues: currentPost,
   };
 }
-
 
 const mapDispatchToProps = dispatch => {
   return {

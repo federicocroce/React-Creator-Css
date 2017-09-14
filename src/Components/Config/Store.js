@@ -27,6 +27,11 @@ const store = createStore(
     )
 )
 
+// const store = createStore(reducer, composeWithDevTools(
+//   applyMiddleware(...middleware),
+//   // other store enhancers if any
+// ));
+
 export {
     store,
     history

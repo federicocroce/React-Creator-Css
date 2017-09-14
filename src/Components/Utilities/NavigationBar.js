@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, NavLink, Switch } from 'react-router-dom';
+import { Route, Link, Switch } from 'react-router-dom';
 import { store } from '../Config/Store';
 import { connect } from "react-redux";
 
@@ -25,7 +25,7 @@ const NavigationBar = props => {
 
     const generateLinks = (linksRoutes) => {
         return linksRoutes.map((route, index) => (
-            linksRoutes[index].show != false ? <li onClick={() => setPath(linksRoutes[index].path, props)} key={index}><NavLink to={linksRoutes[index].path} > {linksRoutes[index].name}</NavLink></li> : null
+            linksRoutes[index].show != false ? <li onClick={() => setPath(linksRoutes[index].path, props)} key={index}><Link to={linksRoutes[index].path} > {linksRoutes[index].name}</Link></li> : null
         ))
     };
 

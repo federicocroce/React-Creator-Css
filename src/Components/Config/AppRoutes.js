@@ -37,7 +37,7 @@ const mainLinksRoutes = [
     name: "Nuevo"
   },
   {
-    path: "/view",
+    path: "/view/:postId",
     component: PostDetails,
     name: "",
     show:false
