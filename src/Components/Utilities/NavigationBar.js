@@ -37,7 +37,7 @@ const NavigationBar = props => {
 
     const setPath = (path, props) => {
         props.posts.posts.currentPost = {};
-        store.dispatch(push(path));
+        // store.dispatch(push(path));
     }
 
     return (
