@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import Post from './Post';
 import { fetchPosts } from '../../Actions/actionsCreator';
 import _ from 'lodash';
+import { withRouter } from 'react-router-dom'
 
 import { history } from '../Config/Store';
 
@@ -152,7 +153,7 @@ const mapDispatchToProps = dispatch => {
 * Acá se conecta el componente con redux
 */
 // const { connect } = ReactRedux;
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(postsGrid);
+)(postsGrid));

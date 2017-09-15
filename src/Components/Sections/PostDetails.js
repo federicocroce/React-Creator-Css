@@ -7,6 +7,10 @@ import 'react-images-uploader/styles.css';
 import 'react-images-uploader/font.css';
 import { validations } from '../Config/Validations';
 
+import { withRouter } from 'react-router-dom';
+
+import { hashHistory } from 'react-router';
+
 
 import { clearPost, fetchTexo, createPost, updatePost, removePost } from '../../Actions/actionsCreator';
 import InputText from '../Utilities/InputText';
@@ -74,10 +78,12 @@ import classnames from 'classnames';
     }
 
     const back = props => {
-      props.state.posts.currentPost = {};
-      props.clearPost();
+      // props.state.posts.currentPost = {};
+      // props.clearPost();
       // store.dispatch(goBack());
+      // props.history.goBack();
       history.goBack();
+      // store.dispatch()
     }
 
     const setText = props => {
@@ -237,10 +243,10 @@ const mapDispatchToProps = dispatch => {
   };
 }
 
-PostDetailsReduxForm = connect(
+PostDetailsReduxForm = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(PostDetailsReduxForm);
+)(PostDetailsReduxForm));
 
 
 

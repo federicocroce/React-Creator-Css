@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { connect } from "react-redux";
+import { withRouter } from 'react-router-dom'
 
 
 const PostDetail = (props) => {
@@ -21,7 +22,7 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   null
-)(PostDetail);
+)(PostDetail));
