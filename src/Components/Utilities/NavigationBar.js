@@ -25,7 +25,7 @@ const NavigationBar = props => {
 
     const generateLinks = (linksRoutes) => {
         return linksRoutes.map((route, index) => (
-            linksRoutes[index].show != false ? <li onClick={() => setPath(linksRoutes[index].path, props)} key={index}><Link to={linksRoutes[index].path} > {linksRoutes[index].name}</Link></li> : null
+            linksRoutes[index].show != false ? <li  key={index}><Link to={linksRoutes[index].path} > {linksRoutes[index].name}</Link></li> : null
         ))
     };
 
@@ -49,48 +49,4 @@ const NavigationBar = props => {
 
 }
 
-
-
-
-
-
-
-// render() {
-
-
-
-
-// }
-// }
-
-
-// export default NavigationBar;
-
-
-const mapStateToProps = (state) => {
-    return {
-        posts: state
-    };
-}
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     filterPosts(currentPost, action) {
-//       console.error(action);
-//       dispatch(filterPosts(currentPost, action));
-//     }
-//   };
-// }
-
-/*
-* Dispatch de las acciones
-*/
-
-/*
-* Acá se conecta el componente con redux
-*/
-// const { connect } = ReactRedux;
-export default connect(
-    mapStateToProps,
-    null
-)(NavigationBar);
+export default NavigationBar;

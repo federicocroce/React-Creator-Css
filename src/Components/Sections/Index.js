@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "react-router-redux";
@@ -9,88 +8,38 @@ import { store, history } from '../Config/Store.js';
 
 import { mainLinksRoutes as linksRoutes } from '../Config/AppRoutes.js'
 import NavigationBar from '../Utilities/NavigationBar';
+import PostsGrid from '../Sections/PostsGrid';
 
-import Button from '../Utilities/Button';
+import Home from './Home';
 
-// import Home from './Home';
+const Index = () => {
 
-const back = (props) => {
-    // props.clearPost();
-    history.goBack();
-}
-
-const Home = () => (
-  <div>
-    <h2>Home</h2>
-  </div>
-)
-
-const About = (props) => (
-  <div>
-    <h2>About</h2>
-    {/*<Button className="primary-button" label="VOLVER" onClick={() => back(props)} />*/}
-  </div>
-)
-
-const Topic = ({ match }) => (
-  <div>
-    <h3>{match.params.topicId}</h3>
-    {/*<Button className="primary-button" label="VOLVER" onClick={() => back(props)} />*/}
-  </div>
-)
-
-const Topics = ({ match }) => (
-  <div>
-    <h2>Topics</h2>
-    <ul>
-      <li>
-        <Link to={`${match.url}/rendering`}>
-          Rendering with React
-        </Link>
-      </li>
-      <li>
-        <Link to={`${match.url}/components`}>
-          Components
-        </Link>
-      </li>
-      <li>
-        <Link to={`${match.url}/props-v-state`}>
-          Props v. State
-        </Link>
-      </li>
-    </ul>
-
-    <Route path={`${match.path}/:topicId`} component={Topic} />
-    <Route exact path={match.path} render={() => (
-      <h3>Please select a topic.</h3>
-    )} />
-    {/*<Button className="primary-button" label="VOLVER" onClick={() => back(props)} />*/}
-  </div>
-)
-
-const BasicExample = () => {
-
-  
   return (
     <Provider store={store}>
-        <ConnectedRouter history={history}>
-      <div>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/topics">Topics</Link></li>
-        </ul>
+      <ConnectedRouter history={history}>
+        <div>
+          {/*<Route exact path="/" component={Home}></Route>*/}
+          <div className="nav-bar-container">
+              <NavigationBar linksRoutes={linksRoutes} />
+              {/*<RaisedButton label="Default" />*/}
 
-        <hr />
+              {/* <ul>
+                <li><Link to="/main">main</Link></li>
+                <li><Link to="/sale">sale</Link></li>
+                <li><Link to="/rent">rent</Link></li>
+              </ul>
 
-        <Route exact path="/" component={Home} />
-        <Route path="/about" component={About} />
-        <Route path="/topics" component={Topics} />
-        <Button className="primary-button" label="VOLVER" onClick={() => back()} />
-      </div>
-      
-    </ConnectedRouter>
+              <hr />
+              <Route path="/main" component={PostsGrid} />
+              <Route path="/sale" component={PostsGrid} />
+              <Route path="/rent" component={PostsGrid} /> */}
+
+              {/* <Button className="primary-button" label="VOLVER" onClick={() => back()} /> */}
+          </div>
+        </div>
+      </ConnectedRouter>
     </Provider>
   )
 }
-export default BasicExample
+
+export default Index;

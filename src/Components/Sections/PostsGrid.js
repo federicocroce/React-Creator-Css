@@ -1,159 +1,88 @@
+
 import React from 'react';
-import { connect } from "react-redux";
-import classnames from 'classnames';
-import Post from './Post';
-import { fetchPosts } from '../../Actions/actionsCreator';
-import _ from 'lodash';
+import { Provider } from "react-redux";
+import { ConnectedRouter } from "react-router-redux";
 
-import { history } from '../Config/Store';
+import { Route, Link } from 'react-router-dom';
 
-const back = props => {
+import { store, history } from '../Config/Store.js';
+
+import { mainLinksRoutes as linksRoutes } from '../Config/AppRoutes.js'
+import NavigationBar from '../Utilities/NavigationBar';
+
+import Button from '../Utilities/Button';
+
+// import Home from './Home';
+
+const back = (props) => {
+    // props.clearPost();
     history.goBack();
-  }
+}
 
-class postsGrid extends React.Component {
+const Home = () => (
+  <div>
+    <h2>Home</h2>
+  </div>
+)
 
-  // const postsGrid = (props) => {
+const About = (props) => (
+  <div>
+    <h2>About</h2>
+    {/*<Button className="primary-button" label="VOLVER" onClick={() => back(props)} />*/}
+  </div>
+)
 
-  constructor(props) {
-    super(props);
-  }
+const Topic = ({ match }) => (
+  <div>
+    <h3>{match.params.topicId}</h3>
+    {/*<Button className="primary-button" label="VOLVER" onClick={() => back(props)} />*/}
+  </div>
+)
 
-  // const title = "Ventas";
+const Topics = ({ match }) => (
+  <div>
+    <h2>Topics</h2>
+    <ul>
+      <li>
+        <Link to={`${match.url}/rendering`}>
+          Rendering with React
+        </Link>
+      </li>
+      <li>
+        <Link to={`${match.url}/components`}>
+          Components
+        </Link>
+      </li>
+      <li>
+        <Link to={`${match.url}/props-v-state`}>
+          Props v. State
+        </Link>
+      </li>
+    </ul>
 
-  componentDidMount() {
-    if(this.props.posts.postList != 0) return;
-    this.props.fetchPosts();
-  }
+    <Route path={`${match.path}/:topicId`} component={Topic} />
+    <Route exact path={match.path} render={() => (
+      <h3>Please select a topic.</h3>
+    )} />
+    {/*<Button className="primary-button" label="VOLVER" onClick={() => back(props)} />*/}
+  </div>
+)
 
-  componentDidUpdate(prevProps, prevState) {
-    // setCurrentPosition(gMapsElements.map, gMapsElements.markers, gMapsElements.infoWindow);
-    let a = {};
-  }
+const BasicExample = () => {
 
   
+  return (
+      <div>
+        <ul>
+          <li><Link to="/main/about">About</Link></li>
+          <li><Link to="/main/topics">Topics</Link></li>
+        </ul>
 
-  render() {
-    console.log("Grid");
-    let props = this.props;
-    const posts = props.posts.postList;
-    return (
-      <div className="posts-container">
-
-
-        {posts ? posts.map((post, index) => {
-          {/* const currentPost = posts[object]; */ }
-          {/* let post = {
-            [object]: props.posts.postList[object]
-          } */}
-          return <Post key={index} index={index} object={post} />
-          {/* 
-
-          return Object.keys(posts[object]).map((value, index) => {
-            return <Post key={index} index={index} object={posts[object]} />
-          }
-          ) */}
-        }
-        ) : null}
-
-        <button onClick={() => back(props)}> VOLVER </button>
-
-
-        {/* Mapeo de objectos desde firbase */}
-        {/* {Object.keys(posts).map((object, index) => {
-
-          const currentPost =  posts[object]; // No va
-
-
-          let post = {
-            [object]: props.posts.postList[object]
-          }
-          return <Post key={index} index={index} object={post} />
-
-
-          return Object.keys(posts[object]).map((value, index) => {// No va
-            return <Post key={index} index={index} object={posts[object]} />// No va
-          }// No va
-          )// No va
-        }
-        )} */}
-
-
-        {/*{Object.keys(props.firebasePosts).map((object, index) => {
-          return Object.keys(props.firebasePosts[object]).map((value, index) => {
-            return <p key={index}> {props.firebasePosts[object][value]}</p>
-          }
-          )
-        }*/}
-
-
-        {/*{Object.keys(props.posts.postList).map((object, index) => {
-          let post = {
-            [object]: props.posts.postList[object]
-          }
-          return <Post key={index} index={index} object={post} />
-        }
-        )}*/}
-
-        {/*<button onClick={() => props.filterPosts(props.state.posts.allPosts, "SELL_POSTS")}> Ventas</button>
-      <button onClick={() => props.filterPosts(props.state.posts.allPosts, "RENT_POSTS")}> Alquileres</button>*/}
-
+        <hr />
+        <Route path="/main/about" component={About} />
+        <Route path="/main/topics" component={Topics} />
+        <Button className="primary-button" label="VOLVER" onClick={() => back()} />
       </div>
-    );
-  }
-
+  )
 }
-
-
-const getFilterPosts = (posts, path) => {
-  const filter = (value, posts) => posts.filter(post => post[Object.keys(post)[0]].operationsTypes == value);
-  switch (path) {
-    case '/sale':
-      return {
-        title: "Ventas",
-        postList: filter("sale", posts)
-      }
-    case '/rent':
-      return {
-        title: "Alquileres",
-        postList: filter("rent", posts)
-      }
-    default:
-      return {
-        title: "Todos",
-        postList: posts
-      }
-  }
-}
-
-
-/*
-* Si se especifica, el componente a suscribirse a las actualizaciones del store de Redux.
-*/
-const mapStateToProps = (state) => {
-  return {
-    posts: getFilterPosts(state.posts.allPosts, state.router.location.pathname)
-  };
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchPosts() {
-      fetchPosts(dispatch)
-    }
-
-  };
-}
-
-/*
-* Dispatch de las acciones
-*/
-
-/*
-* Acá se conecta el componente con redux
-*/
-// const { connect } = ReactRedux;
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(postsGrid);
+export default BasicExample
