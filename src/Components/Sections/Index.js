@@ -9,8 +9,9 @@ import { store, history } from '../Config/Store.js'
 import Home from './Home';
 
 const Index = () => {
-
+  // console.log("INDEX");
   return (
+    
     <Provider store={store}>
         <ConnectedRouter history={history}>
           <div>

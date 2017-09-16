@@ -38,7 +38,7 @@ console.log("Post");
     // 
     showPost ?
       <div  className={postClass}> 
-        <div className="post-content" onClick={() => props.viewPost(props.object)}>
+        <NavLink className="post-content" to={`/view/${Object.keys(props.object)[0]}`}>
           {/*<NavLink to={'/view'}>*/}
           <div className="post-image">
             <img src={props.object.display_src} />
@@ -48,7 +48,7 @@ console.log("Post");
           <p>{currentPostDetails.name}</p>
 
 
-        </div>
+        </NavLink>
        {showPostDetails ? <PostDetails postDetails={currentPostDetails} /> : null}
        {/*{showPostDetails ? <TestForms postDetails={props.object} /> : null}*/}
       </div>
@@ -68,7 +68,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     viewPost(currentPost, activePost) {
-      store.dispatch(push("/view"));
+      // store.dispatch(push("/view"));
       dispatch(viewPost(currentPost));
     }
   };

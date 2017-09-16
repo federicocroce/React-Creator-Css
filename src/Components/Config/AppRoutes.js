@@ -1,7 +1,7 @@
 import React from 'react';
 
 import PostsGrid from '../Sections/PostsGrid';
-// import Home from '../Sections/Home';
+import Home from '../Sections/Home';
 import NewPost from '../Sections/NewPost';
 import PostDetails from '../Sections/PostDetails'
 
@@ -12,8 +12,9 @@ const mainLinksRoutes = [
   // {
   //   path: "/",
   //   component: Home,
-  //   name: "Alquiler/Venta",
-  //   exact: true
+  //   name: "",
+  //   exact: true,
+  //   show:false
   // },
   {
     path: "/main",

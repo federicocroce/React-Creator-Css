@@ -9,8 +9,6 @@ import { validations } from '../Config/Validations';
 
 import { withRouter } from 'react-router-dom';
 
-import { hashHistory } from 'react-router';
-
 
 import { clearPost, fetchTexo, createPost, updatePost, removePost } from '../../Actions/actionsCreator';
 import InputText from '../Utilities/InputText';

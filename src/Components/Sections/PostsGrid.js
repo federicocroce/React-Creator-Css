@@ -6,11 +6,9 @@ import { fetchPosts } from '../../Actions/actionsCreator';
 import _ from 'lodash';
 import { withRouter } from 'react-router-dom'
 
-import { history } from '../Config/Store';
+// import { history } from '../Config/Store';
 
-const back = props => {
-    history.goBack();
-  }
+
 
 class postsGrid extends React.Component {
 
@@ -31,9 +29,12 @@ class postsGrid extends React.Component {
     let a = {};
   }
 
-  
+ 
 
   render() {
+    const back = props => {
+      this.props.history.goBack();
+    }
     console.log("Grid");
     let props = this.props;
     const posts = props.posts.postList;
@@ -48,7 +49,6 @@ class postsGrid extends React.Component {
           } */}
           return <Post key={index} index={index} object={post} />
           {/* 
-
           return Object.keys(posts[object]).map((value, index) => {
             return <Post key={index} index={index} object={posts[object]} />
           }
@@ -61,16 +61,11 @@ class postsGrid extends React.Component {
 
         {/* Mapeo de objectos desde firbase */}
         {/* {Object.keys(posts).map((object, index) => {
-
           const currentPost =  posts[object]; // No va
-
-
           let post = {
             [object]: props.posts.postList[object]
           }
           return <Post key={index} index={index} object={post} />
-
-
           return Object.keys(posts[object]).map((value, index) => {// No va
             return <Post key={index} index={index} object={posts[object]} />// No va
           }// No va

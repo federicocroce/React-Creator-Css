@@ -24,7 +24,7 @@ class Home extends React.Component {
           <NavigationBar linksRoutes={linksRoutes} />
           {/*<RaisedButton label="Default" />*/}
         </div>
-        <postsGrid />
+        {/* <postsGrid /> */}
       </div>
     );
   }
