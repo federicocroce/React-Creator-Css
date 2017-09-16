@@ -18,9 +18,9 @@ const Index = () => {
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <div>
-          {/*<Route exact path="/" component={Home}></Route>*/}
+          <Route path="/" component={Home}></Route>
           <div className="nav-bar-container">
-              <NavigationBar linksRoutes={linksRoutes} />
+              {/* <NavigationBar linksRoutes={linksRoutes} /> */}
               {/*<RaisedButton label="Default" />*/}
 
               {/* <ul>

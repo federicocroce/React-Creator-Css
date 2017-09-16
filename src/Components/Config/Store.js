@@ -21,7 +21,7 @@ const middleware = routerMiddleware(history);
 // )
 
 const store = createStore(
-    ...reducer,
+    reducer,
     composeWithDevTools(
         applyMiddleware(middleware)
     )
