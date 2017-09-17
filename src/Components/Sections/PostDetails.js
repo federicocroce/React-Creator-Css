@@ -12,50 +12,18 @@ import { withRouter } from 'react-router-dom';
 
 import { clearPost, fetchTexo, createPost, updatePost, removePost } from '../../Actions/actionsCreator';
 import InputText from '../Utilities/InputText';
-// import UploadImg from '../Utilities/UploadImg';
 import FileUpload from '../Utilities/UploadImg';
 import SwitchesGroup from '../Utilities/SwitchesGroup';
 import Button from '../Utilities/Button';
 import GMaps from '../Utilities/GMaps/GMaps';
 
 
-
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
-import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
-
-
-import ReactTestUtils from 'react-dom/test-utils';
-
-import {
-  push,
-  replace,
-  go,
-  goBack,
-  goForward,
-} from 'react-router-redux';
-
-import classnames from 'classnames';
-
-
-// class PostDetailsReduxForm extends React.Component {
 const PostDetailsReduxForm = props => {
 
-  // constructor(props) {
-  //   super(props);
-  // }
-
-  // componentDidMount() {
-  //   this.props.value;
-  // }
-
-  // render() {
-  let postClass = '';
-  let showPost = true;
 
   const currentPost = props.state.posts.currentPost;
 
-  console.log(props.postDetails);
+  console.log(currentPost);
 
   const isNewUpadtePost = () => {
     return props.state.router.location.pathname == "/new" ? true : false;

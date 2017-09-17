@@ -4,30 +4,30 @@ import { connect } from "react-redux";
 import { viewPost } from '../../Actions/actionsCreator';
 import PostDetails from './PostDetails';
 import $ from 'jquery-lite'
-import { store } from '../Config/Store';
-import {push} from 'react-router-redux';
+// import { store } from '../Config/Store';
+// import {push} from 'react-router-redux';
 
-import classnames from 'classnames';
+// import classnames from 'classnames';
 
 const Post = (props) => {
 
   var postClass = '';
   var showPost = true;
-  var showPostDetails = false;
+  // var showPostDetails = false;
 
   // showPost = !$.isEmptyObject(props.currentPost) && props.currentPost.id == props.object.id ? 'active-post' : null;
 
-  if (!$.isEmptyObject(props.currentPost)) {
-    if (Object.keys(props.currentPost)[0] == Object.keys(props.object)[0]) {
-      showPost = true;
-      showPostDetails = true;
-      postClass = 'active-post';
+  // if (!$.isEmptyObject(props.currentPost)) {
+  //   if (Object.keys(props.currentPost)[0] == Object.keys(props.object)[0]) {
+  //     showPost = true;
+  //     showPostDetails = true;
+  //     postClass = 'active-post';
 
-    }
-    else {
-      showPost = false;
-    }
-  }
+  //   }
+  //   else {
+  //     showPost = false;
+  //   }
+  // }
 
 console.log("Post");
   
@@ -49,7 +49,7 @@ console.log("Post");
 
 
         </NavLink>
-       {showPostDetails ? <PostDetails postDetails={currentPostDetails} /> : null}
+       {/* {showPostDetails ? <PostDetails postDetails={currentPostDetails} /> : null} */}
       </div>
       : null
   );
