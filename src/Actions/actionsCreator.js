@@ -15,14 +15,12 @@ const snapshotToArray = snapshot => {
 };
 
 const fetchPosts = (dispatch) => {
-    // return dispatch => {
     dbRefPosts.on('value', snapshot => {
         dispatch({
             type: 'FETCH_POSTS',
             payload: snapshotToArray(snapshot)
         });
     });
-    // }
 }
 
 const createPost = (post, dispatch) => {
@@ -39,11 +37,6 @@ const updatePost = (post, key) => {
     // return dbRefPosts.child("newPost").set(post);   CAMBIO DE NOMBRE DEL POST A PUSHEAR
     return dbRefPosts.child(key).update(post);
 }
-
-
-// const load = data => ({ type: "LOAD", data });
-
-
 
 
 const fetchTexo = (dispatch) => {
@@ -104,7 +97,6 @@ const initGMaps = (gMapsElements) => {
 ///////////////////////////////
 
 const filterPosts = (posts, action) => {
-    // console.error(action);
     return {
         type: action,
         posts

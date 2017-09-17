@@ -1,69 +1,7 @@
 import React from 'react';
-/*
-class ImageUpload extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      file: '',
-      imagePreviewUrl: ''
-    };
-    this._handleImageChange = this._handleImageChange.bind(this);
-    this._handleSubmit = this._handleSubmit.bind(this);
-  }
 
-  _handleSubmit(e) {
-    e.preventDefault();
-    // TODO: do something with -> this.state.file
-  }
-
-  _handleImageChange(e) {
-    e.preventDefault();
-
-    let reader = new FileReader();
-    let file = e.target.files[0];
-
-    reader.onloadend = () => {
-      this.setState({
-        file: file,
-        imagePreviewUrl: reader.result
-      });
-    }
-
-    reader.readAsDataURL(file)
-  }
-
-  render() {
-    let {imagePreviewUrl} = this.state;
-    let $imagePreview = null;
-    if (imagePreviewUrl) {
-      $imagePreview = (<img src={imagePreviewUrl} />);
-    }
-
-    return (
-      <div>
-        <form onSubmit={this._handleSubmit}>
-          <input type="file" name="file" class="inputfile" id="file" onChange={this._handleImageChange} />
-          <label for="file">Choose a file</label>
-          <button type="submit" onClick={this._handleSubmit}>Upload Image</button>
-        </form>
-        {$imagePreview}
-      </div>
-    )
-  }
-
-}
-
-
-export default ImageUpload;*/
-
-
-
-console.clear();
 var _React = React;
 var createClass = _React.createClass;
-var PropTypes = _React.PropTypes;
-// var _ReactDOM = ReactDOM;
-// var render = _ReactDOM.render;
 
 const styles = {
   inputWrapper: 'input-wrapper',

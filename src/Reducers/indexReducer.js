@@ -3,8 +3,8 @@ import { routerReducer } from "react-router-redux";
 import { reducer as reduxFormReducer } from 'redux-form';
 // import { combineForms } from 'react-redux-form';
 
-import { posts } from './Posts';
-import { maps } from './GMaps';
+import { posts } from './postsReducer';
+import { maps } from './gMapsReducer';
 // import comments from './comments';
 
 

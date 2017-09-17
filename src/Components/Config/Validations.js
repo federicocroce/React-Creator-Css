@@ -4,14 +4,7 @@ const required = params => value => value ? undefined : 'Ingrese ' + params;
 
 const number = params => value => value && isNaN(Number(value)) ? params + ' solo puede ser numérica' : undefined;
 
-const minValue = (min, label) => value =>
-    value && value < min ? label : undefined
-
-const minValue18 = minValue(18);
-
-const test = params => console.log(params);
-
-
+const minValue = (min, label) => value => value && value < min ? label : undefined;
 
 const formatValidateArray = (validate) => {
     if (!validate) return;

@@ -1,15 +1,6 @@
 import React from 'react';
 import { Route, NavLink, Switch } from 'react-router-dom';
-import { store } from '../Config/Store';
-import { connect } from "react-redux";
 
-import {
-    push,
-    replace,
-    go,
-    goBack,
-    goForward,
-} from 'react-router-redux';
 // import AppBar from 'material-ui/AppBar';
 
 // import PhotoGrid from './PhotoGrid'
