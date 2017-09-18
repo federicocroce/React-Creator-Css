@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { reduxForm, Field } from 'redux-form' // imported Field
-import { validations } from '../../Config/Validations';
+import fieldValidation from '../../Config/Validations';
 
 import { withRouter } from 'react-router-dom';
 
@@ -19,9 +19,9 @@ const PostDetailsReduxForm = props => {
   }
 
 
-  const submit = (values, dispatch) => {
+  const submit = (values) => {
     let payload = { values }
-    isNewUpadtePost() ? createPost(values, dispatch) : updatePost(values, Object.keys(currentPost)[0]); // Mapeo de objecto desde firebase
+    isNewUpadtePost() ? createPost(values) : updatePost(values, Object.keys(currentPost)[0]); // Mapeo de objecto desde firebase
   }
 
   const remove = () => {
@@ -106,7 +106,7 @@ const PostDetailsReduxForm = props => {
       <div>
         <React.components.InputText name="name" style="inline" placeholderFloating="Escriba su nombre" customPlaceholder="ej: Federico Croce" type="text" />
 
-        <React.components.InputText name="age" style="inline" placeholderFloating="Escriba su edad" customPlaceholder="ej: 28" type="text" validate={validations.age} />
+        <React.components.InputText name="age" style="inline" placeholderFloating="Escriba su edad" customPlaceholder="ej: 28" type="text" validate={React.config.fieldValidations.validations.age} />
       </div>
 
 

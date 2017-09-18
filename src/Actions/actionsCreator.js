@@ -23,7 +23,7 @@ const fetchPosts = (dispatch) => {
     });
 }
 
-const createPost = (post, dispatch) => {
+const createPost = post => {
     // return dbRefPosts.child("newPost").set(post);   CAMBIO DE NOMBRE DEL POST A PUSHEAR
     return dbRefPosts.push().set(post);
 }

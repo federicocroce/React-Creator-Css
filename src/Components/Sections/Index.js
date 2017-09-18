@@ -5,7 +5,7 @@ import { ConnectedRouter } from "react-router-redux";
 import { Switch, Route, NavLink } from 'react-router-dom';
 
 // import { store, history } from '../../Config/Store.js';
-import { mainLinksRoutes as linksRoutes } from '../../Config/AppRoutes.js'
+// import { mainLinksRoutes as linksRoutes } from '../../Config/AppRoutes.js'
 
 
 const Index = () => {
@@ -19,7 +19,7 @@ const Index = () => {
           </h1>
           <div className="nav-bar-container">
             <Switch>
-              <React.components.NavigationBar linksRoutes={linksRoutes} />
+              <React.components.NavigationBar linksRoutes={React.config.linksRoutes.mainLinksRoutes} />
             </Switch>
           </div>
 

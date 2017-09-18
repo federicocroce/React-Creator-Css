@@ -1,46 +1,152 @@
-import PostsGrid from '../Components/Sections/PostsGrid';
-import Home from '../Components/Sections/Home';
-import PostDetails from '../Components/Sections/PostDetails'
+import React from 'react';
+
+const LinksRoutes = {};
+
+const setLinks = () => {
+   LinksRoutes.mainLinksRoutes = [
+    {
+      path: "/",
+      component: React.components.Home,
+      name: "",
+      exact: true,
+      show: false
+    },
+    {
+      path: "/main",
+      component: React.components.PostsGrid,
+      name: "Todos"
+    },
+    {
+      path: "/sale",
+      component: React.components.PostsGrid,
+      name: "Ventas"
+    },
+    {
+      path: "/rent",
+      component: React.components.PostsGrid,
+      name: "Alquileres"
+    },
+    ,
+    {
+      path: "/new",
+      component: React.components.PostDetails,
+      name: "Nuevo"
+    },
+    {
+      path: "/view",
+      component: React.components.PostDetails,
+      name: "",
+      show: false
+    },
+    {
+      path: "/test",
+      component: React.components.Test,
+      name: "Test",
+    }
+  ];
+
+  return LinksRoutes;
+}
+
+export default setLinks;
+
+/*const functionName = props => {  
+
+  LinksRoutes.mainLinksRoutes = [
+    {
+      path: "/",
+      component: React.components.Home,
+      name: "",
+      exact: true,
+      show: false
+    },
+    {
+      path: "/main",
+      component: React.components.PostsGrid,
+      name: "Todos"
+    },
+    {
+      path: "/sale",
+      component: React.components.PostsGrid,
+      name: "Ventas"
+    },
+    {
+      path: "/rent",
+      component: React.components.PostsGrid,
+      name: "Alquileres"
+    },
+    ,
+    {
+      path: "/new",
+      component: React.components.PostDetails,
+      name: "Nuevo"
+    },
+    {
+      path: "/view",
+      component: React.components.PostDetails,
+      name: "",
+      show: false
+    },
+    {
+      path: "/test",
+      component: React.components.Test,
+      name: "",
+    }
+  ];
+
+  return (
+    <div>
+      <h1>title</h1>
+    </div>
+  );
+}*/
 
 
+// setTimeout(function () {
+//   console.log("Routes");
+//   LinksRoutes.mainLinksRoutes = [
+//     {
+//       path: "/",
+//       component: React.components.Home,
+//       name: "",
+//       exact: true,
+//       show: false
+//     },
+//     {
+//       path: "/main",
+//       component: React.components.PostsGrid,
+//       name: "Todos"
+//     },
+//     {
+//       path: "/sale",
+//       component: React.components.PostsGrid,
+//       name: "Ventas"
+//     },
+//     {
+//       path: "/rent",
+//       component: React.components.PostsGrid,
+//       name: "Alquileres"
+//     },
+//     ,
+//     {
+//       path: "/new",
+//       component: React.components.PostDetails,
+//       name: "Nuevo"
+//     },
+//     {
+//       path: "/view",
+//       component: React.components.PostDetails,
+//       name: "",
+//       show: false
+//     },
+//     {
+//       path: "/test",
+//       component: React.components.Test,
+//       name: "",
+//     }
+//   ];
+// }, 0);
 
-
-const mainLinksRoutes = [
-  {
-    path: "/",
-    component: Home,
-    name: "",
-    exact: true,
-    show:false
-  },
-  {
-    path: "/main",
-    component: PostsGrid,
-    name: "Todos"
-  },
-  {
-    path: "/sale",
-    component: PostsGrid,
-    name: "Ventas"
-  },
-  {
-    path: "/rent",
-    component: PostsGrid,
-    name: "Alquileres"
-  },
-  ,
-  {
-    path: "/new",
-    component: PostDetails,
-    name: "Nuevo"
-  },
-  {
-    path: "/view",
-    component: PostDetails,
-    name: "",
-    show:false
-  }
-];
 
 // const tabLinksRoutes = [
 //   // {
@@ -64,7 +170,4 @@ const mainLinksRoutes = [
 // ];
 
 
-export {
-    mainLinksRoutes
-    // tabLinksRoutes
-}
+

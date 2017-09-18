@@ -21,7 +21,6 @@ class postsGrid extends React.Component {
       this.props.fetchPosts();
   }
 
-
   render() {
 
     console.log("Grid");
@@ -37,7 +36,6 @@ class postsGrid extends React.Component {
 
         </div>
         <React.components.Button className="primary-button" label="VOLVER" back />
-        <React.components.Button className="primary-button" label="Eliminar" />
       </div>
 
     );
@@ -85,14 +83,6 @@ const mapDispatchToProps = dispatch => {
   };
 }
 
-/*
-* Dispatch de las acciones
-*/
-
-/*
-* Acá se conecta el componente con redux
-*/
-// const { connect } = ReactRedux;
 export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps

@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery-lite';
+import _ from "lodash";
 // import Home from '../Components/Sections/Home';
 
 //////////////  COMPONENTS //////////////////
@@ -19,14 +20,17 @@ import Home from '../Components/Sections/Home';
 import Post from '../Components/Sections/Post';
 import PostDetails from '../Components/Sections/PostDetails';
 import PostsGrid from '../Components/Sections/PostsGrid';
+import Test from '../Components/Sections/Test';
 ///////////////////////////////////////////////////////////////
 
 //////////////// CONFIG /////////////////////
-import storeHistory from '../Config/Store.js';
+import storeHistory from './Store.js';
+import fieldValidations from './Validations';
+import linksRoutes from './appRoutes';
 
 
 
-
+console.log("Frame");
 
 
 const frameworkConfig = props => {
@@ -39,7 +43,7 @@ const frameworkConfig = props => {
     });
 
     //////////////  FUNCTIONS //////////////////
-    React.functions.isEmpty = (element) => $.isEmptyObject(element) ? true : false;
+    React.functions.isUndefinedOrNullOrEmpty = (element) => _.isEmpty(element) || element == null || element == undefined  ? true : false;
     ///////////////////////////////////////////
 
 
@@ -61,10 +65,15 @@ const frameworkConfig = props => {
     React.components.Post = Post;
     React.components.PostDetails = PostDetails;
     React.components.PostsGrid = PostsGrid;
+    React.components.Test = Test;
     ///////////////////////////////////////////
 
     ///////// CONFIG //////////////////
     React.config.storeHistory = storeHistory;
+    React.config.fieldValidations = fieldValidations;
+    React.config.linksRoutes = linksRoutes();
+
+    console.log(React);
 
 }
 
