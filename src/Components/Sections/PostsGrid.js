@@ -6,7 +6,9 @@ import { fetchPosts } from '../../Actions/actionsCreator';
 import _ from 'lodash';
 import { withRouter } from 'react-router-dom'
 
-// import { history } from '../Config/Store';
+
+import Button from '../Utilities/Button';
+import Spinner from '../Utilities/Spinner';
 
 
 
@@ -17,35 +19,32 @@ class postsGrid extends React.Component {
   }
 
   componentDidMount() {
-    if(this.props.posts.postList.length == 0)
-    this.props.fetchPosts();
+    if (this.props.posts.postList.length == 0)
+      this.props.fetchPosts();
   }
- 
+
 
   render() {
-    const back = props => {
-      this.props.history.goBack();
-    }
+
     console.log("Grid");
     let props = this.props;
+
     const posts = props.posts.postList;
     return (
-      <div className="posts-container">
+      <div>
+        <div className="posts-container">
 
+          {posts.length > 0 ? posts.map((post, index) => { return <Post key={index} index={index} object={post} /> }
+          ) : <Spinner/>}
 
-        {posts ? posts.map((post, index) => {
-          return <Post key={index} index={index} object={post} />
-        }
-        ) : null}
-
-        <button onClick={() => back(props)}> VOLVER </button>
-
+        </div>
+        <Button className="primary-button" label="VOLVER" back />
       </div>
+
     );
   }
 
 }
-
 
 const getFilterPosts = (posts, path) => {
   const filter = (value, posts) => posts.filter(post => post[Object.keys(post)[0]].operationsTypes == value);

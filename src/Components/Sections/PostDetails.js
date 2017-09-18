@@ -42,8 +42,7 @@ const PostDetailsReduxForm = props => {
   }
 
   const back = () => {
-    props.clearPost();
-    history.goBack();    
+    props.clearPost(); 
   }
 
   const setText = props => {
@@ -126,7 +125,7 @@ const PostDetailsReduxForm = props => {
 
       <Button type="submit" className="primary-button" label="SUBMIT" />
 
-      <Button className="primary-button" label="VOLVER" onClick={() => back()} />
+      <Button className="primary-button" label="VOLVER" onClick={() => back(props)} back />
       <Button className="primary-button" label=" Set Text" onClick={() => setText(props)} />
       <Button className="primary-button" label="Eliminar" onClick={() => remove(props)} />
 
