@@ -1,9 +1,6 @@
-import React from 'react';
-
-import PostsGrid from '../Sections/PostsGrid';
-import Home from '../Sections/Home';
-import NewPost from '../Sections/NewPost';
-import PostDetails from '../Sections/PostDetails'
+import PostsGrid from '../Components/Sections/PostsGrid';
+import Home from '../Components/Sections/Home';
+import PostDetails from '../Components/Sections/PostDetails'
 
 
 

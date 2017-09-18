@@ -5,13 +5,14 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import logger from 'redux-logger';
 // import thunk from 'redux-thunk'
 
+const storeHistory = {};
 
-import reducer from "../../Reducers/indexReducer";
+import reducer from "../Reducers/indexReducer";
 
-const history = createHistory();
-const middleware = routerMiddleware(history);
+storeHistory.history = createHistory();
+const middleware = routerMiddleware(storeHistory.history);
 
-const store = createStore(
+storeHistory.store = createStore(
     reducer,
     composeWithDevTools(
         applyMiddleware(
@@ -21,10 +22,7 @@ const store = createStore(
     )
 )
 
-export {
-    store,
-    history
-}
+export default storeHistory;
 
 
 

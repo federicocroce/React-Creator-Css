@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Index from './Components/Sections/Index';
-
+import frameworkConfig from './Config/frameworkConfig';
 import './Styles/Main/index.css';
 
+frameworkConfig();
+
 ReactDOM.render(
-  <Index />,
+  <React.components.Index />,
   document.getElementById('root')
 );

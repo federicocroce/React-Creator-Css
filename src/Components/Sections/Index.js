@@ -1,26 +1,25 @@
 import React from 'react';
+
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "react-router-redux";
 import { Switch, Route, NavLink } from 'react-router-dom';
 
-import { store, history } from '../Config/Store.js';
-import { mainLinksRoutes as linksRoutes } from '../Config/AppRoutes.js'
-import NavigationBar from '../Utilities/NavigationBar';
+// import { store, history } from '../../Config/Store.js';
+import { mainLinksRoutes as linksRoutes } from '../../Config/AppRoutes.js'
 
-import Home from './Home';
 
 const Index = () => {
+
   return (
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
+    <Provider store={React.config.storeHistory.store}>
+      <ConnectedRouter history={React.config.storeHistory.history}>
         <div>
-          {/* <Route exact path="/" component={Home}/> */}
           <h1>
             <NavLink className='title-home' to="/">Venta/Alquier Inmuebles</NavLink>
           </h1>
           <div className="nav-bar-container">
             <Switch>
-              <NavigationBar linksRoutes={linksRoutes} />
+              <React.components.NavigationBar linksRoutes={linksRoutes} />
             </Switch>
           </div>
 

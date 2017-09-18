@@ -1,25 +1,14 @@
-import React, { Component } from 'react';
-import { store, history } from '../Config/Store';
+import React from 'react';
 import { connect } from "react-redux";
 import { reduxForm, Field } from 'redux-form' // imported Field
-import ImagesUploader from 'react-images-uploader';
-import 'react-images-uploader/styles.css';
-import 'react-images-uploader/font.css';
-import { validations } from '../Config/Validations';
+import { validations } from '../../Config/Validations';
 
 import { withRouter } from 'react-router-dom';
 
 
 import { clearPost, fetchTexo, createPost, updatePost, removePost } from '../../Actions/actionsCreator';
-import InputText from '../Utilities/InputText';
-import FileUpload from '../Utilities/UploadImg';
-import SwitchesGroup from '../Utilities/SwitchesGroup';
-import Button from '../Utilities/Button';
-import GMaps from '../Utilities/GMaps/GMaps';
-
 
 const PostDetailsReduxForm = props => {
-
 
   const currentPost = props.state.posts.currentPost;
 
@@ -104,32 +93,32 @@ const PostDetailsReduxForm = props => {
 
       {props.state.posts.text ? <h1>{props.state.posts.text}</h1> : null}
 
-      {isNewUpadtePost() ? <FileUpload multiple={true}
+      {isNewUpadtePost() ? <React.components.UploadImg multiple={true}
         name='example-upload'
         maxSize={300000}
         onUpload={uploadFileToServer}
         label='Upload Files' /> : null}
 
-      <SwitchesGroup switchesProps={radioButtonsProps} />
+      <React.components.SwitchesGroup switchesProps={radioButtonsProps} />
 
-      <SwitchesGroup switchesProps={checkboxProps} />
+      <React.components.SwitchesGroup switchesProps={checkboxProps} />
 
       <div>
-        <InputText name="name" style="inline" placeholderFloating="Escriba su nombre" customPlaceholder="ej: Federico Croce" type="text" />
+        <React.components.InputText name="name" style="inline" placeholderFloating="Escriba su nombre" customPlaceholder="ej: Federico Croce" type="text" />
 
-        <InputText name="age" style="inline" placeholderFloating="Escriba su edad" customPlaceholder="ej: 28" type="text" validate={validations.age} />
+        <React.components.InputText name="age" style="inline" placeholderFloating="Escriba su edad" customPlaceholder="ej: 28" type="text" validate={validations.age} />
       </div>
 
 
 
 
-      <Button type="submit" className="primary-button" label="SUBMIT" />
+      <React.components.Button type="submit" className="primary-button" label="SUBMIT" />
 
-      <Button className="primary-button" label="VOLVER" onClick={() => back(props)} back />
-      <Button className="primary-button" label=" Set Text" onClick={() => setText(props)} />
-      <Button className="primary-button" label="Eliminar" onClick={() => remove(props)} />
+      <React.components.Button className="primary-button" label="VOLVER" onClick={() => back(props)} back />
+      <React.components.Button className="primary-button" label=" Set Text" onClick={() => setText(props)} />
+      <React.components.Button className="primary-button" label="Eliminar" onClick={() => remove(props)} />
 
-      <GMaps searchBox={true} currentLocation={true} keyValuePlace={true} />
+      <React.components.GMaps searchBox={true} currentLocation={true} keyValuePlace={true} />
 
     </form>
   );

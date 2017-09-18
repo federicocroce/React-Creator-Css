@@ -1,5 +1,4 @@
 import React from 'react';
-import { history } from '../Config/Store';
 
 const Button = (props) => {
 
@@ -7,7 +6,7 @@ const Button = (props) => {
         if (props.onClick) {
             props.onClick();
         }
-        history.goBack();
+        React.config.storeHistory.history.goBack();
     }
 
     const click = () => {

@@ -6,8 +6,6 @@ import { fetchPosts } from '../../Actions/actionsCreator';
 import _ from 'lodash';
 import { withRouter } from 'react-router-dom'
 
-
-import Button from '../Utilities/Button';
 import Spinner from '../Utilities/Spinner';
 
 
@@ -38,7 +36,8 @@ class postsGrid extends React.Component {
           ) : <Spinner/>}
 
         </div>
-        <Button className="primary-button" label="VOLVER" back />
+        <React.components.Button className="primary-button" label="VOLVER" back />
+        <React.components.Button className="primary-button" label="Eliminar" />
       </div>
 
     );

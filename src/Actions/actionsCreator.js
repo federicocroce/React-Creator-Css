@@ -1,4 +1,4 @@
-import firebaseApp from '../Components/Config/Firebase';
+import firebaseApp from '../Config/Firebase';
 import * as firebase from 'firebase';
 
 const dbRefText = firebase.database().ref('/').child('texto');
