@@ -22,7 +22,7 @@ const NavigationBar = props => {
 
     const generateRutes = (linksRoutes, data) => {
         return linksRoutes.map((route, index) => {
-            return <Route path={linksRoutes[index].path} key={index} component={linksRoutes[index].component} data={data}></Route>
+            return <Route exact={linksRoutes[index].exact} path={linksRoutes[index].path} key={index} component={linksRoutes[index].component} data={data}></Route>
         })
     };
 

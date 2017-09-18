@@ -1,9 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { mainLinksRoutes as linksRoutes } from '../Config/AppRoutes.js'
-import NavigationBar from '../Utilities/NavigationBar';
-
 class Home extends React.Component {
 
   render() {
@@ -11,11 +8,8 @@ class Home extends React.Component {
     return (
       <div>
         <h1>
-          <Link className='title-home' to="/">Venta/Alquier Inmuebles</Link>
+          Esta es la HOME
         </h1>
-        <div className="nav-bar-container">
-          <NavigationBar linksRoutes={linksRoutes} />
-        </div>
       </div>
     );
   }

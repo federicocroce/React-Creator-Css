@@ -9,13 +9,13 @@ import PostDetails from '../Sections/PostDetails'
 
 
 const mainLinksRoutes = [
-  // {
-  //   path: "/",
-  //   component: Home,
-  //   name: "",
-  //   exact: true,
-  //   show:false
-  // },
+  {
+    path: "/",
+    component: Home,
+    name: "",
+    exact: true,
+    show:false
+  },
   {
     path: "/main",
     component: PostsGrid,

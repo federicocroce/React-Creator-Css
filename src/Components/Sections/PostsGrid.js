@@ -12,23 +12,14 @@ import { withRouter } from 'react-router-dom'
 
 class postsGrid extends React.Component {
 
-  // const postsGrid = (props) => {
-
   constructor(props) {
     super(props);
   }
 
-  // const title = "Ventas";
-
   componentDidMount() {
+    if(this.props.posts.postList.length == 0)
     this.props.fetchPosts();
   }
-
-  componentDidUpdate(prevProps, prevState) {
-    // setCurrentPosition(gMapsElements.map, gMapsElements.markers, gMapsElements.infoWindow);
-    let a = {};
-  }
-
  
 
   render() {
@@ -43,55 +34,11 @@ class postsGrid extends React.Component {
 
 
         {posts ? posts.map((post, index) => {
-          {/* const currentPost = posts[object]; */ }
-          {/* let post = {
-            [object]: props.posts.postList[object]
-          } */}
           return <Post key={index} index={index} object={post} />
-          {/* 
-          return Object.keys(posts[object]).map((value, index) => {
-            return <Post key={index} index={index} object={posts[object]} />
-          }
-          ) */}
         }
         ) : null}
 
         <button onClick={() => back(props)}> VOLVER </button>
-
-
-        {/* Mapeo de objectos desde firbase */}
-        {/* {Object.keys(posts).map((object, index) => {
-          const currentPost =  posts[object]; // No va
-          let post = {
-            [object]: props.posts.postList[object]
-          }
-          return <Post key={index} index={index} object={post} />
-          return Object.keys(posts[object]).map((value, index) => {// No va
-            return <Post key={index} index={index} object={posts[object]} />// No va
-          }// No va
-          )// No va
-        }
-        )} */}
-
-
-        {/*{Object.keys(props.firebasePosts).map((object, index) => {
-          return Object.keys(props.firebasePosts[object]).map((value, index) => {
-            return <p key={index}> {props.firebasePosts[object][value]}</p>
-          }
-          )
-        }*/}
-
-
-        {/*{Object.keys(props.posts.postList).map((object, index) => {
-          let post = {
-            [object]: props.posts.postList[object]
-          }
-          return <Post key={index} index={index} object={post} />
-        }
-        )}*/}
-
-        {/*<button onClick={() => props.filterPosts(props.state.posts.allPosts, "SELL_POSTS")}> Ventas</button>
-      <button onClick={() => props.filterPosts(props.state.posts.allPosts, "RENT_POSTS")}> Alquileres</button>*/}
 
       </div>
     );

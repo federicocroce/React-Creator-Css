@@ -36,13 +36,14 @@ const PostDetailsReduxForm = props => {
   }
 
   const remove = () => {
-    back(props);
+    back();
     removePost(Object.keys(currentPost)[0]); // Mapeo de objecto
 
   }
 
-  const back = props => {
-    history.goBack();
+  const back = () => {
+    props.clearPost();
+    history.goBack();    
   }
 
   const setText = props => {
@@ -125,7 +126,7 @@ const PostDetailsReduxForm = props => {
 
       <Button type="submit" className="primary-button" label="SUBMIT" />
 
-      <Button className="primary-button" label="VOLVER" onClick={() => back(props)} />
+      <Button className="primary-button" label="VOLVER" onClick={() => back()} />
       <Button className="primary-button" label=" Set Text" onClick={() => setText(props)} />
       <Button className="primary-button" label="Eliminar" onClick={() => remove(props)} />
 
