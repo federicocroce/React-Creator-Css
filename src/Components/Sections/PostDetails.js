@@ -6,8 +6,6 @@ import fieldValidation from '../../Config/Validations';
 import { withRouter } from 'react-router-dom';
 
 
-import { clearPost, fetchTexo, createPost, updatePost, removePost } from '../../Actions/actionsCreator';
-
 const PostDetailsReduxForm = props => {
 
   const currentPost = props.state.posts.currentPost;
@@ -21,12 +19,12 @@ const PostDetailsReduxForm = props => {
 
   const submit = (values) => {
     let payload = { values }
-    isNewUpadtePost() ? createPost(values) : updatePost(values, Object.keys(currentPost)[0]); // Mapeo de objecto desde firebase
+    isNewUpadtePost() ? React.actions.actionsPost.createPost(values) : React.actions.actionsPost.updatePost(values, Object.keys(currentPost)[0]); // Mapeo de objecto desde firebase
   }
 
   const remove = () => {
     back();
-    removePost(Object.keys(currentPost)[0]); // Mapeo de objecto
+    React.actions.actionsPost.removePost(Object.keys(currentPost)[0]); // Mapeo de objecto
 
   }
 
@@ -109,9 +107,6 @@ const PostDetailsReduxForm = props => {
         <React.components.InputText name="age" style="inline" placeholderFloating="Escriba su edad" customPlaceholder="ej: 28" type="text" validate={React.config.fieldValidations.validations.age} />
       </div>
 
-
-
-
       <React.components.Button type="submit" className="primary-button" label="SUBMIT" />
 
       <React.components.Button className="primary-button" label="VOLVER" onClick={() => back(props)} back />
@@ -142,10 +137,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     clearPost() {
-      dispatch(clearPost());
+      dispatch(React.actions.actionsPost.clearPost());
     },
     fetchTexo() {
-      fetchTexo(dispatch)
+      React.actions.actionsPost.fetchTexo(dispatch)
     }
   };
 }

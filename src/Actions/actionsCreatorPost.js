@@ -1,6 +1,8 @@
 import firebaseApp from '../Config/Firebase';
 import * as firebase from 'firebase';
 
+const actionsPost = {}
+
 const dbRefText = firebase.database().ref('/').child('texto');
 const dbRefPosts = firebase.database().ref().child('Posts');
 
@@ -14,7 +16,7 @@ const snapshotToArray = snapshot => {
     return returnArr;
 };
 
-const fetchPosts = (dispatch) => {
+actionsPost.fetchPosts = (dispatch) => {
     dbRefPosts.on('value', snapshot => {
         dispatch({
             type: 'FETCH_POSTS',
@@ -23,23 +25,23 @@ const fetchPosts = (dispatch) => {
     });
 }
 
-const createPost = post => {
+actionsPost.createPost = post => {
     // return dbRefPosts.child("newPost").set(post);   CAMBIO DE NOMBRE DEL POST A PUSHEAR
     return dbRefPosts.push().set(post);
 }
 
-const removePost = (key) => {
+actionsPost.removePost = (key) => {
     // return dbRefPosts.child("newPost").set(post);   CAMBIO DE NOMBRE DEL POST A PUSHEAR
     return dbRefPosts.child(key).remove();
 }
 
-const updatePost = (post, key) => {
+actionsPost.updatePost = (post, key) => {
     // return dbRefPosts.child("newPost").set(post);   CAMBIO DE NOMBRE DEL POST A PUSHEAR
     return dbRefPosts.child(key).update(post);
 }
 
 
-const fetchTexo = (dispatch) => {
+actionsPost.fetchTexo = (dispatch) => {
     dbRefText.on('value', snapshot => {
         dispatch({
             type: 'FETCH_TEXTO',
@@ -57,14 +59,14 @@ const fetchTexo = (dispatch) => {
 
 // console.error(firebaseApp);
 
-export function increment(index) {
+actionsPost.increment = (index) => {
     return {
         type: 'INCREMENT_LIKES',
         index
     }
 }
 
-const viewPost = (currentPost) => {
+actionsPost.viewPost = (currentPost) => {
     return {
         type: 'VIEW_POST',
         currentPost
@@ -72,31 +74,26 @@ const viewPost = (currentPost) => {
 }
 
 
-const clearPost = () => {
+actionsPost.clearPost = () => {
     return {
         type: 'CLEAR_POST'
     }
 }
 
 
-const setCurrentPlace = (currentPlace) => {
+actionsPost.setCurrentPlace = (currentPlace) => {
     return {
         type: 'SET_LOCATION',
         currentPlace
     }
 }
 
-const initGMaps = (gMapsElements) => {
-    return {
-        type: 'INIT_GMAPS',
-        gMapsElements
-    }
-}
+
 
 
 ///////////////////////////////
 
-const filterPosts = (posts, action) => {
+actionsPost.filterPosts = (posts, action) => {
     return {
         type: action,
         posts
@@ -106,4 +103,4 @@ const filterPosts = (posts, action) => {
 
 
 
-export { viewPost, filterPosts, clearPost, setCurrentPlace, initGMaps, fetchTexo, fetchPosts, createPost, updatePost, removePost };
+export default actionsPost;

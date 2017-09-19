@@ -3,7 +3,7 @@
 import React from 'react';
 
 // import { setCurrentPlace } from '../../../Actions/actionsCreator';
-import { initGMaps } from '../../../Actions/actionsCreator';
+
 import KeyValue from '../KeyValue';
 import GMapsSearchBox from './GMapsSearchBox';
 
@@ -154,7 +154,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         initGMaps(gMapsElements) {
-            dispatch(initGMaps(gMapsElements));
+            dispatch(React.actions.actionsGMaps.initGMaps(gMapsElements));
         }
     };
 }

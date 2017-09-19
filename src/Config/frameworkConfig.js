@@ -27,6 +27,10 @@ import Test from '../Components/Sections/Test';
 import storeHistory from './Store.js';
 import fieldValidations from './Validations';
 import linksRoutes from './appRoutes';
+///////////////////////////////////////////
+
+//////////// ACTIONS ///////////////////////
+import actions from "../Actions/indexActions"
 
 
 
@@ -72,8 +76,12 @@ const frameworkConfig = props => {
     React.config.storeHistory = storeHistory;
     React.config.fieldValidations = fieldValidations;
     React.config.linksRoutes = linksRoutes();
+    ///////////////////////////////////////////////
 
-    console.log(React);
+    //////////// ACTIONS ////////////////////
+    React.actions = actions;
+    ///////////////////////////////////////////////
+    
 
 }
 

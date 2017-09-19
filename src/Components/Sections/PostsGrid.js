@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from "react-redux";
 import classnames from 'classnames';
 import Post from './Post';
-import { fetchPosts } from '../../Actions/actionsCreator';
 import _ from 'lodash';
 import { withRouter } from 'react-router-dom'
 
@@ -77,7 +76,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchPosts() {
-      fetchPosts(dispatch)
+      React.actions.actionsPost.fetchPosts(dispatch)
     }
 
   };

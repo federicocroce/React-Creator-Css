@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
-import { viewPost } from '../../Actions/actionsCreator';
+// import { viewPost } from '../../Actions/actionsCreator';
 import PostDetails from './PostDetails';
 import $ from 'jquery-lite'
 // import { store } from '../Config/Store';
@@ -67,7 +67,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     viewPost(currentPost, activePost) {
-      dispatch(viewPost(currentPost));
+      dispatch(React.actions.actionsPost.viewPost(currentPost));
     }
   };
 }

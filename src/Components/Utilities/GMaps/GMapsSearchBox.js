@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { initGMaps } from '../../../Actions/actionsCreator';
+// import { initGMaps } from '../../../Actions/actionsCreator';
 import InputText from "../InputText";
 
 // import KeyValue from '../KeyValue';
@@ -246,7 +246,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         initGMaps(place) {
-            dispatch(initGMaps(place));
+            dispatch(React.actions.actionsGMaps.initGMaps(place));
         }
     };
 }

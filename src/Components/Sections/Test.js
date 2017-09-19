@@ -3,71 +3,81 @@ import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { withRouter } from 'react-router-dom';
 
-const TestReduxForm = props => {
+class TestReduxForm extends React.Component {
 
-    const submit = values => {
-        console.log(values);
+    constructor(props) {
+        super(props);
     }
 
-    const radioButtonsProps = {
-        name: 'options',
-        style: 'inline',
-        type: 'radio',
-        options: [
-            {
-                value: 'option1',
-                label: 'Option 1'
-            },
-            {
-                value: 'option2',
-                label: 'Option 2'
-            },
-            {
-                value: 'option3',
-                label: 'Option 3'
-            }
-        ]
+    componentDidMount() {
+        this.props.fetchTest();
     }
 
-    const checkboxProps = {
-        name: 'options',
-        style: 'inline',
-        type: 'checkbox',
-        options: [
-            {
-                value: 'option1',
-                label: 'Option 1'
-            },
-            {
-                value: 'option2',
-                label: 'Option 2'
-            },
-            {
-                value: 'option3',
-                label: 'Option 3'
-            }
-        ]
+    render() {
+
+        const props = this.props;
+
+        const submit = values => {
+            React.actions.actionsTest.createTest(values);
+        }
+
+        const radioButtonsProps = {
+            name: 'radio',
+            style: 'inline',
+            type: 'radio',
+            options: [
+                {
+                    value: 'radio1',
+                    label: 'Radio 1'
+                },
+                {
+                    value: 'radio2',
+                    label: 'Radio 2'
+                },
+                {
+                    value: 'radio3',
+                    label: 'Radio 3'
+                }
+            ]
+        }
+
+        const checkboxProps = {
+            name: 'checkbox',
+            style: 'inline',
+            type: 'checkbox',
+            options: [
+                {
+                    value: 'checkbox1',
+                    label: 'Checkbox 1'
+                },
+                {
+                    value: 'checkbox2',
+                    label: 'Checkbox 2'
+                },
+                {
+                    value: 'checkbox3',
+                    label: 'Checkbox 3'
+                }
+            ]
+        }
+
+
+
+        return (
+            <form onSubmit={props.handleSubmit(submit.bind(this))}>
+                <h1>title</h1>
+
+                <React.components.InputText name='age' style='inline' placeholderFloating='mainPlaceholder' customPlaceholder='secondPlaceholder' type='text' validate={React.config.fieldValidations.validations.age} />
+
+                <React.components.SwitchesGroup switchesProps={radioButtonsProps} />
+
+                <React.components.SwitchesGroup switchesProps={checkboxProps} />
+
+                <React.components.Button type='submit' className='primary-button' label='SUBMIT' />
+                <React.components.Button className='primary-button' label='VOLVER' back />
+            </form>
+        );
     }
-
-    
-
-    return (
-        <form onSubmit={props.handleSubmit(submit.bind(this))}>
-            <h1>title</h1>
-
-            <React.components.InputText name='age' style='inline' placeholderFloating='mainPlaceholder' customPlaceholder='secondPlaceholder' type='text' validate={React.config.fieldValidations.validations.age} />
-
-
-            < React.components.SwitchesGroup switchesProps={radioButtonsProps} />
-
-
-
-            <React.components.SwitchesGroup switchesProps={checkboxProps} />
-
-            <React.components.Button type='submit' className='primary-button' label='SUBMIT' />
-            <React.components.Button className='primary-button' label='VOLVER' back />
-        </form>
-    );
 }
 
 TestReduxForm = reduxForm({
@@ -85,9 +95,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        clearPost() {
-        },
-        fetchTexo() {
+        fetchTest() {
+            React.actions.actionsTest.fetchTest(dispatch)
         }
     };
 }
