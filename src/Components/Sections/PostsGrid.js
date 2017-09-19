@@ -16,16 +16,17 @@ class postsGrid extends React.Component {
   }
 
   componentDidMount() {
+    this.props.clearPost();
     if (this.props.posts.postList.length == 0)
       this.props.fetchPosts();
   }
 
   render() {
 
-    console.log("Grid");
-    let props = this.props;
-
+    // console.log("Grid");
+    const props = this.props;  
     const posts = props.posts.postList;
+
     return (
       <div>
         <div className="posts-container">
@@ -77,7 +78,10 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchPosts() {
       React.actions.actionsPost.fetchPosts(dispatch)
-    }
+    },
+    clearPost() {
+      dispatch(React.actions.actionsPost.clearPost());
+    },
 
   };
 }

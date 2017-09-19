@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { reduxForm, Field } from 'redux-form' // imported Field
-import fieldValidation from '../../Config/Validations';
 
 import { withRouter } from 'react-router-dom';
 
@@ -10,15 +9,13 @@ const PostDetailsReduxForm = props => {
 
   const currentPost = props.state.posts.currentPost;
 
-  console.log(currentPost);
+  // console.log(currentPost);
 
   const isNewUpadtePost = () => {
-    return props.state.router.location.pathname == "/new" ? true : false;
+    return React.functions.isUndefinedOrNullOrEmpty(props.initialValues);
   }
 
-
   const submit = (values) => {
-    let payload = { values }
     isNewUpadtePost() ? React.actions.actionsPost.createPost(values) : React.actions.actionsPost.updatePost(values, Object.keys(currentPost)[0]); // Mapeo de objecto desde firebase
   }
 

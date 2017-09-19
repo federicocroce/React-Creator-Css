@@ -1,54 +1,27 @@
-import firebaseApp from '../Config/Firebase';
+// import firebaseApp from '../Config/Firebase';
+import React from "react";
 import * as firebase from 'firebase';
+
+// const r = React;
+
+// const firebaseApp = React.config.firebaseApp;
 
 const actionsPost = {}
 
 const dbRefText = firebase.database().ref('/').child('texto');
-const dbRefPosts = firebase.database().ref().child('Posts');
-
-const snapshotToArray = snapshot => {
-    let returnArr = [];
-
-    snapshot.forEach(childSnapshot => {
-        let item = { [childSnapshot.key] : childSnapshot.val()}
-        returnArr.push(item);
-    });
-    return returnArr;
-};
-
-actionsPost.fetchPosts = (dispatch) => {
-    dbRefPosts.on('value', snapshot => {
-        dispatch({
-            type: 'FETCH_POSTS',
-            payload: snapshotToArray(snapshot)
-        });
-    });
-}
-
-actionsPost.createPost = post => {
-    // return dbRefPosts.child("newPost").set(post);   CAMBIO DE NOMBRE DEL POST A PUSHEAR
-    return dbRefPosts.push().set(post);
-}
-
-actionsPost.removePost = (key) => {
-    // return dbRefPosts.child("newPost").set(post);   CAMBIO DE NOMBRE DEL POST A PUSHEAR
-    return dbRefPosts.child(key).remove();
-}
-
-actionsPost.updatePost = (post, key) => {
-    // return dbRefPosts.child("newPost").set(post);   CAMBIO DE NOMBRE DEL POST A PUSHEAR
-    return dbRefPosts.child(key).update(post);
-}
+const dbRefPosts = firebase.database().ref('/').child('Posts');
 
 
-actionsPost.fetchTexo = (dispatch) => {
-    dbRefText.on('value', snapshot => {
-        dispatch({
-            type: 'FETCH_TEXTO',
-            payload: snapshot.val()
-        });
-    });
-}
+actionsPost.fetchPosts = dispatch => React.config.firebaseApp.fetchObjects(dbRefPosts, dispatch, 'FETCH_POSTS'); 
+
+actionsPost.createPost = post =>  React.config.firebaseApp.create(dbRefPosts, post);
+
+actionsPost.removePost = (key) => React.config.firebaseApp.remove(dbRefPosts, key);
+
+actionsPost.updatePost = (post, key) => React.config.firebaseApp.update(dbRefPosts, post, key);
+
+
+actionsPost.fetchTexo = (dispatch) => React.config.firebaseApp.fetchObject(dbRefText, dispatch, 'FETCH_TEXTO'); 
 
 // const fetchTexo = (index) => {
 //     return {
@@ -100,7 +73,22 @@ actionsPost.filterPosts = (posts, action) => {
     }
 }
 
-
-
-
 export default actionsPost;
+
+
+
+
+"import React from 'react';",
+"import * as firebase from 'firebase';\n",
+
+"const dbRef${1:name} = firebase.database().ref('/').child('${1:name}');\n",
+
+"const actions = {};\n",
+
+"actions.fetch${1:name} = dispatch => React.config.firebaseApp.fetchObjects(dbRef${1:name}, dispatch, 'FETCH_${1:name}');",
+"actions.create${2:nameSingular} = post =>  React.config.firebaseApp.create(dbRef${1:name}, post);",
+"actions.remove${2:nameSingular} = (key) => React.config.firebaseApp.remove(dbRef${1:name}, key);",
+"actions.update${2:nameSingular} = (post, key) => React.config.firebaseApp.update(dbRef${1:name}, post, key);",
+"actions.fetchTexo = (dispatch) => React.config.firebaseApp.fetchObject(dbRefText, dispatch, '${3:action}');\n",
+
+"export default actions${1:name};"

@@ -24,9 +24,10 @@ import Test from '../Components/Sections/Test';
 ///////////////////////////////////////////////////////////////
 
 //////////////// CONFIG /////////////////////
-import storeHistory from './Store.js';
-import fieldValidations from './Validations';
+import storeHistory from './store.js';
+import fieldValidations from './validations';
 import linksRoutes from './appRoutes';
+import firebaseApp from './firebase';
 ///////////////////////////////////////////
 
 //////////// ACTIONS ///////////////////////
@@ -75,7 +76,9 @@ const frameworkConfig = props => {
     ///////// CONFIG //////////////////
     React.config.storeHistory = storeHistory;
     React.config.fieldValidations = fieldValidations;
-    React.config.linksRoutes = linksRoutes();
+    React.config.linksRoutes = linksRoutes();    
+    React.config.firebaseApp = firebaseApp;
+    console.log(React.config);
     ///////////////////////////////////////////////
 
     //////////// ACTIONS ////////////////////

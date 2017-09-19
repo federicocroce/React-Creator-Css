@@ -1,23 +1,14 @@
-import firebaseApp from '../Config/Firebase';
+import React from 'react';
 import * as firebase from 'firebase';
 
-const dbRef = firebase.database().ref('/Tests');
+const dbRefTests = firebase.database().ref('/').child('Tests');
 
-const actionsTest = {};
+const actions = {};
 
-actionsTest.fetchTest = (dispatch) => {
-    dbRef.on('value', snapshot => {
-        dispatch({
-            type: 'FETCH_TEST',
-            payload: snapshot
-        });
-    });
-}
+actions.fetchTest = dispatch => React.config.firebaseApp.fetchObjects(dbRefTests, dispatch, 'FETCH_TEST');
+actions.createTest = post =>  React.config.firebaseApp.create(dbRefTests, post);
+actions.removeTest = (key) => React.config.firebaseApp.remove(dbRefTests, key);
+actions.updateTest = (post, key) => React.config.firebaseApp.update(dbRefTests, post, key);
+// actions.fetchTexo = (dispatch) => React.config.firebaseApp.fetchObject(dbRefText, dispatch, 'FETCH_T');
 
-
-actionsTest.createTest = params => {
-    return dbRef.push().set(params);
-}
-
-
-export default actionsTest;
+export default actions;

@@ -138,7 +138,7 @@
 			"import { withRouter } from 'react-router-dom';\n",
 			"const ${1:functionName}ReduxForm = props => {\n",
 			"\tconst submit = values => {\n",
-			"\t\tconsole.log(values);",
+			"\t\tisNewUpadtePost() ? React.actions.actionsPost.createPost(values) : React.actions.actionsPost.updatePost(values, Object.keys(currentPost)[0]);;",
 			"\t}\n",
 			"\treturn (",
 			"\t\t<form onSubmit={props.handleSubmit(submit.bind(this))}>",
@@ -286,5 +286,28 @@
 			"<React.components.SwitchesGroup switchesProps={${1:radioButtonsProps}} />"
 		],
 		"description": "SRadio"
+	},
+	"SFirebaseABM": {
+		"prefix": "SFirebaseABM",
+		"body": [
+			"import React from 'react';",
+			"import * as firebase from 'firebase';\n",
+			"const dbRef${1:name} = firebase.database().ref('/').child('${1:name}');\n",
+			"const actions = {};\n",
+			"actions.fetch${2:nameSingular} = dispatch => React.config.firebaseApp.fetchObjects(dbRef${1:name}, dispatch, 'FETCH_${1:name}');",
+			"actions.create${2:nameSingular} = post =>  React.config.firebaseApp.create(dbRef${1:name}, post);",
+			"actions.remove${2:nameSingular} = (key) => React.config.firebaseApp.remove(dbRef${1:name}, key);",
+			"actions.update${2:nameSingular} = (post, key) => React.config.firebaseApp.update(dbRef${1:name}, post, key);",
+			"actions.fetchTexo = (dispatch) => React.config.firebaseApp.fetchObject(dbRefText, dispatch, '${3:action}');\n",
+			"export default actions;"
+		],
+		"description": "SFirebaseABM"
+	},
+	"SIsUndefinedOrNullOrEmpty": {
+		"prefix": "SIsUndefinedOrNullOrEmpty",
+		"body": [
+			"React.functions.isUndefinedOrNullOrEmpty(${1:props});"
+		],
+		"description": "SIsUndefinedOrNullOrEmpty"
 	}
 }
