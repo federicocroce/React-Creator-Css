@@ -33,9 +33,9 @@
       .nav-bar-container > div > ul li:hover a {
         color: #4f83cc; }
 
-.posts-container {
+.list-container {
   text-align: center; }
-  .posts-container > div {
+  .list-container > div {
     display: inline-block;
     width: 40%;
     min-width: 400px;
@@ -43,19 +43,19 @@
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
     border-radius: 2px;
     z-index: 1; }
-    .posts-container > div .post-content:hover {
+    .list-container > div .post-content:hover {
       cursor: pointer; }
-    .posts-container > div .post-content .post-image img {
+    .list-container > div .post-content .post-image img {
       vertical-align: top;
       max-width: 100%;
       min-width: 100%;
       width: 100%; }
-  .posts-container .active-post {
+  .list-container .active-post {
     width: 100%;
     margin: 0 auto;
     height: 1000px;
     padding: 20px; }
-    .posts-container .active-post .post-content .post-image img {
+    .list-container .active-post .post-content .post-image img {
       vertical-align: top;
       max-width: 30%;
       min-width: 15%;

@@ -16,9 +16,9 @@ class postsGrid extends React.Component {
   }
 
   componentDidMount() {
-    this.props.clearPost();
+    this.props.clear();
     if (this.props.posts.postList.length == 0)
-      this.props.fetchPosts();
+      this.props.fetchObjects();
   }
 
   render() {
@@ -29,11 +29,9 @@ class postsGrid extends React.Component {
 
     return (
       <div>
-        <div className="posts-container">
-
+        <div className="list-container">
           {posts.length > 0 ? posts.map((post, index) => { return <Post key={index} index={index} object={post} /> }
           ) : <Spinner/>}
-
         </div>
         <React.components.Button className="primary-button" label="VOLVER" back />
       </div>
@@ -76,11 +74,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchPosts() {
-      React.actions.actionsPost.fetchPosts(dispatch)
+    fetchObjects() {
+      React.actions.actionsPost.fetchObjects(dispatch)
     },
-    clearPost() {
-      dispatch(React.actions.actionsPost.clearPost());
+    clear() {
+      dispatch(React.actions.actionsPost.clear());
     },
 
   };

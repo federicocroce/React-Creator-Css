@@ -7,26 +7,21 @@ import { withRouter } from 'react-router-dom';
 
 const PostDetailsReduxForm = props => {
 
-  const currentPost = props.state.posts.currentPost;
+  const selected = props.state.posts.currentPost;
 
-  // console.log(currentPost);
+  // console.log(selected);
 
-  const isNewUpadtePost = () => {
-    return React.functions.isUndefinedOrNullOrEmpty(props.initialValues);
-  }
+  const isNewUpadte = () => React.functions.isUndefinedOrNullOrEmpty(props.initialValues);
 
   const submit = (values) => {
-    isNewUpadtePost() ? React.actions.actionsPost.createPost(values) : React.actions.actionsPost.updatePost(values, Object.keys(currentPost)[0]); // Mapeo de objecto desde firebase
+    isNewUpadte() ? React.actions.actionsPost.create(values) : React.actions.actionsPost.update(values, Object.keys(selected)[0]);
+    React.config.storeHistory.history.goBack();
   }
 
-  const remove = () => {
-    back();
-    React.actions.actionsPost.removePost(Object.keys(currentPost)[0]); // Mapeo de objecto
-
-  }
-
-  const back = () => {
-    props.clearPost(); 
+  const remove = () =>{
+    props.clear();
+    React.config.storeHistory.history.goBack();
+    React.actions.actionsPost.remove(Object.keys(selected)[0]);
   }
 
   const setText = props => {
@@ -88,7 +83,7 @@ const PostDetailsReduxForm = props => {
 
       {props.state.posts.text ? <h1>{props.state.posts.text}</h1> : null}
 
-      {isNewUpadtePost() ? <React.components.UploadImg multiple={true}
+      {isNewUpadte() ? <React.components.UploadImg multiple={true}
         name='example-upload'
         maxSize={300000}
         onUpload={uploadFileToServer}
@@ -106,9 +101,9 @@ const PostDetailsReduxForm = props => {
 
       <React.components.Button type="submit" className="primary-button" label="SUBMIT" />
 
-      <React.components.Button className="primary-button" label="VOLVER" onClick={() => back(props)} back />
+      <React.components.Button className="primary-button" label="VOLVER" onClick={() => props.clear()} back />
       <React.components.Button className="primary-button" label=" Set Text" onClick={() => setText(props)} />
-      <React.components.Button className="primary-button" label="Eliminar" onClick={() => remove(props)} />
+      <React.components.Button className="primary-button" label="Eliminar" onClick={() => remove(selected, props)} />
 
       <React.components.GMaps searchBox={true} currentLocation={true} keyValuePlace={true} />
 
@@ -123,21 +118,21 @@ PostDetailsReduxForm = reduxForm({
 
 
 const mapStateToProps = (state) => {
-  const currentPost = state.posts.currentPost[Object.keys(state.posts.currentPost)[0]];
+  const selected = state.posts.currentPost[Object.keys(state.posts.currentPost)[0]];
 
   return {
     state: state,
-    initialValues: currentPost,
+    initialValues: selected,
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    clearPost() {
-      dispatch(React.actions.actionsPost.clearPost());
+    clear() {
+      dispatch(React.actions.actionsPost.clear());
     },
     fetchTexo() {
-      React.actions.actionsPost.fetchTexo(dispatch)
+      React.actions.actionsPost.fetchObject(dispatch)
     }
   };
 }
@@ -150,3 +145,18 @@ PostDetailsReduxForm = withRouter(connect(
 
 
 export default PostDetailsReduxForm
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
