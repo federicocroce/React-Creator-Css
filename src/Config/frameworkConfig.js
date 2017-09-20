@@ -17,10 +17,10 @@ import UploadImg from '../Components/Utilities/UploadImg';
 
 import Index from '../Components/Sections/Index';
 import Home from '../Components/Sections/Home';
-import Post from '../Components/Sections/Post';
-import PostDetails from '../Components/Sections/PostDetails';
-import PostsGrid from '../Components/Sections/PostsGrid';
-import Test from '../Components/Sections/Test';
+import Card from '../Components/Sections/Card';
+import CardDetails from '../Components/Sections/CardDetails';
+import CardsGrid from '../Components/Sections/CardsGrid';
+import User from '../Components/Sections/User';
 ///////////////////////////////////////////////////////////////
 
 //////////////// CONFIG /////////////////////
@@ -67,10 +67,10 @@ const frameworkConfig = props => {
 
     React.components.Index = Index;
     React.components.Home = Home;
-    React.components.Post = Post;
-    React.components.PostDetails = PostDetails;
-    React.components.PostsGrid = PostsGrid;
-    React.components.Test = Test;
+    React.components.Card = Card;
+    React.components.CardDetails = CardDetails;
+    React.components.CardsGrid = CardsGrid;
+    React.components.User = User;
     ///////////////////////////////////////////
 
     ///////// CONFIG //////////////////

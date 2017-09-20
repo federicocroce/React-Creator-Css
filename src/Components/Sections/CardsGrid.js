@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import classnames from 'classnames';
-import Post from './Post';
+
 import _ from 'lodash';
 import { withRouter } from 'react-router-dom'
 
@@ -17,7 +17,7 @@ class postsGrid extends React.Component {
 
   componentDidMount() {
     this.props.clear();
-    if (this.props.posts.postList.length == 0)
+    if (React.functions.isUndefinedOrNullOrEmpty(this.props.posts.list))
       this.props.fetchObjects();
   }
 
@@ -25,12 +25,12 @@ class postsGrid extends React.Component {
 
     // console.log("Grid");
     const props = this.props;  
-    const posts = props.posts.postList;
+    const posts = props.posts.list;
 
     return (
       <div>
         <div className="list-container">
-          {posts.length > 0 ? posts.map((post, index) => { return <Post key={index} index={index} object={post} /> }
+          {posts.length > 0 ? posts.map((post, index) => { return <React.components.Card key={index} index={index} object={post} /> }
           ) : <Spinner/>}
         </div>
         <React.components.Button className="primary-button" label="VOLVER" back />
@@ -47,17 +47,17 @@ const getFilterPosts = (posts, path) => {
     case '/sale':
       return {
         title: "Ventas",
-        postList: filter("sale", posts)
+        list: filter("sale", posts)
       }
     case '/rent':
       return {
         title: "Alquileres",
-        postList: filter("rent", posts)
+        list: filter("rent", posts)
       }
     default:
       return {
         title: "Todos",
-        postList: posts
+        list: posts
       }
   }
 }

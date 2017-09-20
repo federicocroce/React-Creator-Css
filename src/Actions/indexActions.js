@@ -1,13 +1,11 @@
-import actionsTest from "./actionsCreatorTest";
 import actionsPost from "./actionsCreatorPost";
 import actionsGMaps from "./actionsCreatorGMaps";
-import actionsTest2 from "./actionsCreatorTest2";
+import actionsUser from "./actionsCreatorUser";
 
 const actions = {    
     actionsPost,
     actionsGMaps,
-    actionsTest,
-    actionsTest2
+    actionsUser
 }
 
 export default actions;

@@ -5,44 +5,13 @@ import { reducer as reduxFormReducer } from 'redux-form';
 
 import { posts } from './postsReducer';
 import { maps } from './gMapsReducer';
-// import comments from './comments';
+import { user } from './userReducer';
 
-
-// function currentPost(state = {}, action) {
-//     // console.error("El post cambio");
-//     // console.error(action);
-//     switch (action.type) {
-//         case 'VIEW_POST':
-//             // console.error(action);
-
-//             // return action.id;
-//             // console.error(store.getState());
-//             return state.currentPost = action.allPosts.find(product => product.id == action.post.id);
-
-//             break;
-//         default:
-//             return state
-//     }
-
-//     return state;
-// }
-
-// const initialUserState = {
-//     firstName: '',
-//     lastName: ''
-// };
-
-// const rootReducer = combineForms(allReducers);
-
-// const forms = combineForms({
-//     postDetails: initialUserState,
-// });
 
 const allReducers = {
-    // forms,
-    // postDetailsForm: initialUserState,
     posts,
     maps,
+    user,
     form:reduxFormReducer,
     router: routerReducer
 }

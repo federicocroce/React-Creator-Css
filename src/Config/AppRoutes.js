@@ -13,35 +13,35 @@ const setLinks = () => {
     },
     {
       path: "/main",
-      component: React.components.PostsGrid,
+      component: React.components.CardsGrid,
       name: "Todos"
     },
     {
       path: "/sale",
-      component: React.components.PostsGrid,
+      component: React.components.CardsGrid,
       name: "Ventas"
     },
     {
       path: "/rent",
-      component: React.components.PostsGrid,
+      component: React.components.CardsGrid,
       name: "Alquileres"
     },
     ,
     {
       path: "/new",
-      component: React.components.PostDetails,
+      component: React.components.CardDetails,
       name: "Nuevo"
     },
     {
       path: "/view",
-      component: React.components.PostDetails,
+      component: React.components.CardDetails,
       name: "",
       show: false
     },
     {
-      path: "/test",
-      component: React.components.Test,
-      name: "Test",
+      path: "/user",
+      component: React.components.User,
+      name: "Usuarios"
     }
   ];
 
@@ -63,7 +63,7 @@ export default setLinks;
     },
     {
       path: "/main",
-      component: React.components.PostsGrid,
+      component: React.components.CardsGrid,
       name: "Todos"
     },
     {

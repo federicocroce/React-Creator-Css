@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 
 const PostDetailsReduxForm = props => {
 
-  const selected = props.state.posts.currentPost;
+  const selected = props.state.posts.selected;
 
   // console.log(selected);
 
@@ -118,7 +118,7 @@ PostDetailsReduxForm = reduxForm({
 
 
 const mapStateToProps = (state) => {
-  const selected = state.posts.currentPost[Object.keys(state.posts.currentPost)[0]];
+  const selected = state.posts.selected[Object.keys(state.posts.selected)[0]];
 
   return {
     state: state,

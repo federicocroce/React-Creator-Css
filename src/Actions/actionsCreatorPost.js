@@ -39,10 +39,10 @@ actions.increment = (index) => {
     }
 }
 
-actions.viewPost = (currentPost) => {
+actions.viewPost = (selected) => {
     return {
         type: 'VIEW_POST',
-        currentPost
+        selected
     }
 }
 

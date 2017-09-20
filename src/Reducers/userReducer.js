@@ -2,7 +2,7 @@
 // import { store } from '../Store.js'
 // import { postsResponse } from "../Data/data";
 
-const postsData = {
+const data = {
     allPosts: [],
     selected: {},
     text: 'ALGO',
@@ -10,7 +10,7 @@ const postsData = {
 }
 
 
-const posts = (state = postsData, action) => {
+const user = (state = data, action) => {
     // console.error("ENTRA");
     switch (action.type) {
         case 'FETCH_POSTS':
@@ -38,4 +38,4 @@ const posts = (state = postsData, action) => {
     }
 }
 
-export { posts };
+export { user };
