@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, reset, getFormInitialValues } from 'redux-form';
 import { withRouter } from 'react-router-dom';
 
 const UserReduxForm = props => {
@@ -9,12 +9,30 @@ const UserReduxForm = props => {
 
     const isNewUpadte = () => React.functions.isUndefinedOrNullOrEmpty(props.initialValues);
 
-    const submit = values => isNewUpadte() ? React.actions.actionsUser.create(values) : React.actions.actionsUser.update(values, Object.keys(selected)[0]);
+    // const submit = values => isNewUpadte() ? React.actions.actionsUser.create(values) : React.actions.actionsUser.update(values, Object.keys(selected)[0]);
+
+    
+
+    const submit = (values) => {
+        if (isNewUpadte()) {
+            React.actions.actionsUser.create(values);
+        }
+        else {
+            React.actions.actionsUser.update(values, Object.keys(selected)[0]);
+        }
+        const {reset } = props;
+        // return createRecord(values).then(() => {
+          reset();
+          // do other success stuff
+        // });
+    }
+
+    
 
     const remove = () => {
-        props.clear();
-        React.config.storeHistory.history.goBack();
-        React.actions.actionsPost.remove(Object.keys(selected)[0]);
+        props.setSelected();
+        // React.config.storeHistory.history.goBack();
+        React.actions.actionsUser.remove(Object.keys(selected)[0]);
     }
 
     const sex = {
@@ -58,18 +76,23 @@ const UserReduxForm = props => {
     }
 
 
+    // const reset = () => {
+    //     props.reset();
+    // }
 
 
 
     return (
-        <form onSubmit={props.handleSubmit(submit.bind(this))}>
+        <form onSubmit={props.handleSubmit(submit.bind(this), props)}>
             <h1>Usuarios</h1>
             <React.components.InputText name='name' style='inline' placeholderFloating='Nombre' customPlaceholder='Ingrese su Nombre' type='text' validate={React.config.fieldValidations.validations.name} />
             <React.components.SwitchesGroup switchesProps={sex} />
             <React.components.SwitchesGroup switchesProps={optinos} />
+            <React.components.UsersList />
             <React.components.Button type='submit' className='primary-button' label='SUBMIT' />
             <React.components.Button className='primary-button' label='Eliminar' onClick={() => remove(selected, props)} />
-            <React.components.Button className='primary-button' label='VOLVER' onClick={() => props.clear()} back />
+            <React.components.Button className='primary-button' label='Reset' onClick={() => reset()} />
+            <React.components.Button className='primary-button' label='VOLVER' onClick={() => props.setSelected()} back />
         </form>
     );
 }
@@ -80,7 +103,7 @@ UserReduxForm = reduxForm({
 })(UserReduxForm)
 
 const mapStateToProps = (state) => {
-    const initialValues = state.user.selected;
+    const initialValues = state.user.selected[Object.keys(state.user.selected)[0]];
 
     return {
         state: state,
@@ -90,8 +113,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        clear() {
-            dispatch(React.actions.actionsUser.clear());
+        setSelected() {
+            dispatch(React.actions.actionsUser.setSelected({}));
         },
     };
 }

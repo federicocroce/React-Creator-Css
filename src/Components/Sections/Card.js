@@ -7,7 +7,7 @@ const Post = (props) => {
   var postClass = '';
   var showPost = true;
  
-  const selectedDetails = props.object[Object.keys(props.object)[0]]; // Mapeo de objecto desde firebase
+  const card = props.object[Object.keys(props.object)[0]]; // Mapeo de objecto desde firebase
 
   return (
  
@@ -19,8 +19,8 @@ const Post = (props) => {
             <img src={props.object.display_src} />
           </div>
 
-          <p>{selectedDetails.age}</p>
-          <p>{selectedDetails.name}</p>
+          <p>{card.age}</p>
+          <p>{card.name}</p>
 
 
         </NavLink>
@@ -31,23 +31,15 @@ const Post = (props) => {
 
 }
 
-const mapStateToProps = (state) => {
-  return {
-    selected: state.posts.selected,
-    activePost: ''
-  };
-}
-
-
 const mapDispatchToProps = dispatch => {
   return {
-    viewPost(selected, activePost) {
+    viewPost(selected) {
       dispatch(React.actions.actionsPost.viewPost(selected));
     }
   };
 }
 
 export default withRouter(connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(Post));
