@@ -4,6 +4,9 @@ import { reduxForm, Field, reset, getFormInitialValues } from 'redux-form';
 import { withRouter } from 'react-router-dom';
 
 const UserReduxForm = props => {
+    const {reset} = props;
+
+    // reset();
 
     const selected = props.state.user.selected
 
@@ -11,7 +14,7 @@ const UserReduxForm = props => {
 
     // const submit = values => isNewUpadte() ? React.actions.actionsUser.create(values) : React.actions.actionsUser.update(values, Object.keys(selected)[0]);
 
-    
+
 
     const submit = (values) => {
         if (isNewUpadte()) {
@@ -20,14 +23,14 @@ const UserReduxForm = props => {
         else {
             React.actions.actionsUser.update(values, Object.keys(selected)[0]);
         }
-        const {reset } = props;
+        // const {reset } = props;
         // return createRecord(values).then(() => {
           reset();
-          // do other success stuff
+        // do other success stuff
         // });
     }
 
-    
+
 
     const remove = () => {
         props.setSelected();

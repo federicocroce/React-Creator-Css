@@ -7,8 +7,13 @@ const UserDetail = props => {
 
     const user = props.object[Object.keys(props.object)[0]]; // Mapeo de objecto desde firebase
 
+    const onClick = () =>{
+        props.setSelected(props.object); 
+        props.resetForm();
+    }
+
     return (
-        <div onClick={() => {props.setSelected(props.object); props.resetForm();}}>
+        <div onClick={() => onClick()}>
             <h1>{user.name}</h1>
         </div>
     );
