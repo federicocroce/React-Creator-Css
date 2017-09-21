@@ -3,7 +3,7 @@
 // import { postsResponse } from "../Data/data";
 
 const data = {
-    allPosts: [],
+    list: [],
     selected: {},
     text: 'ALGO',
     firebasePosts: {}
@@ -13,17 +13,17 @@ const data = {
 const user = (state = data, action) => {
     // console.error("ENTRA");
     switch (action.type) {
-        case 'FETCH_POSTS':
+        case 'FETCH_USERS':
             return {
                 ...state,
-                allPosts : action.payload
+                list : action.payload
             };
         case 'FETCH_TEXTO':
             return {
                 ...state,
                 text: action.payload
             };
-        case 'VIEW_POST':
+        case 'SET_SELECTED':
             return {
                 ...state,
                 selected: action.selected
@@ -31,7 +31,7 @@ const user = (state = data, action) => {
         case 'CLEAR_POST':
             return {
                 ...state,
-                selected: ""
+                selected: {}
             };
         default:
             return state

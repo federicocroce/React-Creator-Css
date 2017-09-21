@@ -31,7 +31,7 @@ const posts = (state = postsData, action) => {
         case 'CLEAR_POST':
             return {
                 ...state,
-                selected: ""
+                selected: {}
             };
         default:
             return state
