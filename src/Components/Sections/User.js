@@ -4,33 +4,19 @@ import { reduxForm, Field, reset, getFormInitialValues } from 'redux-form';
 import { withRouter } from 'react-router-dom';
 
 const UserReduxForm = props => {
-    const {reset} = props;
+    const { reset } = props;
 
     // reset();
 
     const selected = props.state.user.selected
 
-    const isNewUpadte = () => React.functions.isUndefinedOrNullOrEmpty(props.initialValues);
-
-    // const submit = values => isNewUpadte() ? React.actions.actionsUser.create(values) : React.actions.actionsUser.update(values, Object.keys(selected)[0]);
+    const isNew = () => React.functions.isUndefinedOrNullOrEmpty(props.initialValues);
 
 
-
-    const submit = (values) => {
-        if (isNewUpadte()) {
-            React.actions.actionsUser.create(values);
-        }
-        else {
-            React.actions.actionsUser.update(values, Object.keys(selected)[0]);
-        }
-        // const {reset } = props;
-        // return createRecord(values).then(() => {
-          reset();
-        // do other success stuff
-        // });
+    const submit = values => {
+        isNew() ? React.actions.actionsUser.create(values) : React.actions.actionsUser.update(values, Object.keys(selected)[0]);
+        props.setSelected();
     }
-
-
 
     const remove = () => {
         props.setSelected();
@@ -94,7 +80,7 @@ const UserReduxForm = props => {
             <React.components.UsersList />
             <React.components.Button type='submit' className='primary-button' label='SUBMIT' />
             <React.components.Button className='primary-button' label='Eliminar' onClick={() => remove(selected, props)} />
-            <React.components.Button className='primary-button' label='Reset' onClick={() => reset()} />
+            <React.components.Button className='primary-button' label='Reset' onClick={() => props.setSelected()} />
             <React.components.Button className='primary-button' label='VOLVER' onClick={() => props.setSelected()} back />
         </form>
     );
@@ -102,15 +88,22 @@ const UserReduxForm = props => {
 
 
 UserReduxForm = reduxForm({
-    form: 'User'
-})(UserReduxForm)
+    form: 'User',
+    enableReinitialize: true,
+    // keepDirtyOnReinitialize: true
+
+})(UserReduxForm);
+
+
+
+
 
 const mapStateToProps = (state) => {
     const initialValues = state.user.selected[Object.keys(state.user.selected)[0]];
 
     return {
         state: state,
-        initialValues: initialValues,
+        initialValues: initialValues
     };
 }
 
