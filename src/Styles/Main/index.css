@@ -1,3 +1,8 @@
+.table {
+  display: table; }
+  .table > * {
+    display: table-cell; }
+
 * {
   margin: 0;
   padding: 0;
@@ -88,6 +93,16 @@
 
 form {
   padding: 20px; }
+
+.table {
+  display: table; }
+  .table > * {
+    display: table-cell; }
+
+.table {
+  display: table; }
+  .table > * {
+    display: table-cell; }
 
 .input-text-container {
   position: relative;

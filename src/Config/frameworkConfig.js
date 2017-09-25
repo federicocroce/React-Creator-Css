@@ -23,6 +23,10 @@ import CardsGrid from '../Components/Sections/CardsGrid';
 import User from '../Components/Sections/User';
 import UserDetail from '../Components/Sections/UserDetail';
 import UsersList from '../Components/Sections/UsersList';
+import UserSection from '../Components/Sections/Users/UserSection';
+import UserLoadData from '../Components/Sections/Users/UserLoadData';
+import List from '../Components/Sections/Users/List';
+import Item from '../Components/Sections/Users/Item';
 ///////////////////////////////////////////////////////////////
 
 //////////////// CONFIG /////////////////////
@@ -75,6 +79,10 @@ const frameworkConfig = props => {
     React.components.User = User;
     React.components.UserDetail = UserDetail;
     React.components.UsersList = UsersList;
+    React.components.UserLoadData = UserLoadData;
+    React.components.UserSection = UserSection;
+    React.components.List = List;
+    React.components.Item = Item;
     ///////////////////////////////////////////
 
     ///////// CONFIG //////////////////

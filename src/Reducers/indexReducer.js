@@ -5,12 +5,14 @@ import { reducer as reduxFormReducer } from 'redux-form';
 
 import { posts } from './postsReducer';
 import { maps } from './gMapsReducer';
-import { user } from './userReducer';
+// import { user } from './userReducer';
+import { user } from './usersReducer';
 
 
 const allReducers = {
     posts,
     maps,
+    // user,
     user,
     form:reduxFormReducer,
     router: routerReducer

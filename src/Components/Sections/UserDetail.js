@@ -5,7 +5,7 @@ import {reset} from 'redux-form';
 
 const UserDetail = props => {
 
-    const user = props.object[Object.keys(props.object)[0]]; // Mapeo de objecto desde firebase
+    const item = props.object[Object.keys(props.object)[0]]; // Mapeo de objecto desde firebase
 
     const onClick = () =>{
         props.setSelected(props.object); 
@@ -14,7 +14,7 @@ const UserDetail = props => {
 
     return (
         <div onClick={() => onClick()}>
-            <h1>{user.name}</h1>
+            <h1>{item.name}</h1>
         </div>
     );
 }

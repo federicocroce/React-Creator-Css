@@ -39,8 +39,8 @@ const setLinks = () => {
       show: false
     },
     {
-      path: "/user",
-      component: React.components.User,
+      path: "/users",
+      component: React.components.UserSection,
       name: "Usuarios"
     }
   ];
