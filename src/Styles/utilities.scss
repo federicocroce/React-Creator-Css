@@ -90,7 +90,7 @@
         }
     }
     &.input-error {
-       > div input:focus ~ label.floating{color: red !important}
+       > div input:focus ~ label.floating, div input:not(:placeholder-shown)~label.floating {color: red !important}
        input ~ hr {
             border-bottom: 2px solid red !important;
             transform: scaleX(1);
@@ -105,6 +105,7 @@ $input-box-size: 20px;
 $input-box-check-size: 20px;
 .switches-container {
     list-style-type: none;
+    margin: 20px 0;
     li {
         &.inline {
             display: inline-block;
@@ -194,7 +195,7 @@ $input-box-check-size: 20px;
             }
         }
         &:first-child input {
-            margin-left: 0;
+            // margin-left: 0;
         }
     }
 }
@@ -245,6 +246,8 @@ $input-box-check-size: 20px;
         color: $primary-color-text;
         padding: 10px 20px;
         border: none;
+        width: 100%;
+        text-transform: uppercase;
     }
     button {
         position: relative;

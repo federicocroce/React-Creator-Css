@@ -24,7 +24,7 @@ const UserLoadDataReduxForm = props => {
 
     const checkboxProps = {
         name: 'checkboxOptions',
-        style: 'inline',
+        style: '',
         type: 'checkbox',
         options: [
             {
@@ -72,11 +72,9 @@ const UserLoadDataReduxForm = props => {
             <React.components.InputText name='age' style='inline' placeholderFloating='Edad' customPlaceholder='28' type='text' validate={React.config.fieldValidations.validations.age} />
 
 
+            <React.components.SwitchesGroup switchesProps={gender} />
 
             <React.components.SwitchesGroup switchesProps={checkboxProps} />
-
-
-            <React.components.SwitchesGroup switchesProps={gender} />
 
             <React.components.Button type='submit' className='primary-button' label='SUBMIT' />
             <React.components.Button className='primary-button' label='Eliminar' onClick={() => remove(selected, props)} />

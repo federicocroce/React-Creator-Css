@@ -175,14 +175,15 @@ form {
       transform: scale(0);
       pointer-events: none;
       transition: opacity 2s cubic-bezier(0.23, 1, 0.32, 1) 0ms, transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0ms; }
-  .input-text-container.input-error > div input:focus ~ label.floating {
+  .input-text-container.input-error > div input:focus ~ label.floating, .input-text-container.input-error div input:not(:placeholder-shown) ~ label.floating {
     color: red !important; }
   .input-text-container.input-error input ~ hr {
     border-bottom: 2px solid red !important;
     transform: scaleX(1); }
 
 .switches-container {
-  list-style-type: none; }
+  list-style-type: none;
+  margin: 20px 0; }
   .switches-container li.inline {
     display: inline-block; }
   .switches-container li label {
@@ -249,8 +250,6 @@ form {
           left: 50%; }
       .switches-container li label input:active {
         transform: scale3d(0.4, 0.4, 0.4); }
-  .switches-container li:first-child input {
-    margin-left: 0; }
 
 @keyframes click-wave {
   0% {
@@ -290,7 +289,9 @@ form {
   background: #01579b;
   color: #ffffff;
   padding: 10px 20px;
-  border: none; }
+  border: none;
+  width: 100%;
+  text-transform: uppercase; }
 
 .button-container button {
   position: relative; }
@@ -511,3 +512,9 @@ form {
   -webkit-box-flex: 1;
   -ms-flex: 1;
   flex: 1; }
+
+.users .button-container {
+  width: 100%;
+  padding: 5px; }
+  .users .button-container button {
+    width: 100%; }

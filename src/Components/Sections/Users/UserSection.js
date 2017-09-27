@@ -21,7 +21,7 @@ class UserSection extends React.Component {
         const props = this.props;
 
         return (
-            <div className='table'>
+            <div className='table users'>
                 <React.components.UserLoadData />
                 <React.components.List list={props.user.list} className=''/>
             </div>
