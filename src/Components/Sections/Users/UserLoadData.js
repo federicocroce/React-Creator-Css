@@ -13,11 +13,13 @@ const UserLoadDataReduxForm = props => {
     const submit = values => {
         isNew() ? React.actions.actionsUsers.create(values) : React.actions.actionsUsers.update(values, Object.keys(selected)[0]);
         props.setSelected({});
+        reset();
     }
 
     const remove = () => {
-        props.setSelected();
         React.actions.actionsUsers.remove(Object.keys(selected)[0]);
+        props.setSelected({});
+        reset();
     }
 
     const checkboxProps = {
@@ -78,7 +80,7 @@ const UserLoadDataReduxForm = props => {
 
             <React.components.Button type='submit' className='primary-button' label='SUBMIT' />
             <React.components.Button className='primary-button' label='Eliminar' onClick={() => remove(selected, props)} />
-            <React.components.Button className='primary-button' label='Reset' onClick={() => props.setSelected({})} />
+            <React.components.Button className='primary-button' label='Reset' onClick={() => {props.setSelected({}); reset()}} />
             <React.components.Button className='primary-button' label='VOLVER' onClick={() => props.setSelected({})} back />
         </form>
     );
@@ -91,11 +93,14 @@ UserLoadDataReduxForm = reduxForm({
 })(UserLoadDataReduxForm)
 
 const mapStateToProps = (state) => {
-    const initialValues = state.user.selected[Object.keys(state.user.selected)[0]];
+    // const initialValues = {};
+
+    // if(!React.functions.isUndefinedOrNullOrEmpty(state.user.selected))
+    // const initialValues = state.user.selected[Object.keys(state.user.selected)[0]];
 
     return {
         state: state,
-        initialValues: initialValues,
+        initialValues: !React.functions.isUndefinedOrNullOrEmpty(state.user.selected) ? state.user.selected[Object.keys(state.user.selected)[0]] : {}
     };
 }
 
