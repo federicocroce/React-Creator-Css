@@ -175,7 +175,8 @@ form {
       transform: scale(0);
       pointer-events: none;
       transition: opacity 2s cubic-bezier(0.23, 1, 0.32, 1) 0ms, transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0ms; }
-  .input-text-container.input-error > div input:focus ~ label.floating, .input-text-container.input-error div input:not(:placeholder-shown) ~ label.floating {
+  .input-text-container.input-error > div input:focus ~ label.floating,
+  .input-text-container.input-error div input:not(:placeholder-shown) ~ label.floating {
     color: red !important; }
   .input-text-container.input-error input ~ hr {
     border-bottom: 2px solid red !important;
@@ -281,8 +282,7 @@ form {
   font-size: .8em;
   margin-top: 5px; }
 
-.button-container button,
-.button-container button:after {
+.button-container button {
   border-radius: 2px;
   transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   top: 0px;
@@ -290,18 +290,11 @@ form {
   color: #ffffff;
   padding: 10px 20px;
   border: none;
-  width: 100%;
-  text-transform: uppercase; }
-
-.button-container button {
+  min-width: 100px;
+  text-transform: uppercase;
   position: relative; }
-  .button-container button:after {
-    position: absolute;
-    content: attr(label);
-    background: transparent;
-    left: 0; }
-  .button-container button:hover:after {
-    background: rgba(255, 255, 255, 0.4);
+  .button-container button:hover {
+    background: rgba(1, 87, 155, 0.7);
     cursor: pointer; }
 
 .value-key-location {

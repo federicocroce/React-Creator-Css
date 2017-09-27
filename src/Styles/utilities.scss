@@ -90,8 +90,11 @@
         }
     }
     &.input-error {
-       > div input:focus ~ label.floating, div input:not(:placeholder-shown)~label.floating {color: red !important}
-       input ~ hr {
+        >div input:focus~label.floating,
+        div input:not(:placeholder-shown)~label.floating {
+            color: red !important
+        }
+        input~hr {
             border-bottom: 2px solid red !important;
             transform: scaleX(1);
         }
@@ -237,8 +240,7 @@ $input-box-check-size: 20px;
 
 //////////// Button /////////////
 .button-container {
-    button,
-    button:after {
+    button {
         border-radius: 2px;
         transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
         top: 0px;
@@ -246,24 +248,18 @@ $input-box-check-size: 20px;
         color: $primary-color-text;
         padding: 10px 20px;
         border: none;
-        width: 100%;
+        min-width: 100px;
         text-transform: uppercase;
-    }
-    button {
         position: relative;
-        &:after {
-            position: absolute;
-            content: attr(label);
-            background: transparent;
-            left: 0;
-        }
-        &:hover:after {
-            background: rgba(255, 255, 255, 0.4);
+        &:hover {
+            background: rgba( $primary-color, .7 );
             cursor: pointer;
         }
     }
 }
 
+
+// }
 ///////////////////////////////
 /////////////////////////////////////
 ////// KEY VALUE ///////////////
@@ -272,7 +268,6 @@ $input-box-check-size: 20px;
     text-align: left;
     float: left;
 }
-
 //////////////////////////////////////
 // body {
 //   margin: 0;
@@ -304,13 +299,11 @@ $input-box-check-size: 20px;
     border-radius: 2px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35), 0 3px 6px rgba(0, 0, 0, 0.65);
 }
-
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
-
 .file-drag {
     margin: 1em 0;
     cursor: default;
@@ -324,30 +317,28 @@ $input-box-check-size: 20px;
     animation: background-position 1s linear infinite;
     will-change: background-position;
 }
-
 .file-drag.hover {
     background-color: #E8F5E9;
     color: #4CAF50;
 }
-
 @-webkit-keyframes background-position {
     from {
         background-position: 0% 0px, 0px 100%, 100% 0px, 0px 0%;
     }
+    
     to {
         background-position: 0% 40px, 40px 100%, 100% -40px, -40px 0%;
     }
 }
-
 @keyframes background-position {
     from {
         background-position: 0% 0px, 0px 100%, 100% 0px, 0px 0%;
     }
+    
     to {
         background-position: 0% 40px, 40px 100%, 100% -40px, -40px 0%;
     }
 }
-
 .image-preview {
     display: inline-block;
     max-width: 60px;
@@ -355,7 +346,6 @@ $input-box-check-size: 20px;
     margin: 2px;
     padding: 5px;
 }
-
 .preview {
     display: inline-block;
     padding: 5px;
@@ -366,7 +356,6 @@ $input-box-check-size: 20px;
     word-break: break-all;
     white-space: pre-wrap;
 }
-
 .preview-item {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -379,16 +368,13 @@ $input-box-check-size: 20px;
     margin: 5px 0;
     background: #CFD8DC;
 }
-
 .preview-item.disabled {
     background: #F5F5F5;
     pointer-events: none;
 }
-
 .preview-item.disabled .button {
     opacity: 0.5;
 }
-
 .input {
     position: absolute;
     top: 0;
@@ -397,13 +383,11 @@ $input-box-check-size: 20px;
     width: 0;
     opacity: 0;
 }
-
 .loader {
     height: 60px;
     width: 60px;
     position: relative;
 }
-
 .loader-item {
     position: absolute;
     top: 50%;
@@ -416,44 +400,40 @@ $input-box-check-size: 20px;
     -webkit-animation: load-item .8s ease-in-out infinite;
     animation: load-item .8s ease-in-out infinite;
 }
-
 .loader-item:nth-child(1) {
     -webkit-animation-delay: 0s;
     animation-delay: 0s;
 }
-
 .loader-item:nth-child(2) {
     -webkit-animation-delay: -0.2s;
     animation-delay: -0.2s;
 }
-
 .loader-item:nth-child(3) {
     -webkit-animation-delay: -0.4s;
     animation-delay: -0.4s;
 }
-
 @-webkit-keyframes load-item {
     from {
         -webkit-transform: rotate(0deg) translateY(20px);
         transform: rotate(0deg) translateY(20px);
     }
+    
     to {
         -webkit-transform: rotate(360deg) translateY(20px);
         transform: rotate(360deg) translateY(20px);
     }
 }
-
 @keyframes load-item {
     from {
         -webkit-transform: rotate(0deg) translateY(20px);
         transform: rotate(0deg) translateY(20px);
     }
+    
     to {
         -webkit-transform: rotate(360deg) translateY(20px);
         transform: rotate(360deg) translateY(20px);
     }
 }
-
 .button {
     font-size: .8em;
     margin-right: .5em;
@@ -467,31 +447,26 @@ $input-box-check-size: 20px;
     font-weight: lighter;
     text-transform: uppercase;
 }
-
 .button:hover,
 .button:focus {
     background: #607D8B;
     border-color: #607D8B;
     color: #FFFFFF;
 }
-
 .button:active {
     background: #708a97;
     border-color: #708a97;
     color: #FFFFFF;
 }
-
 .button:focus {
     outline: 0;
 }
-
 .input-wrapper {
     position: relative;
     width: 100%;
     overflow: hidden;
     color: #212121;
 }
-
 .file-name {
     -webkit-box-flex: 0;
     -ms-flex: 0 1 auto;
@@ -500,13 +475,11 @@ $input-box-check-size: 20px;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-
 .file-ext {
     -webkit-box-flex: 1;
     -ms-flex: 1;
     flex: 1;
 }
-
 .input-cover {
     padding: 1em;
     display: -webkit-box;
@@ -519,13 +492,11 @@ $input-box-check-size: 20px;
     align-content: center;
     border-radius: 2px;
 }
-
 .help-text {
     padding: 1em;
     display: inline-block;
     color: #212121;
 }
-
 .spacer {
     -webkit-box-flex: 1;
     -ms-flex: 1;
