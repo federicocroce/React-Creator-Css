@@ -511,3 +511,37 @@ form {
   padding: 5px; }
   .users .button-container button {
     width: 100%; }
+
+.chosen-value {
+  transition: .3s ease-in-out; }
+  .chosen-value:focus, .chosen-value.open {
+    outline: 0; }
+
+.value-list {
+  list-style: none;
+  overflow: hidden;
+  max-height: 0;
+  transition: .3s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+  border-radius: 2px;
+  z-index: 1; }
+  .value-list.open {
+    max-height: 320px;
+    overflow: auto; }
+  .value-list li {
+    position: relative;
+    background-color: #FAFCFD;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color .3s;
+    opacity: 1; }
+    .value-list li:hover {
+      background-color: #4f83cc;
+      color: #ffffff; }
+    .value-list li.closed {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0;
+      opacity: 0; }

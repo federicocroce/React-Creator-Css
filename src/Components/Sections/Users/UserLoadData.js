@@ -62,6 +62,13 @@ const UserLoadDataReduxForm = props => {
         ]
     }
 
+      const listItemsCombobox = [
+            "Fede",
+            "Nico",
+            "Pablo"
+        ];
+
+    
 
     return (
         <form onSubmit={props.handleSubmit(submit.bind(this))}>
@@ -76,9 +83,11 @@ const UserLoadDataReduxForm = props => {
 
             <React.components.SwitchesGroup switchesProps={checkboxProps} />
 
+            <React.components.Combobox listItems={listItemsCombobox}/>
+
             <React.components.Button type='submit' className='primary-button' label='SUBMIT' />
             <React.components.Button className='primary-button' label='Eliminar' onClick={() => remove(selected, props)} />
-            <React.components.Button className='primary-button' label='Reset' onClick={() => {props.setSelected({}); reset()}} />
+            <React.components.Button className='primary-button' label='Reset' onClick={() => { props.setSelected({}); reset() }} />
             <React.components.Button className='primary-button' label='VOLVER' onClick={() => props.setSelected({})} back />
         </form>
     );
