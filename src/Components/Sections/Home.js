@@ -8,12 +8,12 @@ class Home extends React.Component {
 
     console.log("Home");
     return (
-      <div>
+      <section>
         <h1>
           Esta es la HOME
         </h1>
         <React.components.Button className='primary-button' label='Volver' back />
-      </div>
+      </section>
     );
   }
 }

@@ -28,13 +28,13 @@ class postsGrid extends React.Component {
     const posts = props.posts.list;
 
     return (
-      <div>
+      <section>
         <div className="list-container">
           {posts.length > 0 ? posts.map((post, index) => { return <React.components.Card key={index} index={index} object={post} /> }
           ) : <Spinner/>}
         </div>
         <React.components.Button className="primary-button" label="VOLVER" back />
-      </div>
+      </section>
 
     );
   }
