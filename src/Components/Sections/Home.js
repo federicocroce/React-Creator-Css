@@ -28,7 +28,8 @@ class Home extends React.Component {
   render() {
     console.log("Home");
     return (
-      <div>
+
+      <section>
         <h1>Esta es la HOME</h1>
         <ul>
           {this.state.names.map( (name, index) =>
@@ -36,7 +37,7 @@ class Home extends React.Component {
           )}
         </ul>
         <React.components.Button className='primary-button' label='Volver' back />
-      </div>
+      </section>
     );
   }
 }
