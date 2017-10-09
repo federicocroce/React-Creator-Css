@@ -43,6 +43,12 @@ const setLinks = () => {
       component: React.components.UserSection,
       name: "Usuarios"
     }
+    // {
+    //   path: "",
+    //   component: React.components.PageNotFound,
+    //   name: "Usuarios",
+    //   show: false
+    // }
   ];
 
   return LinksRoutes;

@@ -1,0 +1,28 @@
+@import '../../style/base';
+
+.nav-bar-container {
+    >div>ul {
+        background: $primary-color-light;
+        width: 100%;
+        text-align: center;
+        display: table;
+        li {
+            display: table-cell;
+            border-bottom: 2px transparent solid;
+            a {
+                padding: 20px;
+                color: $primary-color-text;
+                display: block;
+                text-align: center;
+            }
+            &:hover {
+                border-bottom: 2px $secondary-color solid;
+                cursor: pointer;
+                background: $primary-color-text;
+                a {
+                    color: $primary-color-light;
+                }
+            }
+        }
+    }
+}

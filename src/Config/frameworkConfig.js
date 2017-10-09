@@ -14,6 +14,7 @@ import GMapsSearchBox from '../Components/Utilities/GMaps/GMapsSearchBox';
 import SwitchesGroup from '../Components/Utilities/SwitchesGroup';
 import UploadImg from '../Components/Utilities/UploadImg';
 import Combobox from '../Components/Utilities/Combobox';
+import PageNotFound from '../Components/Utilities/PageNotFound';
 
 
 import Index from '../Components/Sections/Index';
@@ -72,6 +73,7 @@ const frameworkConfig = props => {
     React.components.SwitchesGroup = SwitchesGroup;
     React.components.UploadImg = UploadImg;
     React.components.Combobox = Combobox;
+    React.components.PageNotFound = PageNotFound;
 
     React.components.Index = Index;
     React.components.Home = Home;

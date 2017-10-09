@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import { routerReducer } from "react-router-redux";
 import { reducer as reduxFormReducer } from 'redux-form';
 // import { combineForms } from 'react-redux-form';
@@ -19,6 +18,6 @@ const allReducers = {
 }
 
 // const rootReducer = combineForms(allReducers);
-const rootReducer = combineReducers(allReducers);
+// const rootReducer = combineReducers(allReducers);
 
-export default rootReducer;
+export default allReducers;
